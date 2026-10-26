@@ -1,0 +1,35 @@
+{
+  "name": "bookfig",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Technical-book figure library and Nuxt preview (Vite+ monorepo)",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "test": "vp test",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "fmt:check": "vp fmt --check",
+    "typecheck": "tsgo --noEmit -p packages/bookfig/tsconfig.json",
+    "check": "vp lint && vp fmt --check && tsgo --noEmit -p packages/bookfig/tsconfig.json",
+    "ready": "vp lint && tsgo --noEmit -p packages/bookfig/tsconfig.json && vp test",
+    "bookfig": "vp -C packages/bookfig run bookfig",
+    "artifacts": "vpx packages/bookfig/scripts/render-artifacts.ts"
+  },
+  "devDependencies": {
+    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.15.0",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "pnpm@12.15.0"
+}

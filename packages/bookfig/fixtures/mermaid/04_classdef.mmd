@@ -1,0 +1,13 @@
+flowchart TB
+    CAM[相机 CAMERA] --> ENC[视觉编码器 ENCODER]
+    ENC --> POL[VLA POLICY]
+    POL --> ACT[动作块 ACTION CHUNK]
+    ACT --> CTRL[底层控制 CONTROLLER]
+    SAFE[安全监控 SAFETY] -.-> CTRL
+    classDef focus fill:#0B3D91,stroke:#0B3D91,color:#fff
+    classDef hatch fill:#DCE9FD
+    classDef opt stroke-dasharray: 5 5
+    class POL focus
+    class ENC hatch
+    class SAFE opt
+    style CAM fill:#fff

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1247" viewBox="0 0 2000 1247"><defs><pattern id="hatch-f6" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f6" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="1247" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1203" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1225h44M22,1203v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1225h44M1978,1203v44"/></g>
+<path d="M652.0,90.0 h486.0 v208.0 h-486.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="895.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">A VERY LONG LABEL THAT</text>
+<text x="895.0" y="185.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">KEEPS GOING AND GOING TO</text>
+<text x="895.0" y="224.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">TEST WRAPPING INSIDE ONE</text>
+<text x="895.0" y="263.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">NODE</text>
+<path d="M647.0,377.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="717.0" y="433.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">B</text>
+<path d="M827.0,338.0 h494.0 v169.0 h-494.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1074.0" y="394.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">第二个节点有一个非常长的中</text>
+<text x="1074.0" y="433.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">文标签用于测试自动换行是否</text>
+<text x="1074.0" y="472.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">正常工作</text>
+<path d="M745.0,547.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="815.0" y="603.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">D</text>
+<path d="M1004.0,547.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1074.0" y="603.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">E</text>
+<path d="M1074.0,678.0 L1321.4,803.3 L1074.0,928.6 L826.6,803.3 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1074.0" y="795.2" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">DECISION WITH A</text>
+<text x="1074.0" y="834.2" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">LONG QUESTION?</text>
+<path d="M696.0,1085.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="766.0" y="1141.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">G</text>
+<path d="M895.0,298.0 L895.0,318.0 L717.0,318.0 L717.0,377.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M705.7,360.5 L717.0,377.0 L728.3,360.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M895.0,298.0 L895.0,318.0 L1074.0,318.0 L1074.0,338.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1062.7,321.5 L1074.0,338.0 L1085.3,321.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M717.0,468.0 L717.0,507.5 L815.0,507.5 L815.0,547.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M803.7,530.5 L815.0,547.0 L826.3,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,507.0 L1074.0,527.0 L815.0,527.0 L815.0,547.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M803.7,530.5 L815.0,547.0 L826.3,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M895.0,298.0 L895.0,318.0 L815.0,318.0 L815.0,547.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M803.7,530.5 L815.0,547.0 L826.3,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M773.0,468.0 L773.0,527.0 L1039.0,527.0 L1039.0,547.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1027.7,530.5 L1039.0,547.0 L1050.3,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,507.0 L1074.0,547.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1062.7,530.5 L1074.0,547.0 L1085.3,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M815.0,638.0 L815.0,658.0 L1074.0,658.0 L1074.0,678.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1062.7,661.5 L1074.0,678.0 L1085.3,661.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,638.0 L1074.0,678.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1062.7,661.5 L1074.0,678.0 L1085.3,661.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,928.6 L1074.0,948.6 L1034.0,948.6 L1034.0,968.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1034.0,1045.0 L1034.0,1065.0 L780.0,1065.0 L780.0,1085.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M768.7,1068.5 L780.0,1085.0 L791.3,1068.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,928.6 L1074.0,948.6 L1326.0,948.6 L1326.0,984.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1337.7,984.2 L1337.7,194.0 L1138.0,194.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1154.5,182.7 L1138.0,194.0 L1154.5,205.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M720.5,1085.0 L720.5,468.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M731.8,484.5 L720.5,468.0 L709.2,484.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1074.0,547.0 L1074.0,507.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1085.3,523.5 L1074.0,507.0 L1062.7,523.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M815.0,638.0 L815.0,658.0 L752.0,658.0 L752.0,1085.0" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
+<path d="M740.7,1068.5 L752.0,1085.0 L763.3,1068.5" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M866.0,968.6 h336.0 v76.4 h-336.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1034.0" y="1000.3" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">YES, CONTINUE WITH THE</text>
+<text x="1034.0" y="1031.5" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">MAIN PATH</text>
+<rect x="1299.0" y="987.6" width="54.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1326.0" y="1015.9" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">NO</text></svg>

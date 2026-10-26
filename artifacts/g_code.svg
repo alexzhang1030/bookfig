@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="778" viewBox="0 0 2000 778"><defs><pattern id="hatch-f18" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f18" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="778" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="734" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,756h44M22,734v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,756h44M1978,734v44"/></g>
+<rect x="120.0" y="85.2" width="259.0" height="41.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="249.5" y="115.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CONTROL_LOOP.PY</text>
+<rect x="90" y="106" width="1820" height="602" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="1.5"/>
+<rect x="120.0" y="85.2" width="259.0" height="41.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="249.5" y="115.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CONTROL_LOOP.PY</text>
+<text x="130.0" y="173.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB"># 示例：在机器人上异步调用 VLA 策略 (example)</text>
+<text x="130.0" y="216.5" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">import</text>
+<text x="235.0" y="216.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">asyncio</text>
+<text x="130.0" y="260.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">from</text>
+<text x="205.0" y="260.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">robot</text>
+<text x="295.0" y="260.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">import</text>
+<text x="400.0" y="260.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">Arm</text>
+<text x="445.0" y="260.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">,</text>
+<text x="475.0" y="260.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">Camera</text>
+<text x="130.0" y="347.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">async</text>
+<text x="220.0" y="347.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">def</text>
+<text x="280.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">control_loop</text>
+<text x="460.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="475.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">policy</text>
+<text x="565.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">,</text>
+<text x="595.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">hz</text>
+<text x="625.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">=</text>
+<text x="640.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB">10</text>
+<text x="670.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="685.0" y="347.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">:</text>
+<text x="190.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">arm</text>
+<text x="235.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">,</text>
+<text x="265.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">cam</text>
+<text x="325.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">=</text>
+<text x="355.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">Arm</text>
+<text x="400.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="415.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB">&quot;left&quot;</text>
+<text x="505.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="520.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">,</text>
+<text x="550.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">Camera</text>
+<text x="640.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="655.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB">&quot;wrist&quot;</text>
+<text x="760.0" y="390.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="190.0" y="434.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">while</text>
+<text x="280.0" y="434.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">True</text>
+<text x="340.0" y="434.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">:</text>
+<text x="250.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">obs</text>
+<text x="310.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">=</text>
+<text x="340.0" y="477.5" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">await</text>
+<text x="430.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">cam</text>
+<text x="475.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">.</text>
+<text x="490.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">read</text>
+<text x="550.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="565.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="730.0" y="477.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB"># RGB-D + proprio</text>
+<text x="250.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">chunk</text>
+<text x="340.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">=</text>
+<text x="370.0" y="521.0" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">await</text>
+<text x="460.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">policy</text>
+<text x="550.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">.</text>
+<text x="565.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">act</text>
+<text x="610.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="625.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">obs</text>
+<text x="670.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">,</text>
+<text x="700.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">prompt</text>
+<text x="790.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">=</text>
+<text x="805.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB">&quot;把杯子放进篮子&quot;</text>
+<text x="1045.0" y="521.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="250.0" y="564.5" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">for</text>
+<text x="310.0" y="564.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">action</text>
+<text x="415.0" y="564.5" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">in</text>
+<text x="460.0" y="564.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">chunk</text>
+<text x="535.0" y="564.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">:</text>
+<text x="730.0" y="564.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB"># action chunk</text>
+<text x="310.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">arm</text>
+<text x="355.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">.</text>
+<text x="370.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">send</text>
+<text x="430.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="445.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">action</text>
+<text x="535.0" y="608.0" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text>
+<text x="250.0" y="651.5" font-size="30" letter-spacing="0" font-weight="bold" fill="#0B3D91">await</text>
+<text x="340.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">asyncio</text>
+<text x="445.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">.</text>
+<text x="460.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">sleep</text>
+<text x="535.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">(</text>
+<text x="550.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#1F6FEB">1</text>
+<text x="580.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">/</text>
+<text x="610.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">hz</text>
+<text x="640.0" y="651.5" font-size="30" letter-spacing="0" font-weight="normal" fill="#0B3D91">)</text></svg>

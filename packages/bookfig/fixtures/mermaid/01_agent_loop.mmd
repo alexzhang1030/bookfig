@@ -1,0 +1,21 @@
+---
+title: 机器人 Agent 控制回路
+---
+flowchart TD
+    %% planner -> controller -> VLA -> arm
+    P["VLM 规划器<br/>next_subtask()"]:::model --> C["LeRobot<br/>RolloutController.set_task"]
+    C --> V[[WALL VLA]]:::model
+    V --> ARM["单臂 + 腕部相机<br/>single arm + wrist cam"]:::focus
+    ARM --> J{仲裁 ARBITRATION}
+    J -- success --> P
+    J -. fail / retry .-> C
+    subgraph ELEV [电梯状态机 ELEVATOR]
+        direction LR
+        W([等待 WAITING]) --> L[灯亮 LIGHT ON]
+        L --> D[激光测门开 LASER DOOR-OPEN]
+        D --> E[进入 ENTERING]
+    end
+    P -->|子任务 = 乘电梯| W
+    E -.-> J
+    classDef model fill:#9DC1F7
+    classDef focus fill:#1F6FEB,color:#fff

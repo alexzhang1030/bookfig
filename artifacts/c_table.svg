@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="659" viewBox="0 0 2000 659"><defs><pattern id="hatch-f14" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f14" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="659" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="615" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,637h44M22,615v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,637h44M1978,615v44"/></g>
+<rect x="774.5" y="72.8" width="451.0" height="54.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="112.9" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">机器人推理栈分层 · 示例</text>
+<rect x="480" y="150" width="390" height="375" fill="#EEF4FE"/>
+<rect x="90" y="150" width="1820" height="75" fill="#DCE9FD"/>
+<text x="285.0" y="198.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#0B3D91">组件 COMPONENT</text>
+<text x="675.0" y="198.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#0B3D91">运行位置 WHERE</text>
+<text x="1000.0" y="198.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#0B3D91">频率 RATE</text>
+<text x="1148.0" y="198.9" text-anchor="start" font-size="30" letter-spacing="2" font-weight="normal" fill="#0B3D91">说明 NOTE</text>
+<path d="M90.0,225.0 L1910.0,225.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<text x="285.0" y="273.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLM 规划器</text>
+<text x="675.0" y="273.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="bold" fill="#0B3D91">云端 GPU</text>
+<text x="1000.0" y="273.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">~1 HZ</text>
+<text x="1148.0" y="273.9" text-anchor="start" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">把任务拆成子目标，语言条件</text>
+<path d="M90.0,300.0 L1910.0,300.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="285.0" y="348.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA 策略</text>
+<text x="675.0" y="348.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="bold" fill="#0B3D91">机载 JETSON</text>
+<text x="1000.0" y="348.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">~10 HZ</text>
+<text x="1148.0" y="348.9" text-anchor="start" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">图像 + 子目标 → 动作块 action chunk</text>
+<path d="M90.0,375.0 L1910.0,375.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="285.0" y="423.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">底层控制器</text>
+<text x="675.0" y="423.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="bold" fill="#0B3D91">MCU</text>
+<text x="1000.0" y="423.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">~1 KHZ</text>
+<text x="1148.0" y="423.9" text-anchor="start" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">关节力矩 / 位置闭环</text>
+<path d="M90.0,450.0 L1910.0,450.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="285.0" y="498.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">安全监控</text>
+<text x="675.0" y="498.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="bold" fill="#0B3D91">MCU</text>
+<text x="1000.0" y="498.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">~1 KHZ</text>
+<text x="1148.0" y="498.9" text-anchor="start" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">急停、限位、碰撞检测</text>
+<path d="M480.0,150.0 L480.0,525.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<path d="M870.0,150.0 L870.0,525.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<path d="M1130.0,150.0 L1130.0,525.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<rect x="90" y="150" width="1820" height="375" fill="none" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="584.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">频率为示例数据 / RATES ARE EXAMPLE VALUES</text></svg>

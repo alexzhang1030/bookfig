@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="530" viewBox="0 0 2000 530"><defs><pattern id="hatch-f13" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f13" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="530" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="486" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,508h44M22,486v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,508h44M1978,486v44"/></g>
+<rect x="90" y="70" width="1820" height="80" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="123.7" text-anchor="middle" font-size="36" letter-spacing="2" font-weight="normal" fill="#1F6FEB">COMPARING NUMBER FORMATS 数字格式</text>
+<rect x="90" y="150" width="1478" height="310" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M330.0,150.0 L330.0,460.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-linejoin="miter"/>
+<text x="210.0" y="200.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FP16</text>
+<rect x="357.0" y="172.0" width="67.6" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="430.6" y="172.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="504.3" y="172.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="577.9" y="172.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="651.5" y="172.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="725.1" y="172.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="798.8" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="872.4" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="946.0" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1019.6" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1093.3" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1166.9" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1240.5" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1314.1" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1387.8" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1461.4" y="172.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<path d="M90.0,218.0 L1568.0,218.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="210.0" y="258.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FP8</text>
+<rect x="357.0" y="230.0" width="67.6" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="430.6" y="230.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="504.3" y="230.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="577.9" y="230.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="651.5" y="230.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="725.1" y="230.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="798.8" y="230.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="872.4" y="230.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<path d="M90.0,276.0 L1568.0,276.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="210.0" y="316.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">INT8</text>
+<rect x="357.0" y="288.0" width="67.6" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="430.6" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="504.3" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="577.9" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="651.5" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="725.1" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="798.8" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="872.4" y="288.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<path d="M90.0,334.0 L1568.0,334.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="210.0" y="374.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FP4</text>
+<rect x="357.0" y="346.0" width="67.6" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="430.6" y="346.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="504.3" y="346.0" width="67.6" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="577.9" y="346.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<path d="M90.0,392.0 L1568.0,392.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="210.0" y="432.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">INT4</text>
+<rect x="357.0" y="404.0" width="67.6" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="430.6" y="404.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="504.3" y="404.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="577.9" y="404.0" width="67.6" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<rect x="1598" y="150" width="312" height="190" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="1620.0" y="172.0" width="34.0" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1670.0" y="199.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">SIGN 符号</text>
+<rect x="1620.0" y="228.0" width="34.0" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1670.0" y="255.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">EXPONENT 指数</text>
+<rect x="1620.0" y="284.0" width="34.0" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1670.0" y="311.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">MANTISSA 尾数</text></svg>

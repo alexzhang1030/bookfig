@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="820" viewBox="0 0 2000 820"><defs><pattern id="hatch-f12" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f12" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="820" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="776" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,798h44M22,776v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,798h44M1978,776v44"/></g>
+<rect x="90" y="70" width="1820" height="80" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="123.7" text-anchor="middle" font-size="36" letter-spacing="2" font-weight="normal" fill="#1F6FEB">单步动作延迟对比 (MS) · 示例数据</text>
+<rect x="90" y="150" width="1618" height="536" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M390.0,150.0 L390.0,686.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-linejoin="miter"/>
+<text x="240.0" y="257.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA-S</text>
+<rect x="414.0" y="180.0" width="298.7" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<text x="726.7" y="206.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">42 ms</text>
+<rect x="414.0" y="224.0" width="199.2" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<text x="627.1" y="250.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">28 ms</text>
+<rect x="414.0" y="268.0" width="135.1" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<text x="563.1" y="294.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">19 ms</text>
+<path d="M90.0,332.0 L1708.0,332.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="240.0" y="429.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA-M</text>
+<rect x="414.0" y="352.0" width="625.9" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1053.9" y="378.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">88 ms</text>
+<rect x="414.0" y="396.0" width="391.2" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<text x="819.2" y="422.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">55 ms</text>
+<rect x="414.0" y="440.0" width="256.1" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<text x="684.0" y="466.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">36 ms</text>
+<path d="M90.0,504.0 L1708.0,504.0" fill="none" stroke="#1F6FEB" stroke-width="1.5" stroke-linejoin="miter"/>
+<text x="240.0" y="601.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA-L</text>
+<rect x="414.0" y="524.0" width="1138.0" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1566.0" y="550.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">160 ms</text>
+<rect x="414.0" y="568.0" width="689.9" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1117.9" y="594.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">97 ms</text>
+<rect x="414.0" y="612.0" width="455.2" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<text x="883.2" y="638.9" text-anchor="start" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">64 ms</text>
+<rect x="1738" y="150" width="172" height="190" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="1760.0" y="172.0" width="34.0" height="34.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1810.0" y="199.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FP16</text>
+<rect x="1760.0" y="228.0" width="34.0" height="34.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1810.0" y="255.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FP8</text>
+<rect x="1760.0" y="284.0" width="34.0" height="34.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="2"/>
+<text x="1810.0" y="311.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">INT4</text>
+<text x="1000.0" y="745.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">EXAMPLE DATA — NOT MEASURED</text></svg>

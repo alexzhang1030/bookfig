@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="780" viewBox="0 0 2000 780"><defs><pattern id="hatch-f17" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f17" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="780" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="736" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,758h44M22,736v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,758h44M1978,736v44"/></g>
+<rect x="658.0" y="78.0" width="684.0" height="64.0" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="125.2" text-anchor="middle" font-size="40" letter-spacing="2" font-weight="normal" fill="#1F6FEB">灰度发布 CANARY TRAFFIC SPLIT</text>
+<rect x="120" y="400" width="300" height="130" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="270.0" y="477.9" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">TRAFFIC 流量</text>
+<rect x="1100" y="230" width="760" height="190" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1480.0" y="321.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">OLD DEPLOYMENT</text>
+<text x="1480.0" y="356.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA V1 · 90%</text>
+<rect x="1100" y="520" width="760" height="190" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1480.0" y="611.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">NEW DEPLOYMENT</text>
+<text x="1480.0" y="646.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA V2 · 10%</text>
+<path d="M420.0,435.0 L600.0,435.0 L600.0,285.0 L1100.0,285.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1085.1,295.2 L1100.0,285.0 L1085.1,274.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M420.0,455.0 L640.0,455.0 L640.0,325.0 L1100.0,325.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1085.1,335.2 L1100.0,325.0 L1085.1,314.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M420.0,475.0 L680.0,475.0 L680.0,365.0 L1100.0,365.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1085.1,375.2 L1100.0,365.0 L1085.1,354.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M420.0,495.0 L720.0,495.0 L720.0,615.0 L1100.0,615.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 10" stroke-linejoin="miter"/>
+<path d="M1085.1,625.2 L1100.0,615.0 L1085.1,604.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="810.5" y="594.2" width="79.0" height="41.6" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="850.0" y="624.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">10%</text>
+<rect x="810.5" y="224.2" width="79.0" height="41.6" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="850.0" y="254.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">90%</text></svg>

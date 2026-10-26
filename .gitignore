@@ -1,0 +1,30 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+node_modules
+dist
+dist-ssr
+.nuxt
+.output
+.data
+*.local
+
+.env
+.env.*
+!.env.example
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# AI agent worktrees
+.claude/worktrees/
+agent-tools/
+uploads/
+
+# Generated snapshots stay in git; local render scratch does not
+/tmp-render/

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1040" viewBox="0 0 2000 1040"><defs><pattern id="hatch-f11" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f11" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="1040" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="996" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1018h44M22,996v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1018h44M1978,996v44"/></g>
+<rect x="735.0" y="74.4" width="530.0" height="51.2" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="112.2" text-anchor="middle" font-size="32" letter-spacing="2" font-weight="normal" fill="#1F6FEB">机器人车队推理请求 · 示例数据</text>
+<path d="M240.0,860.0 L1880.0,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="222.0" y="870.6" text-anchor="end" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">0</text>
+<path d="M240.0,685.0 L1880.0,685.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="222.0" y="695.6" text-anchor="end" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">25</text>
+<path d="M240.0,510.0 L1880.0,510.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="222.0" y="520.6" text-anchor="end" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">50</text>
+<path d="M240.0,335.0 L1880.0,335.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="222.0" y="345.6" text-anchor="end" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">75</text>
+<path d="M240.0,160.0 L1880.0,160.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="222.0" y="170.6" text-anchor="end" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">100</text>
+<path d="M240.0,160.0 L240.0,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="240.0" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">0</text>
+<path d="M513.3,160.0 L513.3,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="513.3" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">4</text>
+<path d="M786.7,160.0 L786.7,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="786.7" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">8</text>
+<path d="M1060.0,160.0 L1060.0,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="1060.0" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">12</text>
+<path d="M1333.3,160.0 L1333.3,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="1333.3" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">16</text>
+<path d="M1606.7,160.0 L1606.7,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="1606.7" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">20</text>
+<path d="M1880.0,160.0 L1880.0,860.0" fill="none" stroke="#1F6FEB" stroke-width="2" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<text x="1880.0" y="904.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">24</text>
+<path d="M240.0,160.0 L240.0,860.0 L1880.0,860.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+<path d="M240.0,860 L240.0,720.0 L308.3,678.3 L376.7,730.6 L445.0,758.4 L513.3,697.8 L581.7,682.2 L650.0,738.2 L718.3,719.8 L786.7,629.3 L855.0,601.5 L923.3,590.8 L991.7,474.1 L1060.0,343.2 L1128.3,327.7 L1196.7,340.8 L1265.0,308.1 L1333.3,348.3 L1401.7,492.4 L1470.0,581.0 L1538.3,585.7 L1606.7,643.2 L1675.0,732.1 L1743.3,721.2 L1811.7,674.3 L1880.0,716.8 L1880.0,860 Z" fill="url(#dots-f11)" stroke="none"/>
+<path d="M240.0,720.0 L308.3,678.3 L376.7,730.6 L445.0,758.4 L513.3,697.8 L581.7,682.2 L650.0,738.2 L718.3,719.8 L786.7,629.3 L855.0,601.5 L923.3,590.8 L991.7,474.1 L1060.0,343.2 L1128.3,327.7 L1196.7,340.8 L1265.0,308.1 L1333.3,348.3 L1401.7,492.4 L1470.0,581.0 L1538.3,585.7 L1606.7,643.2 L1675.0,732.1 L1743.3,721.2 L1811.7,674.3 L1880.0,716.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M240.0,580.0 L308.3,580.0 L308.3,580.0 L376.7,580.0 L376.7,720.0 L445.0,720.0 L445.0,720.0 L513.3,720.0 L513.3,580.0 L581.7,580.0 L581.7,580.0 L650.0,580.0 L650.0,720.0 L718.3,720.0 L718.3,580.0 L786.7,580.0 L786.7,580.0 L855.0,580.0 L855.0,580.0 L923.3,580.0 L923.3,580.0 L991.7,580.0 L991.7,440.0 L1060.0,440.0 L1060.0,300.0 L1128.3,300.0 L1128.3,300.0 L1196.7,300.0 L1196.7,300.0 L1265.0,300.0 L1265.0,300.0 L1333.3,300.0 L1333.3,300.0 L1401.7,300.0 L1401.7,440.0 L1470.0,440.0 L1470.0,580.0 L1538.3,580.0 L1538.3,580.0 L1606.7,580.0 L1606.7,580.0 L1675.0,580.0 L1675.0,720.0 L1743.3,720.0 L1743.3,720.0 L1811.7,720.0 L1811.7,580.0 L1880.0,580.0 L1880.0,580.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8" stroke-linejoin="miter"/>
+<text x="1060.0" y="960.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">时间 TIME (H)</text>
+<g transform="rotate(-90 130 510)">
+<text x="130.0" y="520.6" text-anchor="middle" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">请求 REQUESTS</text>
+</g>
+<path d="M1460.0,190.0 L1516.0,190.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<text x="1532.0" y="200.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">请求量</text>
+<path d="M1658.0,190.0 L1714.0,190.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 10" stroke-linejoin="miter"/>
+<text x="1730.0" y="200.6" text-anchor="start" font-size="28" letter-spacing="2" font-weight="normal" fill="#1F6FEB">GPU 数</text>
+<rect x="206.0" y="185.8" width="268.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="340.0" y="214.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">EXAMPLE DATA 示例</text></svg>

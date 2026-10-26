@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="644" viewBox="0 0 2000 644"><defs><pattern id="hatch-f3" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f3" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="644" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="600" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,622h44M22,600v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,622h44M1978,600v44"/></g>
+<path d="M464.5,287.0 h444.0 v91.0 h-444.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="686.5" y="343.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">控制平面 CONTROL PLANE</text>
+<path d="M976.0,90.0 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1123.5" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER 1 上海</text>
+<path d="M976.0,221.0 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1123.5" y="277.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER 2 深圳</text>
+<path d="M974.0,352.0 h299.0 v91.0 h-299.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1123.5" y="408.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER 3 EDGE</text>
+<path d="M948.5,483.0 h350.0 v91.0 h-350.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1123.5" y="539.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER 4 STANDBY</text>
+<path d="M1338.5,209.0 h197.0 v115.0 h-197.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M1338.5,221.0 h197.0 M1338.5,233.0 h197.0" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1437.0" y="277.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">METRICS</text>
+<path d="M908.5,332.5 L928.5,332.5 L928.5,135.5 L976.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M959.5,146.8 L976.0,135.5 L959.5,124.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M908.5,332.5 L928.5,332.5 L928.5,266.5 L976.0,266.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M959.5,277.8 L976.0,266.5 L959.5,255.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M908.5,332.5 L928.5,332.5 L928.5,397.5 L974.0,397.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M957.5,408.8 L974.0,397.5 L957.5,386.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M908.5,332.5 L928.5,332.5 L928.5,528.5 L948.5,528.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M932.0,539.8 L948.5,528.5 L932.0,517.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1271.0,135.5 L1305.8,135.5 L1305.8,266.5 L1338.5,266.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1322.0,277.8 L1338.5,266.5 L1322.0,255.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1271.0,266.5 L1338.5,266.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1322.0,277.8 L1338.5,266.5 L1322.0,255.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1273.0,397.5 L1305.8,397.5 L1305.8,266.5 L1338.5,266.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1322.0,277.8 L1338.5,266.5 L1322.0,255.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/></svg>

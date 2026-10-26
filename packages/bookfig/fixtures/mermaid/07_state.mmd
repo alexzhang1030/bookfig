@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> Waiting
+    state "等待 WAITING" as Waiting
+    state "灯亮 LIGHT ON" as LightOn
+    state "激光测门开 DOOR OPEN" as DoorOpen
+    state "进入 ENTERING" as Entering
+    Waiting --> LightOn : 按钮灯亮
+    LightOn --> DoorOpen : 激光距离 > 阈值
+    DoorOpen --> Entering : 门开稳定
+    DoorOpen --> Waiting : 超时 timeout
+    Entering --> [*]

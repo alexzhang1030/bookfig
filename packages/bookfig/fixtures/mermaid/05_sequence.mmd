@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    actor U as 操作员
+    participant A as Agent (VLM)
+    participant S as VLA Server
+    participant R as Robot 机械臂
+    U->>A: 把杯子放进篮子
+    A->>S: set_task("pick cup")
+    loop 每 100 ms / every chunk
+        R-->>S: 观测 obs (RGB + proprio)
+        S->>R: action chunk
+    end
+    alt 成功 success
+        R-->>A: done
+    else 失败 fail
+        R--)A: error + 截图
+        A->>A: 重新规划 replan
+    end
+    Note over A,S: 子任务完成后上报 report
+    A-->>U: 完成 done

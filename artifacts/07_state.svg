@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1068" viewBox="0 0 2000 1068"><defs><pattern id="hatch-f7" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f7" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="1068" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1024" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1046h44M22,1024v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1046h44M1978,1024v44"/></g>
+<circle cx="1099.0" cy="112.0" r="22.0" fill="#1F6FEB"/>
+<path d="M960.0,174.0 h278.0 v91.0 h-278.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1099.0" y="230.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">等待 WAITING</text>
+<path d="M833.5,390.2 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="981.0" y="447.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">灯亮 LIGHT ON</text>
+<path d="M734.0,606.4 h408.0 v91.0 h-408.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="938.0" y="663.3" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">激光测门开 DOOR OPEN</text>
+<path d="M790.5,822.7 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="938.0" y="879.6" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">进入 ENTERING</text>
+<circle cx="938.0" cy="975.7" r="22.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<circle cx="938.0" cy="975.7" r="12.1" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M1099.0,134.0 L1099.0,174.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1087.7,157.5 L1099.0,174.0 L1110.3,157.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1099.0,265.0 L1099.0,285.0 L1036.0,285.0 L1036.0,305.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1036.0,350.2 L1036.0,370.2 L981.0,370.2 L981.0,390.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M969.7,373.7 L981.0,390.2 L992.3,373.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M953.0,481.2 L953.0,521.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,566.4 L938.0,606.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M926.7,589.9 L938.0,606.5 L949.3,589.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,697.4 L938.0,737.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,782.7 L938.0,822.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M926.7,806.2 L938.0,822.7 L949.3,806.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,697.4 L938.0,717.5 L1171.0,717.5 L1171.0,737.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1190.0,737.5 L1190.0,265.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1201.3,281.5 L1190.0,265.0 L1178.7,281.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,913.7 L938.0,953.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M926.7,937.2 L938.0,953.7 L949.3,937.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="971.0" y="308.4" width="130.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1036.0" y="336.7" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">按钮灯亮</text>
+<rect x="841.0" y="524.6" width="224.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="953.0" y="553.0" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">激光距离 &gt; 阈值</text>
+<rect x="873.0" y="740.9" width="130.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="938.0" y="769.2" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">门开稳定</text>
+<rect x="1076.0" y="740.9" width="190.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1171.0" y="769.2" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">超时 TIMEOUT</text></svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="880" viewBox="0 0 2000 880"><defs><pattern id="hatch-f16" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f16" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="880" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="836" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,858h44M22,836v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,858h44M1978,836v44"/></g>
+<rect x="654.0" y="78.0" width="692.0" height="64.0" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1000.0" y="125.2" text-anchor="middle" font-size="40" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CONTROL PLANE → WORKER PLANES</text>
+<rect x="120" y="380" width="520" height="240" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="380.0" y="512.9" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">控制平面 CONTROL PLANE</text>
+<rect x="1260" y="220" width="560" height="110" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1540.0" y="271.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER PLANE 1</text>
+<text x="1540.0" y="306.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">上海 · 4× GPU</text>
+<rect x="1260" y="370" width="560" height="110" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1540.0" y="421.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER PLANE 2</text>
+<text x="1540.0" y="456.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">深圳 · 2× GPU</text>
+<rect x="1260" y="520" width="560" height="110" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1540.0" y="571.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER PLANE 3</text>
+<text x="1540.0" y="606.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">机器人现场 EDGE</text>
+<rect x="1260" y="670" width="560" height="110" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1540.0" y="721.7" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER PLANE 4</text>
+<text x="1540.0" y="756.6" text-anchor="middle" font-size="25" letter-spacing="2" font-weight="normal" fill="#1F6FEB">备用 STANDBY</text>
+<path d="M640.0,500.0 L950.0,500.0 L950.0,275.0 L1260.0,275.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1245.1,285.2 L1260.0,275.0 L1245.1,264.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M640.0,500.0 L950.0,500.0 L950.0,425.0 L1260.0,425.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1245.1,435.2 L1260.0,425.0 L1245.1,414.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M640.0,500.0 L950.0,500.0 L950.0,575.0 L1260.0,575.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1245.1,585.2 L1260.0,575.0 L1245.1,564.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M640.0,500.0 L950.0,500.0 L950.0,725.0 L1260.0,725.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 10" stroke-linejoin="miter"/>
+<path d="M1245.1,735.2 L1260.0,725.0 L1245.1,714.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1220" y="190" width="640" height="620" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1356.5" y="168.4" width="367.0" height="43.2" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1540.0" y="200.3" text-anchor="middle" font-size="27" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WORKER PLANES 工作平面</text></svg>

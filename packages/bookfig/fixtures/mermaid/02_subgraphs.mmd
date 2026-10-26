@@ -1,0 +1,17 @@
+flowchart LR
+    subgraph DATA [数据 DATA]
+        subgraph REC [采集 RECORD]
+            T[遥操作 teleop] --> EP[(episodes)]
+        end
+        EP --> CL[清洗 CLEAN]
+    end
+    subgraph TRAIN [训练 TRAINING]
+        CL --> FT[微调 FINE-TUNE]:::hatch
+        FT --> EV{评测 EVAL}
+    end
+    subgraph SERVE [部署 SERVING]
+        Q[量化 QUANTIZE] --> SRV[VLA SERVER]
+    end
+    EV -->|通过 pass| Q
+    EV -. 不通过 fail .-> T
+    SRV ==> R((ROBOT))

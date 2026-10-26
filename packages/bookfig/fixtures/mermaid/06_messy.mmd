@@ -1,0 +1,15 @@
+flowchart TD
+    A["A very long label that keeps going and going to test wrapping inside one node"] --> B
+    A --> C[第二个节点有一个非常长的中文标签用于测试自动换行是否正常工作]
+    B --> D
+    C --> D
+    A --> D
+    B --> E[E]
+    C --> E
+    D --> F{"decision with a long question?"}
+    E --> F
+    F -->|yes, continue with the main path| G
+    F -->|no| A
+    G --> B
+    E -.-> C
+    D ==> G

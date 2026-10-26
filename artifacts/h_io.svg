@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="534" viewBox="0 0 2000 534"><defs><pattern id="hatch-f19" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f19" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="534" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="490" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,512h44M22,490v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,512h44M1978,490v44"/></g>
+<path d="M140,90 h58.3 l27.5,27.5 v82.5 h-85.8 Z M198.3,90 v27.5 h27.5" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M157.16,139.5 h51.5" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M157.16,157.1 h51.5" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M157.16,174.7 h51.5" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="140" y="260" width="110" height="110" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/><circle cx="195" cy="301.8" r="17.6" fill="none" stroke="#1F6FEB" stroke-width="3"/><path d="M162,353.5 q33,-39.6 66,0" fill="none" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M276.0,70.0 L300.0,70.0 L300.0,390.0 L276.0,390.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M300.0,230.0 L540.0,230.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M525.1,240.2 L540.0,230.0 L525.1,219.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M584.0,90.0 L560.0,90.0 L560.0,370.0 L584.0,370.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="620" y="130" width="420" height="200" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="830.0" y="242.9" text-anchor="middle" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA 策略模型</text>
+<path d="M1076.0,90.0 L1100.0,90.0 L1100.0,370.0 L1076.0,370.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1100.0,230.0 L1340.0,230.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1325.1,240.2 L1340.0,230.0 L1325.1,219.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1380" y="170" width="120" height="120" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/><path d="M1404,272 h36 M1422,272 L1422,230 L1464,206 M1454.4,194 L1473.6,194 M1464,206 v-12" fill="none" stroke="#1F6FEB" stroke-width="3"/><circle cx="1422" cy="230" r="6" fill="#1F6FEB"/>
+<text x="1540.0" y="242.9" text-anchor="start" font-size="34" letter-spacing="2" font-weight="normal" fill="#1F6FEB">动作 ACTION</text>
+<text x="195.0" y="459.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">指令 + 观测</text>
+<text x="830.0" y="459.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">INPUT → MODEL → OUTPUT</text>
+<text x="1440.0" y="459.9" text-anchor="middle" font-size="26" letter-spacing="2" font-weight="normal" fill="#1F6FEB">机械臂</text></svg>
