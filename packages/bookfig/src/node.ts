@@ -4,11 +4,14 @@ import { dirname, join } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 import { DEFAULT_FONT_FAMILY } from "./palettes.ts";
 
-function katexFontFiles(): string[] {
+export function katexFontFile(name: string): string {
+  const req = createRequire(import.meta.url);
+  return join(dirname(req.resolve("katex/package.json")), "dist/fonts", name);
+}
+
+export function katexFontFiles(): string[] {
   try {
-    const req = createRequire(import.meta.url);
-    const root = dirname(req.resolve("katex/package.json"));
-    const dir = join(root, "dist/fonts");
+    const dir = dirname(katexFontFile("KaTeX_Main-Regular.ttf"));
     return readdirSync(dir)
       .filter((f) => f.endsWith(".ttf"))
       .map((f) => join(dir, f));
@@ -29,18 +32,29 @@ const FONT_CANDIDATES = [
 export type PngOptions = {
   fontFiles?: string[];
   fontFamily?: string;
+  loadSystemFonts?: boolean;
 };
 
-export function svgToPngBuffer(svg: string, opts: PngOptions = {}): Buffer {
-  const fontFiles = opts.fontFiles ?? FONT_CANDIDATES;
-  const resvg = new Resvg(svg, {
+function makeResvg(svg: string, opts: PngOptions = {}): Resvg {
+  return new Resvg(svg, {
     font: {
-      fontFiles,
-      loadSystemFonts: true,
+      fontFiles: opts.fontFiles ?? FONT_CANDIDATES,
+      loadSystemFonts: opts.loadSystemFonts ?? true,
       defaultFontFamily: opts.fontFamily ?? DEFAULT_FONT_FAMILY,
     },
   });
-  return Buffer.from(resvg.render().asPng());
+}
+
+export function svgToRgba(
+  svg: string,
+  opts: PngOptions = {},
+): { pixels: Buffer; width: number; height: number } {
+  const img = makeResvg(svg, opts).render();
+  return { pixels: Buffer.from(img.pixels), width: img.width, height: img.height };
+}
+
+export function svgToPngBuffer(svg: string, opts: PngOptions = {}): Buffer {
+  return Buffer.from(makeResvg(svg, opts).render().asPng());
 }
 
 export function writeSvg(path: string, svg: string): void {

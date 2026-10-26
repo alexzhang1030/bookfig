@@ -60,7 +60,8 @@ test("math labels become KaTeX SVG, not foreignObject", async () => {
   const r = await renderMermaid(src);
   expect(r.svg).not.toContain("foreignObject");
   expect(r.svg).toContain("data-tex");
-  expect(r.svg).toContain("KaTeX");
+  expect(r.svg).toContain('data-face="KaTeX_');
+  expect(r.svg).toContain("<path d=");
 });
 
 test("02 fail back-edge lands on TELEOP with an arrow, not between TELEOP and EP", async () => {
@@ -74,17 +75,19 @@ test("02 fail back-edge lands on TELEOP with an arrow, not between TELEOP and EP
   expect(r.svg).toContain("TELEOP");
   expect(lastX).toBeGreaterThan(200);
   expect(lastX).toBeLessThan(400);
-  const data = /<rect x="([0-9.]+)" y="([0-9.]+)" width="([0-9.]+)" height="([0-9.]+)"[^/]*\/>\s*<rect[^/]*\/>\s*<text[^>]*>数据 DATA/.exec(
-    r.svg,
-  );
+  const data =
+    /<rect x="([0-9.]+)" y="([0-9.]+)" width="([0-9.]+)" height="([0-9.]+)"[^/]*\/>\s*<rect[^/]*\/>\s*<text[^>]*>数据 DATA/.exec(
+      r.svg,
+    );
   expect(data).toBeTruthy();
   const dataBottom = Number(data?.[2]) + Number(data?.[4]);
   const ys = nums.filter((_, i) => i % 2 === 1);
   const runY = Math.max(...ys);
   expect(runY).toBeGreaterThan(dataBottom);
-  const tele = /<path d="M([0-9.]+),([0-9.]+) h([0-9.]+) v([0-9.]+) h-[0-9.]+ Z"[\s\S]{0,200}<text[^>]*>遥操作 TELEOP/.exec(
-    r.svg,
-  );
+  const tele =
+    /<path d="M([0-9.]+),([0-9.]+) h([0-9.]+) v([0-9.]+) h-[0-9.]+ Z"[\s\S]{0,200}<text[^>]*>遥操作 TELEOP/.exec(
+      r.svg,
+    );
   expect(tele).toBeTruthy();
   const tx = Number(tele?.[1]);
   const ty = Number(tele?.[2]);
@@ -108,10 +111,10 @@ test("14 math glyphs fixture is real TeX, not escaped backslashes", async () => 
   expect(src).toContain("$\\hat{y}_i$");
   expect(src).not.toContain("$\\\\hat");
   const r = await renderMermaid(src);
-  expect(r.svg).toContain("data-tex=\"\\hat{y}_i\"");
-  expect(r.svg).toContain("KaTeX_Size2");
-  expect(r.svg).toContain("∑");
-  expect(r.svg).toContain("^");
+  expect(r.svg).toContain('data-tex="\\hat{y}_i"');
+  expect(r.svg).toContain("KaTeX_Size2-Regular");
+  expect(r.svg).toContain('data-text="∑"');
+  expect(r.svg).toContain('data-text="^"');
   expect(r.svg).not.toContain(">hat</");
   expect(r.svg).not.toContain(">ha</");
 });

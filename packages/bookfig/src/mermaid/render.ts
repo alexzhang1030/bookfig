@@ -3,6 +3,7 @@ import type { CaseMode } from "../types.ts";
 import { applyCase } from "./case-mode.ts";
 import { UnsupportedError } from "./errors.ts";
 import { drawFlowchart } from "./flowchart.ts";
+import { ensureKatexFonts } from "./katex-outline.ts";
 import { parseFlowchartDocument } from "./parse-flowchart.ts";
 import { parseStateDocument } from "./parse-state.ts";
 import { Pen } from "./pen.ts";
@@ -26,6 +27,7 @@ export type RenderResult = {
 const SUPPORTED = "flowchart/graph, sequenceDiagram, stateDiagram, pie";
 
 export async function renderMermaid(text: string, opts: RenderOptions = {}): Promise<RenderResult> {
+  await ensureKatexFonts();
   const { title, lines } = preprocess(text);
   if (!lines.length) throw new UnsupportedError("empty diagram");
   const head = (lines[0] ?? "").trim().split(/\s+/);
