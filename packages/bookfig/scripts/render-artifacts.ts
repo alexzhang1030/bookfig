@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PRIMITIVE_EXAMPLES } from "../src/examples.ts";
@@ -48,6 +48,12 @@ async function main(): Promise<void> {
     const r = await renderMermaid(math.source);
     mathSvg = r.svg;
   }
+  const glyphsSrc = readFileSync(join(here, "../fixtures/mermaid/14_math_glyphs.mmd"), "utf8");
+  const glyphs = await renderMermaid(glyphsSrc);
+  for (const dir of outDirs) {
+    writeSvg(join(dir, "14_math_glyphs.svg"), glyphs.svg);
+    writePng(join(dir, "14_math_glyphs.png"), glyphs.svg);
+  }
   const primSvgs = PRIMITIVE_EXAMPLES.map(([name, make]) => {
     const svg = make().svg();
     for (const dir of outDirs) {
@@ -62,11 +68,17 @@ async function main(): Promise<void> {
     writePng(join(dir, "mermaid_sheet.png"), sheet);
     writeSvg(join(dir, "mermaid_sheet_v2.svg"), sheet);
     writePng(join(dir, "mermaid_sheet_v2.png"), sheet);
+    writeSvg(join(dir, "mermaid_sheet_v3.svg"), sheet);
+    writePng(join(dir, "mermaid_sheet_v3.png"), sheet);
     writeSvg(join(dir, "02_subgraphs_v2.svg"), twoSvg);
     writePng(join(dir, "02_subgraphs_v2.png"), twoSvg);
+    writeSvg(join(dir, "02_subgraphs_v3.svg"), twoSvg);
+    writePng(join(dir, "02_subgraphs_v3.png"), twoSvg);
     if (mathSvg) {
       writeSvg(join(dir, "math_example_v2.svg"), mathSvg);
       writePng(join(dir, "math_example_v2.png"), mathSvg);
+      writeSvg(join(dir, "math_example_v3.svg"), mathSvg);
+      writePng(join(dir, "math_example_v3.png"), mathSvg);
     }
     writeSvg(join(dir, "sheet.svg"), primSheet);
     writePng(join(dir, "sheet.png"), primSheet);

@@ -532,15 +532,70 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     return undefined;
   };
 
-  const backElbow = (sgm: Seg): Pt[] | undefined => {
-    const { u, v } = sgm;
-    const [, iu, cu] = ends(u);
-    const [ov, , cv] = ends(v);
+  const clusterContains = (bb: Rect, p: Pt): boolean =>
+    p[0] >= bb[0] && p[0] <= bb[0] + bb[2] && p[1] >= bb[1] && p[1] <= bb[1] + bb[3];
+
+  const hitsClusters = (pts: Pt[], skip: Set<string>): boolean => {
+    if (hits(pts, skip)) return true;
+    for (let k = 0; k < pts.length - 1; k++) {
+      const a = pts[k];
+      const b = pts[k + 1];
+      if (!a || !b) continue;
+      const bx0 = Math.min(a[0], b[0]);
+      const bx1 = Math.max(a[0], b[0]);
+      const by0 = Math.min(a[1], b[1]);
+      const by1 = Math.max(a[1], b[1]);
+      for (const [sid, bb] of bbs) {
+        if (skip.has(`cluster:${sid}`)) continue;
+        const [x, y, w, h] = bb;
+        if (bx0 < x + w - 4 && bx1 > x + 4 && by0 < y + h - 4 && by1 > y + 4) return true;
+      }
+    }
+    return false;
+  };
+
+  const backElbow = (u: string, v: string): Pt[] | undefined => {
     const ru = rects.get(u);
     const rv = rects.get(v);
-    if (!ru || !rv) return undefined;
-    const lo = Math.min(ax ? ru[0] : ru[1], ax ? rv[0] : rv[1]);
-    const hi = Math.max(ax ? ru[2] : ru[3], ax ? rv[2] : rv[3]);
+    const pu = pos.get(u);
+    const pv = pos.get(v);
+    if (!ru || !rv || !pu || !pv) return undefined;
+    const skip = new Set([u, v]);
+    for (const [sid, bb] of bbs) {
+      if (clusterContains(bb, pu) || clusterContains(bb, pv)) skip.add(`cluster:${sid}`);
+    }
+    if (ax === 0) {
+      const x0 = pu[0];
+      const x1 = pv[0];
+      const xLo = Math.min(ru[0], rv[0]);
+      const xHi = Math.max(ru[2], rv[2]);
+      let below = Math.max(ru[3], rv[3]) + 44;
+      let above = Math.min(ru[1], rv[1]) - 44;
+      for (const [, bb] of bbs) {
+        const [x, y, w, h] = bb;
+        if (x >= xHi || x + w <= xLo) continue;
+        below = Math.max(below, y + h + 28);
+        above = Math.min(above, y - 28);
+      }
+      const preferBelow = (pu[1] + pv[1]) / 2 >= (ru[1] + ru[3] + rv[1] + rv[3]) / 4;
+      const sides = preferBelow ? [below, above] : [above, below];
+      for (const side of [...sides, below + 28, above - 28, below + 56]) {
+        const y0 = preferBelow || side >= ru[3] ? ru[3] : ru[1];
+        const y1 = preferBelow || side >= rv[3] ? rv[3] : rv[1];
+        const pts: Pt[] = [
+          [x0, y0],
+          [x0, side],
+          [x1, side],
+          [x1, y1],
+        ];
+        if (!hitsClusters(pts, skip)) return simplify(pts);
+      }
+      return undefined;
+    }
+    const [, iu, cu] = ends(u);
+    const [ov, , cv] = ends(v);
+    const lo = Math.min(ru[0], rv[0]);
+    const hi = Math.max(ru[2], rv[2]);
     const mid = (cu + cv) / 2;
     const left = lo - 40;
     const right = hi + 40;
@@ -548,15 +603,71 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     const extras = [20, 40, 64, 88].flatMap((off) => [lo - 40 - off, hi + 40 + off]);
     for (const side of [...sides, ...extras]) {
       const pts = [P(iu, cu), P(iu, side), P(ov, side), P(ov, cv)];
-      if (!hits(pts, new Set([u, v]))) return simplify(pts);
+      if (!hitsClusters(pts, skip)) return simplify(pts);
     }
     return undefined;
   };
 
+  const isBackPair = (u: string, v: string): boolean => {
+    const [ou] = ends(u);
+    const [, iv] = ends(v);
+    return (iv - ou) * sg <= 30;
+  };
+
+  const backEdges = new Set<number>();
+  g.edges.forEach((e, i) => {
+    const ep = eps[i];
+    if (!ep) return;
+    if (isBackPair(ep[0], ep[1])) backEdges.add(i);
+    void e;
+  });
+
+  const labelAt = new Map<string, Pt>();
+  const drawnBack = new Set<number>();
+
+  const finish = (pts: Pt[], e: MermaidEdge, first: boolean, last: boolean): void => {
+    pen.line(pts, e.style);
+    const end = pts[pts.length - 1];
+    const prev = pts[pts.length - 2];
+    const start = pts[0];
+    const next = pts[1];
+    if (last && e.head !== "none" && end && prev) pen.head(end, prev, e.style, e.head);
+    if (first && e.tail !== "none" && start && next) pen.head(start, next, e.style, e.tail);
+  };
+
   for (const sgm of segs) {
     const { u, v, e } = sgm;
+    if (ax === 0 && backEdges.has(sgm.i)) {
+      if (drawnBack.has(sgm.i)) continue;
+      drawnBack.add(sgm.i);
+      const ep = eps[sgm.i];
+      if (!ep) continue;
+      const [a, b] = ep;
+      let pts = backElbow(a, b);
+      if (pts) {
+        pts = clipEnd(pts, ...nshape(b));
+        pts = clipEnd([...pts].reverse(), ...nshape(a)).reverse();
+        const L = lab.get(sgm.i);
+        if (L && pts.length >= 3) {
+          const p0 = pts[1];
+          const p1 = pts[2];
+          if (p0 && p1) {
+            const along = ax ? 1 : 0;
+            const span = p1[along] - p0[along];
+            const gx = pos.get(L[0])?.[along];
+            const t =
+              gx === undefined || Math.abs(span) < 1
+                ? 0.5
+                : Math.min(1, Math.max(0, (gx - p0[along]) / span));
+            labelAt.set(L[0], [p0[0] + (p1[0] - p0[0]) * t, p0[1] + (p1[1] - p0[1]) * t]);
+          }
+        }
+        finish(simplify(pts), e, true, true);
+        continue;
+      }
+    }
     let pts = fw.includes(sgm) ? elbow(sgm) : undefined;
-    if (!pts && backOf(sgm)) pts = backElbow(sgm);
+    if (!pts && backOf(sgm)) pts = backElbow(u, v);
     if (pts) {
       pts = clipEnd(pts, ...nshape(v));
       pts = clipEnd([...pts].reverse(), ...nshape(u)).reverse();
@@ -566,16 +677,10 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
       g.warnings.push(`no route for ${u}->${v}`);
       continue;
     }
-    pen.line(pts, e.style);
-    const last = pts[pts.length - 1];
-    const prev = pts[pts.length - 2];
-    const first = pts[0];
-    const next = pts[1];
-    if (sgm.last && e.head !== "none" && last && prev) pen.head(last, prev, e.style, e.head);
-    if (sgm.first && e.tail !== "none" && first && next) pen.head(first, next, e.style, e.tail);
+    finish(pts, e, sgm.first, sgm.last);
   }
   for (const [nid, ls, w, h] of lab.values()) {
-    const p = pos.get(nid);
+    const p = labelAt.get(nid) ?? pos.get(nid);
     if (!p) continue;
     const only =
       ls.length === 1 && ls[0] && ls[0].inlines.length === 1 ? ls[0].inlines[0] : undefined;
