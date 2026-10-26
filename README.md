@@ -1,6 +1,7 @@
 # bookfig
 
-仓库：[github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)
+仓库：[github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)  
+线上： [bookfig.alexzx.com](https://bookfig.alexzx.com)
 
 单色技术书风格图：TypeScript 画图库 + Mermaid（flowchart / sequence / state）转 SVG/PNG，以及 Nuxt 实时预览。
 
