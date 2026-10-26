@@ -53,6 +53,8 @@ async function main(): Promise<void> {
   for (const dir of outDirs) {
     writeSvg(join(dir, "14_math_glyphs.svg"), glyphs.svg);
     writePng(join(dir, "14_math_glyphs.png"), glyphs.svg);
+    writeSvg(join(dir, "14_math_glyphs_v4.svg"), glyphs.svg);
+    writePng(join(dir, "14_math_glyphs_v4.png"), glyphs.svg);
   }
   const primSvgs = PRIMITIVE_EXAMPLES.map(([name, make]) => {
     const svg = make().svg();
@@ -70,6 +72,8 @@ async function main(): Promise<void> {
     writePng(join(dir, "mermaid_sheet_v2.png"), sheet);
     writeSvg(join(dir, "mermaid_sheet_v3.svg"), sheet);
     writePng(join(dir, "mermaid_sheet_v3.png"), sheet);
+    writeSvg(join(dir, "mermaid_sheet_v4.svg"), sheet);
+    writePng(join(dir, "mermaid_sheet_v4.png"), sheet);
     writeSvg(join(dir, "02_subgraphs_v2.svg"), twoSvg);
     writePng(join(dir, "02_subgraphs_v2.png"), twoSvg);
     writeSvg(join(dir, "02_subgraphs_v3.svg"), twoSvg);
@@ -79,6 +83,8 @@ async function main(): Promise<void> {
       writePng(join(dir, "math_example_v2.png"), mathSvg);
       writeSvg(join(dir, "math_example_v3.svg"), mathSvg);
       writePng(join(dir, "math_example_v3.png"), mathSvg);
+      writeSvg(join(dir, "math_example_v4.svg"), mathSvg);
+      writePng(join(dir, "math_example_v4.png"), mathSvg);
     }
     writeSvg(join(dir, "sheet.svg"), primSheet);
     writePng(join(dir, "sheet.png"), primSheet);

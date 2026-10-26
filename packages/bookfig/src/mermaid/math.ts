@@ -54,41 +54,109 @@ function parseEm(value: string | undefined): number {
 
 const SIZE_MULT = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.44, 1.728, 2.074, 2.488];
 
+const FONT_MARK = new Set([
+  "large-op",
+  "small-op",
+  "delimsizing",
+  "mathcal",
+  "cal",
+  "mathbb",
+  "amsrm",
+  "mathfrak",
+  "mathsf",
+  "mathtt",
+  "mathscr",
+  "mathnormal",
+  "mathdefault",
+  "mathit",
+  "textit",
+  "mathrm",
+  "mathbf",
+  "textbf",
+  "boldsymbol",
+]);
+
+function fontMarks(classes: string[] | undefined): string[] {
+  return (classes ?? []).filter((c) => FONT_MARK.has(c));
+}
+
+/** Exact TTF full name first: resvg ignores font-style and otherwise picks KaTeX_Main-Italic. */
 function fontFromClasses(classes: string[]): {
   family: string;
+  face: string;
   weight: string;
   style: string;
 } {
-  const c = new Set(classes);
-  let family = "KaTeX_Main";
-  let weight = "normal";
-  let style = "normal";
-  if (c.has("large-op")) family = "KaTeX_Size2";
-  else if (c.has("small-op")) family = "KaTeX_Size1";
-  else if (c.has("delimsizing")) {
-    if (c.has("size4")) family = "KaTeX_Size4";
-    else if (c.has("size3")) family = "KaTeX_Size3";
-    else if (c.has("size2")) family = "KaTeX_Size2";
-    else family = "KaTeX_Size1";
-  } else if (c.has("mathcal") || c.has("cal")) family = "KaTeX_Caligraphic";
-  else if (c.has("mathbb") || c.has("amsrm")) family = "KaTeX_AMS";
-  else if (c.has("mathfrak")) family = "KaTeX_Fraktur";
-  else if (c.has("mathsf")) family = "KaTeX_SansSerif";
-  else if (c.has("mathtt")) family = "KaTeX_Typewriter";
-  else if (c.has("mathnormal") || c.has("mathit") || c.has("mathdefault")) {
-    family = "KaTeX_Math";
-    style = "italic";
-  } else if (c.has("textit")) {
-    family = "KaTeX_Main";
-    style = "italic";
+  const c = new Set(classes.filter(Boolean));
+  const bold = c.has("mathbf") || c.has("textbf");
+  if (c.has("large-op")) return { family: "KaTeX_Size2", face: "KaTeX_Size2-Regular", weight: "normal", style: "normal" };
+  if (c.has("small-op")) return { family: "KaTeX_Size1", face: "KaTeX_Size1-Regular", weight: "normal", style: "normal" };
+  if (c.has("delimsizing")) {
+    const n = c.has("size4") ? 4 : c.has("size3") ? 3 : c.has("size2") ? 2 : 1;
+    const family = `KaTeX_Size${n}`;
+    return { family, face: `${family}-Regular`, weight: "normal", style: "normal" };
   }
-  if (c.has("mathbf") || c.has("textbf")) weight = "bold";
+  if (c.has("mathcal") || c.has("cal")) {
+    return {
+      family: "KaTeX_Caligraphic",
+      face: bold ? "KaTeX_Caligraphic-Bold" : "KaTeX_Caligraphic-Regular",
+      weight: bold ? "bold" : "normal",
+      style: "normal",
+    };
+  }
+  if (c.has("mathbb") || c.has("amsrm")) {
+    return { family: "KaTeX_AMS", face: "KaTeX_AMS-Regular", weight: "normal", style: "normal" };
+  }
+  if (c.has("mathfrak")) {
+    return {
+      family: "KaTeX_Fraktur",
+      face: bold ? "KaTeX_Fraktur-Bold" : "KaTeX_Fraktur-Regular",
+      weight: bold ? "bold" : "normal",
+      style: "normal",
+    };
+  }
+  if (c.has("mathsf")) {
+    if (c.has("textit") || c.has("mathsfit") || c.has("mathitsf")) {
+      return { family: "KaTeX_SansSerif", face: "KaTeX_SansSerif-Italic", weight: "normal", style: "italic" };
+    }
+    return {
+      family: "KaTeX_SansSerif",
+      face: bold ? "KaTeX_SansSerif-Bold" : "KaTeX_SansSerif-Regular",
+      weight: bold ? "bold" : "normal",
+      style: "normal",
+    };
+  }
+  if (c.has("mathtt")) {
+    return { family: "KaTeX_Typewriter", face: "KaTeX_Typewriter-Regular", weight: "normal", style: "normal" };
+  }
+  if (c.has("mathscr")) {
+    return { family: "KaTeX_Script", face: "KaTeX_Script-Regular", weight: "normal", style: "normal" };
+  }
   if (c.has("boldsymbol")) {
-    family = "KaTeX_Math";
-    style = "italic";
-    weight = "bold";
+    return { family: "KaTeX_Math", face: "KaTeX_Math-BoldItalic", weight: "bold", style: "italic" };
   }
-  return { family, weight, style };
+  if (c.has("mathnormal") || c.has("mathdefault")) {
+    return {
+      family: "KaTeX_Math",
+      face: bold ? "KaTeX_Math-BoldItalic" : "KaTeX_Math-Italic",
+      weight: bold ? "bold" : "normal",
+      style: "italic",
+    };
+  }
+  if (c.has("mathit") || c.has("textit")) {
+    return {
+      family: "KaTeX_Main",
+      face: bold ? "KaTeX_Main-BoldItalic" : "KaTeX_Main-Italic",
+      weight: bold ? "bold" : "normal",
+      style: "italic",
+    };
+  }
+  return {
+    family: "KaTeX_Main",
+    face: bold ? "KaTeX_Main-Bold" : "KaTeX_Main-Regular",
+    weight: bold ? "bold" : "normal",
+    style: "normal",
+  };
 }
 
 function childEm(node: KatexDom, em: number): number {
@@ -201,7 +269,8 @@ function shift(box: Box, dx: number, dy: number): Box {
   };
 }
 
-function layoutNode(node: KatexDom, em: number, root: number, color: string): Box {
+function layoutNode(node: KatexDom, em: number, root: number, color: string, inherited: string[] = []): Box {
+  const marks = [...inherited, ...fontMarks(node.classes)];
   if (hasClass(node, "katex-strut") || hasClass(node, "pstrut") || hasClass(node, "vlist-s")) {
     return emptyBox();
   }
@@ -210,14 +279,15 @@ function layoutNode(node: KatexDom, em: number, root: number, color: string): Bo
     if (!text || text === "\u200b") return emptyBox();
     const scale = node.maxFontSize && node.maxFontSize > 0 ? node.maxFontSize : em / root;
     const fs = root * scale;
-    const { family, weight, style } = fontFromClasses(node.classes ?? []);
+    const { family, face, weight, style } = fontFromClasses([...marks, ...(node.classes ?? [])]);
+    const stack = `${face}, ${family}`;
     const w = (node.width ?? 0) * fs;
     const italic = (node.italic ?? 0) * fs;
     const h = (node.height ?? 0) * fs;
     const d = (node.depth ?? 0) * fs;
     const dy = parseEm(node.style?.top) * em;
-    const face = `font-family:${family};font-weight:${weight};font-style:${style}`;
-    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${family}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" style="${face}" fill="${color}">${escapeXml(text)}</text>`;
+    const css = `font-family:${stack};font-weight:${weight};font-style:${style}`;
+    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${stack}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" style="${css}" fill="${color}" stroke="none">${escapeXml(text)}</text>`;
     return { w: Math.max(w + italic, 0), h, d, parts: [part] };
   }
   if (ctor(node) === "PathNode") {
@@ -254,7 +324,7 @@ function layoutNode(node: KatexDom, em: number, root: number, color: string): Bo
     };
   }
   if (hasClass(node, "accent-body") && !hasClass(node, "accent-full")) {
-    const inner = layoutFlow(node, em, root, color, true);
+    const inner = layoutFlow(node, em, root, color, true, marks);
     return { w: 0, h: inner.h, d: inner.d, parts: inner.parts };
   }
   if (hasClass(node, "mspace")) {
@@ -264,12 +334,18 @@ function layoutNode(node: KatexDom, em: number, root: number, color: string): Bo
     return { w: 0.12 * em, h: 0, d: 0, parts: [] };
   }
   if (hasClass(node, "vlist")) {
-    return layoutVList(node, em, root, color);
+    return layoutVList(node, em, root, color, marks);
   }
-  return layoutFlow(node, em, root, color);
+  return layoutFlow(node, em, root, color, false, marks);
 }
 
-function layoutVList(node: KatexDom, em: number, root: number, color: string): Box {
+function layoutVList(
+  node: KatexDom,
+  em: number,
+  root: number,
+  color: string,
+  inherited: string[] = [],
+): Box {
   const kids = node.children ?? [];
   const placed: Box[] = [];
   let maxW = 0;
@@ -280,7 +356,7 @@ function layoutVList(node: KatexDom, em: number, root: number, color: string): B
     const pH = parseEm(pstrut?.style?.height);
     const ml = parseEm(child.style?.marginLeft) * em;
     const mr = parseEm(child.style?.marginRight) * em;
-    const inner = layoutFlow(child, em, root, color);
+    const inner = layoutFlow(child, em, root, color, false, inherited);
     const yB = (top + pH) * em;
     const shifted = shift(inner, ml, yB);
     shifted.w += ml + mr;
@@ -305,20 +381,21 @@ function layoutFlow(
   root: number,
   color: string,
   ignoreOwnWidth = false,
+  inherited: string[] = [],
 ): Box {
   if (hasClass(node, "vlist-t") || hasClass(node, "vlist-t2")) {
     const rows = node.children ?? [];
     const first = rows[0];
-    const body = first ? layoutFlow(first, em, root, color) : emptyBox();
+    const body = first ? layoutFlow(first, em, root, color, false, inherited) : emptyBox();
     body.h = (node.height ?? 0) * root || body.h;
     body.d = (node.depth ?? 0) * root || body.d;
     return body;
   }
   if (hasClass(node, "vlist-r")) {
     const v = (node.children ?? []).find((c) => hasClass(c, "vlist"));
-    if (v) return layoutVList(v, em, root, color);
+    if (v) return layoutVList(v, em, root, color, inherited);
   }
-  if (hasClass(node, "vlist")) return layoutVList(node, em, root, color);
+  if (hasClass(node, "vlist")) return layoutVList(node, em, root, color, inherited);
 
   const kids = node.children ?? [];
   if (!kids.length) {
@@ -334,7 +411,7 @@ function layoutFlow(
       continue;
     }
     const nextEm = childEm(child, em);
-    const box = layoutNode(child, nextEm, root, color);
+    const box = layoutNode(child, nextEm, root, color, inherited);
     const left = parseEm(child.style?.left) * em;
     const shifted = shift(box, x + left, 0);
     parts.push(...shifted.parts);
@@ -393,7 +470,7 @@ export function renderKatex(
     const baseline = pad + Math.max((tree.height ?? 0) * size, box.h);
     const shifted = shift(box, pad, baseline);
     const filled = shifted.parts.map((p) => p.replaceAll("__FRAC__", Math.max(box.w, 1).toFixed(2)));
-    const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="${color}">${filled.join("")}</g>`;
+    const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="none">${filled.join("")}</g>`;
     return { svg, width, height };
   } catch {
     const fb = fallbackBox(trimmed, size, color);
