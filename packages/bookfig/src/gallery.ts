@@ -7,7 +7,7 @@ export type GalleryItem = {
 export const GALLERY: GalleryItem[] = [
   {
     id: "01_agent_loop",
-    title: "机器人 Agent 控制回路",
+    title: "Robot agent control loop",
     source: `---
 title: 机器人 Agent 控制回路
 ---
@@ -33,7 +33,7 @@ flowchart TD
   },
   {
     id: "02_subgraphs",
-    title: "嵌套子图 · 数据 / 训练 / 部署",
+    title: "Nested subgraphs · data / train / serve",
     source: `flowchart LR
     subgraph DATA [数据 DATA]
         subgraph REC [采集 RECORD]
@@ -55,7 +55,7 @@ flowchart TD
   },
   {
     id: "03_fanout",
-    title: "控制平面扇出",
+    title: "Control-plane fan-out",
     source: `graph LR
     CP[控制平面 CONTROL PLANE] --> W1[WORKER 1 上海] & W2[WORKER 2 深圳] & W3[WORKER 3 EDGE]
     CP -.-> W4[WORKER 4 STANDBY]
@@ -64,7 +64,7 @@ flowchart TD
   },
   {
     id: "04_classdef",
-    title: "classDef / style 映射",
+    title: "classDef / style mapping",
     source: `flowchart TB
     CAM[相机 CAMERA] --> ENC[视觉编码器 ENCODER]
     ENC --> POL[VLA POLICY]
@@ -82,7 +82,7 @@ flowchart TD
   },
   {
     id: "05_sequence",
-    title: "操作员 · Agent · 机械臂",
+    title: "Operator · agent · arm",
     source: `sequenceDiagram
     autonumber
     actor U as 操作员
@@ -107,7 +107,7 @@ flowchart TD
   },
   {
     id: "06_messy",
-    title: "换行与回流",
+    title: "Wrapping and back-edges",
     source: `flowchart TD
     A["A very long label that keeps going and going to test wrapping inside one node"] --> B
     A --> C[第二个节点有一个非常长的中文标签用于测试自动换行是否正常工作]
@@ -127,7 +127,7 @@ flowchart TD
   },
   {
     id: "07_state",
-    title: "电梯状态机",
+    title: "Elevator state machine",
     source: `stateDiagram-v2
     [*] --> Waiting
     state "等待 WAITING" as Waiting
@@ -142,16 +142,18 @@ flowchart TD
 `,
   },
   {
-    id: "08_unsupported",
-    title: "不支持的 pie（应报错）",
-    source: `pie title Pets
+    id: "08_pie",
+    title: "Pets pie chart",
+    source: `pie showData
+    title Pets adopted
     "Dogs" : 386
     "Cats" : 85
+    "Rats" : 35
 `,
   },
   {
     id: "09_shapes_edges",
-    title: "形状与边型",
+    title: "Shapes and edge marks",
     source: `flowchart LR
     A[rect] --> B(round) --> C([stadium]) --> D[[subroutine]]
     D --> E((circle)) --> F[(数据库 db)]
@@ -161,6 +163,20 @@ flowchart TD
     K -- 文本 text --- L[plain line]
     L == heavy ==> M[thick]
     M -. maybe .-> N[dashed]
+    N --o O[circle head]
+    O --x P[cross head]
+`,
+  },
+  {
+    id: "10_math",
+    title: "KaTeX in node and edge labels",
+    source: `---
+title: Loss and softmax
+---
+flowchart TD
+    L["$$\\mathcal{L} = -\\sum_i y_i \\log \\hat{y}_i$$"] --> S["$$p_i = \\frac{e^{z_i}}{\\sum_j e^{z_j}}$$"]
+    S --> G["gradient $\\nabla_\\theta \\mathcal{L}$"]
+    G -- "$\\eta = 10^{-3}$" --> L
 `,
   },
 ];

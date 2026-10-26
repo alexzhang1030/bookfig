@@ -1,0 +1,442 @@
+import katex, { type KatexOptions } from "katex";
+import { PALETTE } from "../palettes.ts";
+import { escapeXml, textWidth, wrap } from "../text.ts";
+
+const LH = 1.3;
+const LS = 2;
+
+export type MathRun =
+  | { kind: "text"; text: string }
+  | { kind: "math"; tex: string; display: boolean };
+
+export type LaidInline =
+  | { kind: "text"; text: string; w: number; h: number }
+  | { kind: "math"; tex: string; display: boolean; w: number; h: number; svg: string };
+
+export type LaidLine = { inlines: LaidInline[]; w: number; h: number };
+
+type KatexStyle = Record<string, string | undefined>;
+
+type KatexDom = {
+  children?: KatexDom[];
+  classes?: string[];
+  height?: number;
+  depth?: number;
+  width?: number;
+  italic?: number;
+  maxFontSize?: number;
+  style?: KatexStyle;
+  attributes?: Record<string, string>;
+  text?: string;
+  pathName?: string;
+  alternate?: string;
+  toMarkup?: () => string;
+};
+
+type KatexApi = typeof katex & {
+  __renderToHTMLTree: (tex: string, opts?: KatexOptions) => KatexDom;
+};
+
+const ktx = katex as KatexApi;
+
+function hasClass(node: KatexDom, name: string): boolean {
+  return (node.classes ?? []).includes(name);
+}
+
+function parseEm(value: string | undefined): number {
+  if (!value) return 0;
+  const m = /^(-?[\d.]+)em$/i.exec(value.trim());
+  if (m?.[1]) return Number(m[1]);
+  const px = /^(-?[\d.]+)px$/i.exec(value.trim());
+  if (px?.[1]) return Number(px[1]);
+  return 0;
+}
+
+function fontFromClasses(classes: string[]): {
+  family: string;
+  weight: string;
+  style: string;
+} {
+  const c = new Set(classes);
+  let family = "KaTeX_Main";
+  let weight = "normal";
+  let style = "normal";
+  if (c.has("mathcal") || c.has("cal")) family = "KaTeX_Caligraphic";
+  else if (c.has("mathbb") || c.has("amsrm")) family = "KaTeX_AMS";
+  else if (c.has("mathfrak")) family = "KaTeX_Fraktur";
+  else if (c.has("mathsf")) family = "KaTeX_SansSerif";
+  else if (c.has("mathtt")) family = "KaTeX_Typewriter";
+  else if (c.has("mathnormal") || c.has("mathit") || c.has("mathdefault")) {
+    family = "KaTeX_Math";
+    style = "italic";
+  } else if (c.has("textit")) {
+    family = "KaTeX_Main";
+    style = "italic";
+  }
+  if (c.has("mathbf") || c.has("textbf")) weight = "bold";
+  if (c.has("boldsymbol")) {
+    family = "KaTeX_Math";
+    style = "italic";
+    weight = "bold";
+  }
+  return { family, weight, style };
+}
+
+function ctor(node: KatexDom): string {
+  return (node as { constructor?: { name?: string } }).constructor?.name ?? "";
+}
+
+function isSymbol(node: KatexDom): boolean {
+  return (
+    ctor(node) === "SymbolNode" || (typeof node.text === "string" && node.children === undefined)
+  );
+}
+
+function isSvg(node: KatexDom): boolean {
+  return ctor(node) === "SvgNode";
+}
+
+export function splitMath(s: string): MathRun[] {
+  const runs: MathRun[] = [];
+  let i = 0;
+  let buf = "";
+  const flush = () => {
+    if (buf) {
+      runs.push({ kind: "text", text: buf });
+      buf = "";
+    }
+  };
+  while (i < s.length) {
+    if (s[i] === "\\" && s[i + 1] === "$") {
+      buf += "$";
+      i += 2;
+      continue;
+    }
+    if (s.startsWith("$$", i)) {
+      const end = s.indexOf("$$", i + 2);
+      if (end >= 0) {
+        flush();
+        const tex = s.slice(i + 2, end).trim();
+        if (tex) runs.push({ kind: "math", tex, display: true });
+        i = end + 2;
+        continue;
+      }
+    }
+    if (s[i] === "$") {
+      const end = s.indexOf("$", i + 1);
+      if (end > i + 1) {
+        flush();
+        const tex = s.slice(i + 1, end).trim();
+        if (tex) runs.push({ kind: "math", tex, display: false });
+        i = end + 1;
+        continue;
+      }
+    }
+    buf += s[i];
+    i += 1;
+  }
+  flush();
+  return runs.length ? runs : [{ kind: "text", text: s }];
+}
+
+export function hasMath(s: string): boolean {
+  return splitMath(s).some((r) => r.kind === "math");
+}
+
+export function mapTextRuns(s: string, fn: (text: string) => string): string {
+  return splitMath(s)
+    .map((r) => {
+      if (r.kind === "math") return r.display ? `$$${r.tex}$$` : `$${r.tex}$`;
+      return fn(r.text);
+    })
+    .join("");
+}
+
+type Box = {
+  w: number;
+  h: number;
+  d: number;
+  parts: string[];
+};
+
+function emptyBox(): Box {
+  return { w: 0, h: 0, d: 0, parts: [] };
+}
+
+function shift(box: Box, dx: number, dy: number): Box {
+  if (!dx && !dy) return box;
+  const t = `translate(${dx.toFixed(2)},${dy.toFixed(2)})`;
+  return {
+    w: box.w,
+    h: box.h,
+    d: box.d,
+    parts: box.parts.length ? [`<g transform="${t}">${box.parts.join("")}</g>`] : [],
+  };
+}
+
+function layoutNode(node: KatexDom, em: number, color: string): Box {
+  if (hasClass(node, "katex-strut") || hasClass(node, "pstrut") || hasClass(node, "vlist-s")) {
+    return emptyBox();
+  }
+  if (isSymbol(node)) {
+    const text = node.text ?? "";
+    if (!text || text === "\u200b") return emptyBox();
+    const scale = node.maxFontSize && node.maxFontSize > 0 ? node.maxFontSize : 1;
+    const fs = em * scale;
+    const { family, weight, style } = fontFromClasses(node.classes ?? []);
+    const w = (node.width ?? 0) * em + (node.italic ?? 0) * em;
+    const h = (node.height ?? 0) * em;
+    const d = (node.depth ?? 0) * em;
+    const dy = parseEm(node.style?.top) * em;
+    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${family}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" fill="${color}">${escapeXml(text)}</text>`;
+    return { w: Math.max(w, 0), h, d, parts: [part] };
+  }
+  if (ctor(node) === "PathNode") {
+    const d = node.alternate ?? "";
+    return { w: 0, h: 0, d: 0, parts: d ? [`<path d="${escapeXml(d)}" fill="${color}"/>`] : [] };
+  }
+  if (ctor(node) === "LineNode") {
+    const a = node.attributes ?? {};
+    const attrs = Object.entries(a)
+      .map(([k, v]) => `${k}="${escapeXml(v)}"`)
+      .join(" ");
+    return { w: 0, h: 0, d: 0, parts: [`<line ${attrs} stroke="${color}"/>`] };
+  }
+  if (isSvg(node)) {
+    const markup = node.toMarkup?.() ?? "";
+    const attr = node.attributes ?? {};
+    const h = parseEm(attr.height) * em || parseEm(node.style?.height) * em;
+    const wHint = parseEm(attr.width);
+    const w = (wHint > 50 ? 1.2 : wHint || parseEm(node.style?.minWidth) || 1) * em;
+    const inner = markup.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
+    const vb = attr.viewBox ?? "0 0 400000 1000";
+    const svg = `<svg x="0" y="${(-h).toFixed(2)}" width="${w.toFixed(2)}" height="${h.toFixed(2)}" viewBox="${escapeXml(vb)}" preserveAspectRatio="${escapeXml(attr.preserveAspectRatio ?? "xMinYMin slice")}" fill="${color}" stroke="${color}">${inner}</svg>`;
+    return { w, h, d: 0, parts: [svg] };
+  }
+  if (hasClass(node, "frac-line")) {
+    const thick = parseEm(node.style?.borderBottomWidth) * em || 0.04 * em;
+    return {
+      w: 0,
+      h: thick,
+      d: 0,
+      parts: [
+        `<rect class="frac-line" x="0" y="${(-thick / 2).toFixed(2)}" width="__FRAC__" height="${thick.toFixed(2)}" fill="${color}"/>`,
+      ],
+    };
+  }
+  if (hasClass(node, "mspace")) {
+    return { w: parseEm(node.style?.marginRight) * em, h: 0, d: 0, parts: [] };
+  }
+  if (hasClass(node, "nulldelimiter")) {
+    return { w: 0.12 * em, h: 0, d: 0, parts: [] };
+  }
+  if (hasClass(node, "vlist")) {
+    return layoutVList(node, em, color);
+  }
+  return layoutFlow(node, em, color);
+}
+
+function layoutVList(node: KatexDom, em: number, color: string): Box {
+  const kids = node.children ?? [];
+  const placed: Box[] = [];
+  let maxW = 0;
+  for (const child of kids) {
+    if (hasClass(child, "vlist-s") || hasClass(child, "pstrut")) continue;
+    const pstrut = (child.children ?? []).find((c) => hasClass(c, "pstrut"));
+    const top = parseEm(child.style?.top);
+    const pH = parseEm(pstrut?.style?.height);
+    const ml = parseEm(child.style?.marginLeft) * em;
+    const mr = parseEm(child.style?.marginRight) * em;
+    const inner = layoutFlow(child, em, color);
+    const yB = (top + pH) * em;
+    const shifted = shift(inner, ml, yB);
+    shifted.w += ml + mr;
+    placed.push(shifted);
+    maxW = Math.max(maxW, shifted.w);
+  }
+  const h = (node.height ?? 0) * em;
+  const d = (node.depth ?? 0) * em;
+  const parts = placed.flatMap((b) =>
+    b.parts.map((p) => p.replaceAll("__FRAC__", maxW.toFixed(2))),
+  );
+  return { w: maxW, h, d, parts };
+}
+
+function layoutFlow(node: KatexDom, em: number, color: string): Box {
+  if (hasClass(node, "vlist-t") || hasClass(node, "vlist-t2")) {
+    const rows = node.children ?? [];
+    const first = rows[0];
+    const body = first ? layoutFlow(first, em, color) : emptyBox();
+    body.h = (node.height ?? body.h / em) * em;
+    body.d = (node.depth ?? body.d / em) * em;
+    return body;
+  }
+  if (hasClass(node, "vlist-r")) {
+    const v = (node.children ?? []).find((c) => hasClass(c, "vlist"));
+    if (v) return layoutVList(v, em, color);
+  }
+  if (hasClass(node, "vlist")) return layoutVList(node, em, color);
+
+  const kids = node.children ?? [];
+  if (!kids.length) {
+    const w = (node.width ?? parseEm(node.style?.width)) * em;
+    return { w, h: (node.height ?? 0) * em, d: (node.depth ?? 0) * em, parts: [] };
+  }
+  let x = parseEm(node.style?.paddingLeft) * em + parseEm(node.style?.marginLeft) * em;
+  let h = 0;
+  let d = 0;
+  const parts: string[] = [];
+  for (const child of kids) {
+    if (hasClass(child, "katex-strut") || hasClass(child, "pstrut") || hasClass(child, "vlist-s")) {
+      continue;
+    }
+    const box = layoutNode(child, em, color);
+    const left = parseEm(child.style?.left) * em;
+    const shifted = shift(box, x + left, 0);
+    parts.push(...shifted.parts);
+    x += box.w + parseEm(child.style?.marginRight) * em;
+    h = Math.max(h, box.h);
+    d = Math.max(d, box.d);
+  }
+  x += parseEm(node.style?.paddingRight) * em + parseEm(node.style?.marginRight) * em;
+  if ((node.height ?? 0) * em > h) h = (node.height ?? 0) * em;
+  if ((node.depth ?? 0) * em > d) d = (node.depth ?? 0) * em;
+  const filled = parts.map((p) => p.replaceAll("__FRAC__", Math.max(x, 1).toFixed(2)));
+  return { w: Math.max(x, 0), h, d, parts: filled };
+}
+
+function fallbackBox(tex: string, em: number, color: string): Box {
+  const w = textWidth(tex, em, 0) + 8;
+  return {
+    w,
+    h: em * 0.8,
+    d: em * 0.2,
+    parts: [
+      `<text x="0" y="0" text-anchor="start" dominant-baseline="alphabetic" font-size="${em}" fill="${color}">${escapeXml(tex)}</text>`,
+    ],
+  };
+}
+
+export type MathGraphic = { svg: string; width: number; height: number };
+
+export function renderKatex(
+  tex: string,
+  display: boolean,
+  size: number,
+  color = PALETTE.line,
+): MathGraphic {
+  const trimmed = tex.trim();
+  if (!trimmed) return { svg: "", width: 0, height: 0 };
+  try {
+    const tree = ktx.__renderToHTMLTree(trimmed, {
+      displayMode: display,
+      throwOnError: false,
+      strict: "ignore",
+      output: "html",
+      trust: false,
+      errorColor: color,
+    });
+    const html = (tree.children ?? []).find((c) => hasClass(c, "katex-html")) ?? tree;
+    const bases = (html.children ?? []).filter((c) => hasClass(c, "katex-base"));
+    const rows = (bases.length ? bases : [html]).map((b) => layoutNode(b, size, color));
+    const width = Math.max(1, ...rows.map((r) => r.w));
+    let y = 0;
+    const parts: string[] = [];
+    for (const row of rows) {
+      y += row.h;
+      parts.push(...shift(row, 0, y).parts);
+      y += row.d + (display ? size * 0.15 : 0);
+    }
+    const height = Math.max(y, ((tree.height ?? 0) + (tree.depth ?? 0)) * size, size);
+    const pad = size * 0.08;
+    const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="${color}">${parts.join("")}</g>`;
+    return { svg, width: width + pad * 2, height: height + pad * 2 };
+  } catch {
+    const fb = fallbackBox(trimmed, size, color);
+    return { svg: fb.parts.join(""), width: fb.w, height: fb.h + fb.d };
+  }
+}
+
+export function laidBlockSize(lines: LaidLine[]): readonly [number, number] {
+  const w = lines.reduce((m, l) => Math.max(m, l.w), 0);
+  const h = lines.reduce((s, l) => s + l.h, 0);
+  return [w, h];
+}
+
+export function layoutLabel(s: string, size: number, maxw: number): LaidLine[] {
+  const runs = splitMath(s);
+  if (!runs.some((r) => r.kind === "math")) {
+    const out: LaidLine[] = [];
+    for (const ln of s.split("\n")) {
+      const wrapped = ln ? wrap(ln, maxw, size, LS) : [""];
+      for (const t of wrapped) {
+        const w = textWidth(t, size, LS);
+        out.push({ inlines: [{ kind: "text", text: t, w, h: size * LH }], w, h: size * LH });
+      }
+    }
+    return out.length
+      ? out
+      : [{ inlines: [{ kind: "text", text: "", w: 0, h: size * LH }], w: 0, h: size * LH }];
+  }
+  const lines: LaidLine[] = [];
+  let cur: LaidInline[] = [];
+  let curW = 0;
+  const flush = () => {
+    if (!cur.length) return;
+    const h = Math.max(...cur.map((i) => i.h));
+    const w = cur.reduce((a, i) => a + i.w, 0);
+    lines.push({ inlines: cur, w, h });
+    cur = [];
+    curW = 0;
+  };
+  const pushText = (text: string) => {
+    const w = textWidth(text, size, LS);
+    const h = size * LH;
+    if (curW > 0 && curW + w > maxw) flush();
+    cur.push({ kind: "text", text, w, h });
+    curW += w;
+  };
+  for (const run of runs) {
+    if (run.kind === "math") {
+      const g = renderKatex(run.tex, run.display, run.display ? size * 1.05 : size);
+      if (curW > 0 && curW + g.width > maxw) flush();
+      cur.push({
+        kind: "math",
+        tex: run.tex,
+        display: run.display,
+        w: g.width,
+        h: Math.max(g.height, size * LH),
+        svg: g.svg,
+      });
+      curW += g.width;
+      continue;
+    }
+    const paras = run.text.split("\n");
+    paras.forEach((para, pi) => {
+      if (pi > 0) flush();
+      if (!para) {
+        if (!cur.length) pushText("");
+        return;
+      }
+      const remain = Math.max(40, maxw - curW);
+      const first = wrap(para, remain, size, LS);
+      const head = first[0] ?? "";
+      const rest = para.slice(head.length).replace(/^ +/, "");
+      if (head) pushText(head);
+      if (rest) {
+        flush();
+        for (const t of wrap(rest, maxw, size, LS)) pushText(t);
+      }
+    });
+  }
+  flush();
+  return lines.length
+    ? lines
+    : [
+        {
+          inlines: [{ kind: "text", text: s, w: textWidth(s, size, LS), h: size * LH }],
+          w: 0,
+          h: size * LH,
+        },
+      ];
+}

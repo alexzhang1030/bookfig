@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { expect, test } from "vite-plus/test";
 import { applyCase } from "../src/mermaid/case-mode.ts";
 import { parseFlowchartDocument } from "../src/mermaid/parse-flowchart.ts";
+import { parsePie } from "../src/mermaid/parse-pie.ts";
 import { parseSequence } from "../src/mermaid/parse-sequence.ts";
 import { parseStateDocument } from "../src/mermaid/parse-state.ts";
 import { preprocess } from "../src/mermaid/preprocess.ts";
@@ -92,10 +93,68 @@ test("shapes and edge operators", () => {
   expect(g.nodes.get("G")?.shape).toBe("hexagon");
   expect(g.nodes.get("H")?.shape).toBe("flag");
   expect(g.nodes.get("I")?.shape).toBe("para");
-  expect(g.edges.some((e) => e.a === "A" && e.b === "J" && !e.head)).toBe(true);
-  expect(g.edges.some((e) => e.a === "A" && e.b === "K" && e.tail && e.head)).toBe(true);
+  expect(g.edges.some((e) => e.a === "A" && e.b === "J" && e.head === "none")).toBe(true);
+  expect(
+    g.edges.some((e) => e.a === "A" && e.b === "K" && e.tail === "arrow" && e.head === "arrow"),
+  ).toBe(true);
   expect(g.edges.some((e) => e.style === "thick")).toBe(true);
   expect(g.edges.some((e) => e.style === "dashed")).toBe(true);
+  expect(g.edges.some((e) => e.a === "N" && e.b === "O" && e.head === "circle")).toBe(true);
+  expect(g.edges.some((e) => e.a === "O" && e.b === "P" && e.head === "cross")).toBe(true);
+});
+
+test("unquoted closing paren does not truncate a round node", () => {
+  const g = parseFlowchartDocument("LR", ["A(foo()) --> B[ok]"]);
+  expect(g.nodes.get("A")?.label).toBe("foo()");
+  expect(g.warnings).toEqual([]);
+});
+
+test("linkStyle, click, and markdown strings", () => {
+  const { lines } = preprocess(load("11_syntax.mmd"));
+  const g = parseFlowchartDocument("LR", lines.slice(1));
+  expect(g.nodes.get("A")?.label).toBe("foo()");
+  expect(g.nodes.get("B")?.label).toBe("bold and italic item");
+  expect(g.edges.some((e) => e.head === "circle")).toBe(true);
+  expect(g.edges.some((e) => e.head === "cross")).toBe(true);
+  expect(g.edges.some((e) => e.head === "circle" && e.tail === "circle")).toBe(true);
+  expect(g.edges[1]?.style).toBe("thick");
+  expect(g.edges[2]?.style).toBe("dashed");
+  expect(g.warnings).toEqual([]);
+});
+
+test("sequence activate, plus/minus shorthand, and box", () => {
+  const { lines } = preprocess(load("12_sequence_activate.mmd"));
+  const m = parseSequence(lines.slice(1));
+  expect(m.boxes[0]?.title).toBe("Robot stack");
+  expect(m.boxes[0]?.members).toEqual(["A", "S"]);
+  expect(m.events.some((e) => e[0] === "activate" && e[1] === "R")).toBe(true);
+  expect(m.events.some((e) => e[0] === "deactivate" && e[1] === "R")).toBe(true);
+  const first = m.events.find((e) => e[0] === "msg");
+  expect(first?.[5]).toBe("+");
+  const last = [...m.events].reverse().find((e) => e[0] === "msg");
+  expect(last?.[5]).toBe("-");
+  expect(m.warnings).toEqual([]);
+});
+
+test("pie parser: title, showData, slices", () => {
+  const { lines } = preprocess(load("08_pie.mmd"));
+  const pie = parsePie((lines[0] ?? "").slice(3).trim(), lines.slice(1));
+  expect(pie.showData).toBe(true);
+  expect(pie.title).toBe("Pets adopted");
+  expect(pie.slices).toEqual([
+    { label: "Dogs", value: 386 },
+    { label: "Cats", value: 85 },
+    { label: "Rats", value: 35 },
+  ]);
+});
+
+test("math delimiters survive cleanLabel and applyCase", () => {
+  const { lines } = preprocess(load("10_math.mmd"));
+  const g = parseFlowchartDocument("TD", lines.slice(1));
+  expect(g.nodes.get("L")?.label).toContain("$$");
+  expect(g.nodes.get("G")?.label).toContain("$");
+  expect(applyCase("plain words", "auto")).toBe("PLAIN WORDS");
+  expect(applyCase("keep $x^2$ here", "upper")).toBe("KEEP $x^2$ HERE");
 });
 
 test("auto case keeps code-like labels", () => {

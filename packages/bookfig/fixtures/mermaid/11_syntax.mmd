@@ -1,0 +1,8 @@
+flowchart LR
+    A(foo()) --> B["**bold** and *italic* item"]
+    B --o C[circle head]
+    C --x D[cross head]
+    D o--o E[both circles]
+    click A "https://example.com" "tooltip"
+    linkStyle 1 stroke-width:4px
+    linkStyle 2 stroke-dasharray: 5 5

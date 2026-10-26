@@ -2,14 +2,15 @@ import type { CaseMode, LineStyle, NodeShape } from "../types.ts";
 import { applyCase } from "./case-mode.ts";
 import { layoutDot } from "./graphviz.ts";
 import { resolveKinds } from "./kinds.ts";
-import { linesFor, nodeGeometry } from "./metrics.ts";
+import { laidBlockSize, type LaidLine } from "./math.ts";
+import { laidFor, nodeGeometry } from "./metrics.ts";
 import type { MermaidEdge, MermaidGraph } from "./model.ts";
-import { blockSize, FS, Pen } from "./pen.ts";
+import { Pen } from "./pen.ts";
 
 type Pt = readonly [number, number];
-type Geo = Map<string, readonly [string[], number, number]>;
+type Geo = Map<string, readonly [LaidLine[], number, number]>;
 type Eps = Array<readonly [string, string, string | undefined, string | undefined] | undefined>;
-type Elbl = Array<readonly [number, string, string[], number, number]>;
+type Elbl = Array<readonly [number, string, LaidLine[], number, number]>;
 type Rect = readonly [number, number, number, number];
 
 function quote(s: string): string {
@@ -193,8 +194,8 @@ async function layoutFlowchart(
     eps.push([a, b, ca, cb]);
     if (e.label) {
       const lab = applyCase(e.label, mode);
-      const ls = linesFor(lab, 24, 320);
-      const [tw, th] = blockSize(ls, 24);
+      const ls = laidFor(lab, 24, 320);
+      const [tw, th] = laidBlockSize(ls);
       const nid = `__l${i}`;
       const sa = subChain(g, g.nodes.get(a)?.sub);
       const sb = subChain(g, g.nodes.get(b)?.sub);
@@ -296,9 +297,9 @@ async function layoutFlowchart(
   return { geo, pos, bbs, routes, elbl, eps };
 }
 
-function multiTag(pen: Pen, cx: number, cy: number, ls: string[], w: number, h: number): void {
+function multiTag(pen: Pen, cx: number, cy: number, ls: LaidLine[], w: number, h: number): void {
   pen.shape("plain", "rect", cx, cy, w, h);
-  pen.text(cx, cy, ls, 24);
+  pen.rich(cx, cy, ls);
 }
 
 type Seg = {
@@ -329,7 +330,7 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     const [ls, w, h] = ge;
     pen.shape(n.kind ?? "component", n.shape, p[0], p[1], w, h);
     if (ls.length)
-      pen.text(p[0], p[1], ls, FS, n.kind === "focus" || n.kind === "dark" ? "bg" : "line");
+      pen.rich(p[0], p[1], ls, n.kind === "focus" || n.kind === "dark" ? "bg" : "line");
   }
   const lab = new Map(elbl.map(([i, nid, ls, w, h]) => [i, [nid, ls, w, h] as const]));
 
@@ -429,6 +430,12 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     return (iv - ou) * sg > 30;
   };
   const fw = segs.filter(forward);
+  const backOf = (sgm: Seg): boolean => {
+    if (sgm.ca || sgm.cb) return false;
+    const [ou] = ends(sgm.u);
+    const [, iv] = ends(sgm.v);
+    return (iv - ou) * sg <= 30;
+  };
   const outs = new Map<string, Seg[]>();
   const ins = new Map<string, Seg[]>();
   for (const sgm of fw) {
@@ -525,9 +532,31 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     return undefined;
   };
 
+  const backElbow = (sgm: Seg): Pt[] | undefined => {
+    const { u, v } = sgm;
+    const [, iu, cu] = ends(u);
+    const [ov, , cv] = ends(v);
+    const ru = rects.get(u);
+    const rv = rects.get(v);
+    if (!ru || !rv) return undefined;
+    const lo = Math.min(ax ? ru[0] : ru[1], ax ? rv[0] : rv[1]);
+    const hi = Math.max(ax ? ru[2] : ru[3], ax ? rv[2] : rv[3]);
+    const mid = (cu + cv) / 2;
+    const left = lo - 40;
+    const right = hi + 40;
+    const sides = Math.abs(mid - left) <= Math.abs(mid - right) ? [left, right] : [right, left];
+    const extras = [20, 40, 64, 88].flatMap((off) => [lo - 40 - off, hi + 40 + off]);
+    for (const side of [...sides, ...extras]) {
+      const pts = [P(iu, cu), P(iu, side), P(ov, side), P(ov, cv)];
+      if (!hits(pts, new Set([u, v]))) return simplify(pts);
+    }
+    return undefined;
+  };
+
   for (const sgm of segs) {
     const { u, v, e } = sgm;
     let pts = fw.includes(sgm) ? elbow(sgm) : undefined;
+    if (!pts && backOf(sgm)) pts = backElbow(sgm);
     if (pts) {
       pts = clipEnd(pts, ...nshape(v));
       pts = clipEnd([...pts].reverse(), ...nshape(u)).reverse();
@@ -542,13 +571,15 @@ export async function drawFlowchart(g: MermaidGraph, pen: Pen, mode: CaseMode): 
     const prev = pts[pts.length - 2];
     const first = pts[0];
     const next = pts[1];
-    if (sgm.last && e.head && last && prev) pen.head(last, prev, e.style);
-    if (sgm.first && e.tail && first && next) pen.head(first, next, e.style);
+    if (sgm.last && e.head !== "none" && last && prev) pen.head(last, prev, e.style, e.head);
+    if (sgm.first && e.tail !== "none" && first && next) pen.head(first, next, e.style, e.tail);
   }
   for (const [nid, ls, w, h] of lab.values()) {
     const p = pos.get(nid);
     if (!p) continue;
-    if (ls.length === 1 && ls[0] !== undefined) pen.tag(p[0], p[1], ls[0], 24);
+    const only =
+      ls.length === 1 && ls[0] && ls[0].inlines.length === 1 ? ls[0].inlines[0] : undefined;
+    if (only?.kind === "text") pen.tag(p[0], p[1], only.text, 24);
     else multiTag(pen, p[0], p[1], ls, w, h);
   }
 }

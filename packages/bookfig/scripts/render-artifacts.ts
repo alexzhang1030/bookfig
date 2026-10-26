@@ -17,7 +17,7 @@ function ensure(dir: string): void {
 async function main(): Promise<void> {
   for (const dir of outDirs) ensure(dir);
   const mermaidSvgs: string[] = [];
-  const mermaidPngs: string[] = [];
+  const firstNine = GALLERY.filter((g) => g.id !== "10_math");
   for (const item of GALLERY) {
     let svg: string;
     try {
@@ -29,17 +29,24 @@ async function main(): Promise<void> {
       console.log(item.id, "unsupported:", msg);
       svg = unsupportedFigure(msg);
     }
-    mermaidSvgs.push(svg);
+    if (item.id !== "10_math") mermaidSvgs.push(svg);
     for (const dir of outDirs) {
       writeSvg(join(dir, `${item.id}.svg`), svg);
       writePng(join(dir, `${item.id}.png`), svg);
-      mermaidPngs.push(join(dir, `${item.id}.png`));
     }
   }
   const sheet = tileSvgs(mermaidSvgs, 2, 980, 20);
-  for (const dir of outDirs) {
-    writeSvg(join(dir, "mermaid_sheet.svg"), sheet);
-    writePng(join(dir, "mermaid_sheet.png"), sheet);
+  const two = firstNine.find((g) => g.id === "02_subgraphs");
+  const math = GALLERY.find((g) => g.id === "10_math");
+  let twoSvg = mermaidSvgs[1] ?? "";
+  let mathSvg = "";
+  if (two) {
+    const r = await renderMermaid(two.source);
+    twoSvg = r.svg;
+  }
+  if (math) {
+    const r = await renderMermaid(math.source);
+    mathSvg = r.svg;
   }
   const primSvgs = PRIMITIVE_EXAMPLES.map(([name, make]) => {
     const svg = make().svg();
@@ -51,6 +58,16 @@ async function main(): Promise<void> {
   });
   const primSheet = tileSvgs(primSvgs, 2, 980, 20);
   for (const dir of outDirs) {
+    writeSvg(join(dir, "mermaid_sheet.svg"), sheet);
+    writePng(join(dir, "mermaid_sheet.png"), sheet);
+    writeSvg(join(dir, "mermaid_sheet_v2.svg"), sheet);
+    writePng(join(dir, "mermaid_sheet_v2.png"), sheet);
+    writeSvg(join(dir, "02_subgraphs_v2.svg"), twoSvg);
+    writePng(join(dir, "02_subgraphs_v2.png"), twoSvg);
+    if (mathSvg) {
+      writeSvg(join(dir, "math_example_v2.svg"), mathSvg);
+      writePng(join(dir, "math_example_v2.png"), mathSvg);
+    }
     writeSvg(join(dir, "sheet.svg"), primSheet);
     writePng(join(dir, "sheet.png"), primSheet);
     writeFileSync(join(dir, "README.txt"), "bookfig render artifacts (Node SVG → PNG)\n", "utf8");

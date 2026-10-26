@@ -1,6 +1,7 @@
 export { applyCase } from "./case-mode.ts";
 export { UnsupportedError } from "./errors.ts";
 export { parseFlowchart, parseFlowchartDocument } from "./parse-flowchart.ts";
+export { parsePie } from "./parse-pie.ts";
 export { parseSequence } from "./parse-sequence.ts";
 export { parseState, parseStateDocument } from "./parse-state.ts";
 export { preprocess } from "./preprocess.ts";
@@ -10,3 +11,4 @@ export {
   type RenderOptions,
   type RenderResult,
 } from "./render.ts";
+export { hasMath, layoutLabel, renderKatex, splitMath } from "./math.ts";

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
   telemetry: false,
-  css: ["~/assets/css/main.css"],
+  css: ["katex/dist/katex.min.css", "~/assets/css/main.css"],
   devServer: {
     host: "127.0.0.1",
     port: 43173,
