@@ -1,53 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="392" viewBox="0 0 2000 392"><defs><pattern id="hatch-f5" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f5" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="392" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="348" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,370h44M22,348v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,370h44M1978,348v44"/></g>
-<rect x="100.0" y="106.0" width="605.0" height="213.6" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="112.0" y="112.3" width="98.5" height="25.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="161.2" y="131.2" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">数据 DATA</text>
-<rect x="710.3" y="131.9" width="525.3" height="165.7" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="722.3" y="138.3" width="135.8" height="25.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="790.2" y="157.1" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">训练 TRAINING</text>
-<rect x="1371.3" y="149.9" width="422.6" height="129.8" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="1383.3" y="156.2" width="126.5" height="25.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1446.5" y="175.1" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">部署 SERVING</text>
-<rect x="117.3" y="157.2" width="398.6" height="145.1" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="129.3" y="163.6" width="117.1" height="25.6" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="187.9" y="182.4" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">采集 RECORD</text>
-<path d="M134.6,220.8 h195.0 v60.6 h-195.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="232.1" y="258.7" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">遥操作 TELEOP</text>
-<path d="M356.2,208.8 h142.4 v76.5 h-142.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M356.2,216.8 h142.4 M356.2,224.8 h142.4" stroke="#1F6FEB" stroke-width="3"/>
-<text x="427.4" y="254.7" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">EPISODES</text>
-<path d="M525.3,213.5 h162.4 v60.6 h-162.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="606.5" y="251.3" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">清洗 CLEAN</text>
-<path d="M727.6,190.8 h247.6 v87.2 h-247.6 Z" fill="url(#hatch-f5)" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="739.6" y="202.8" width="223.6" height="63.2" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="851.4" y="242.0" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">微调 FINE-TUNE</text>
-<path d="M1110.0,183.4 L1218.3,231.8 L1110.0,280.1 L1001.8,231.8 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1110.0" y="239.3" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">评测 EVAL</text>
-<path d="M1388.6,201.5 h196.3 v60.6 h-196.3 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1486.8" y="239.3" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">量化 QUANTIZE</text>
-<path d="M1611.5,201.5 h165.1 v60.6 h-165.1 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1694.1" y="239.3" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
-<circle cx="1851.6" cy="231.8" r="48.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1851.6" y="239.3" text-anchor="middle" font-size="19.96653756204879" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">ROBOT</text>
-<path d="M329.6,247.1 L356.2,247.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M345.2,254.6 L356.2,247.1 L345.2,239.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M498.6,243.7 L525.3,243.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M514.3,251.3 L525.3,243.7 L514.3,236.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M687.7,234.4 L727.6,234.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M716.6,241.9 L727.6,234.4 L716.6,226.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M975.2,231.8 L1001.8,231.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M990.8,239.3 L1001.8,231.8 L990.8,224.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1585.0,231.8 L1611.5,231.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1600.5,239.3 L1611.5,231.8 L1600.5,224.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1218.3,231.8 L1253.5,231.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1353.4,231.8 L1388.6,231.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1377.7,239.3 L1388.6,231.8 L1377.7,224.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1218.3,231.8 L1231.6,231.8 L1231.6,308.3 L1244.9,308.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1244.9,308.3 L232.2,308.3 L232.2,281.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M239.7,292.3 L232.2,281.3 L224.6,292.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1776.6,231.8 L1803.2,231.8" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
-<path d="M1792.2,239.3 L1803.2,231.8 L1792.2,224.2" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1254.2" y="219.0" width="98.5" height="25.6" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1303.4" y="237.8" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">通过 PASS</text>
-<rect x="1245.5" y="295.5" width="115.8" height="25.6" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1303.4" y="314.4" text-anchor="middle" font-size="15.97323004963903" letter-spacing="1.3311025041365858" font-weight="normal" fill="#1F6FEB">不通过 FAIL</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2845" height="551" viewBox="0 0 2845 551"><defs><pattern id="hatch-f2" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f2" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2845" height="551" fill="#F8FBFF"/><rect x="22" y="22" width="2801" height="507" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,529h44M22,507v44"/><path d="M2801,22h44M2823,0v44"/><path d="M2801,529h44M2823,507v44"/></g>
+<rect x="70.2" y="114.0" width="909.0" height="321.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="88.2" y="123.5" width="148.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="162.2" y="151.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">数据 DATA</text>
+<rect x="987.2" y="153.0" width="789.2" height="249.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1005.2" y="162.5" width="204.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1107.2" y="190.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">训练 TRAINING</text>
+<rect x="1980.4" y="180.0" width="634.9" height="195.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1998.4" y="189.5" width="190.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2093.4" y="217.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">部署 SERVING</text>
+<rect x="96.2" y="191.0" width="599.0" height="218.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="114.2" y="200.5" width="176.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="202.2" y="228.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">采集 RECORD</text>
+<path d="M122.2,286.5 h293.0 v91.0 h-293.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="268.7" y="343.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">遥操作 TELEOP</text>
+<path d="M455.2,268.5 h214.0 v115.0 h-214.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M455.2,280.5 h214.0 M455.2,292.5 h214.0" stroke="#1F6FEB" stroke-width="3"/>
+<text x="562.2" y="337.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">EPISODES</text>
+<path d="M709.2,275.5 h244.0 v91.0 h-244.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="831.2" y="332.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">清洗 CLEAN</text>
+<path d="M1013.2,241.5 h372.0 v131.0 h-372.0 Z" fill="url(#hatch-f2)" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="1031.2" y="259.5" width="336.0" height="95.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1199.2" y="318.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">微调 FINE-TUNE</text>
+<path d="M1587.8,230.3 L1750.4,303.0 L1587.8,375.6 L1425.2,303.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1587.8" y="314.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">评测 EVAL</text>
+<path d="M2006.4,257.5 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2153.9" y="314.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">量化 QUANTIZE</text>
+<path d="M2341.3,257.5 h248.0 v91.0 h-248.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2465.3" y="314.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
+<circle cx="2702.0" cy="303.0" r="72.7" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2702.0" y="314.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROBOT</text>
+<path d="M415.2,326.0 L455.2,326.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M438.7,337.3 L455.2,326.0 L438.7,314.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M669.2,321.0 L709.2,321.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M692.7,332.3 L709.2,321.0 L692.7,309.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M953.2,307.0 L1013.2,307.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M996.7,318.3 L1013.2,307.0 L996.7,295.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1385.2,303.0 L1425.2,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1408.7,314.3 L1425.2,303.0 L1408.7,291.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2301.4,303.0 L2341.3,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2324.8,314.3 L2341.3,303.0 L2324.8,291.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1750.4,303.0 L1803.4,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1953.4,303.0 L2006.4,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1989.9,314.3 L2006.4,303.0 L1989.9,291.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1750.4,303.0 L1770.4,303.0 L1770.4,418.0 L1790.4,418.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1790.4,440.6 L1790.4,480.6 L415.2,480.6 L415.2,332.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M426.5,348.5 L415.2,332.0 L403.9,348.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2589.3,303.0 L2629.3,303.0" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
+<path d="M2612.8,314.3 L2629.3,303.0 L2612.8,291.7" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1804.4" y="283.8" width="148.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1878.4" y="312.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">通过 PASS</text>
+<rect x="1791.4" y="398.8" width="174.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1878.4" y="427.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">不通过 FAIL</text></svg>

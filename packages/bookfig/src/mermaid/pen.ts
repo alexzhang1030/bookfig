@@ -19,7 +19,8 @@ export type PenOp =
   | readonly ["group", number, number, number, number, string | undefined, number]
   | readonly ["backing", number, number, number, number]
   | readonly ["bar", number, number, number, number]
-  | readonly ["wedge", number, number, number, number, number, string];
+  | readonly ["wedge", number, number, number, number, number, string]
+  | readonly ["patch", number, number, number, number, string];
 
 export function blockSize(lines: string[], size = FS): readonly [number, number] {
   const w = lines.reduce((m, l) => Math.max(m, textWidth(l, size, LS)), 0);
@@ -124,6 +125,11 @@ export class Pen {
   wedge(cx: number, cy: number, r: number, a0: number, a1: number, fill: string): void {
     this.ops.push(["wedge", cx, cy, r, a0, a1, fill]);
     this.ext(cx - r, cy - r, cx + r, cy + r);
+  }
+
+  patch(x: number, y: number, w: number, h: number, fill: string): void {
+    this.ops.push(["patch", x, y, w, h, fill]);
+    this.ext(x, y, x + w, y + h);
   }
 
   toBackLast(): void {
@@ -244,6 +250,15 @@ export class Pen {
           );
           break;
         }
+        case "patch": {
+          const [, x, y, w, h, fill] = op;
+          const [X, Y] = T([x, y]);
+          f.raw(
+            `<rect x="${X.toFixed(1)}" y="${Y.toFixed(1)}" width="${(w * s).toFixed(1)}" height="${(h * s).toFixed(1)}" fill="${fill}" stroke="${c.line}" stroke-width="${f.lw}"/>`,
+            Y + h * s,
+          );
+          break;
+        }
         case "wedge": {
           const [, cx, cy, r, a0, a1, fill] = op;
           const [X, Y] = T([cx, cy]);
@@ -287,12 +302,13 @@ export class Pen {
             const mid = yy + line.h / 2;
             for (const inline of line.inlines) {
               if (inline.kind === "text") {
+                const single = line.inlines.length === 1 && anchor === "middle";
                 f.text(
-                  xx,
+                  single ? X : xx,
                   mid,
                   inline.text,
                   inline.h / LH,
-                  "start",
+                  single ? "middle" : "start",
                   col(color),
                   "normal",
                   false,

@@ -26,6 +26,15 @@ test("renderKatex returns a sized SVG group without foreignObject", () => {
   expect(g.svg).toContain("#1F6FEB");
 });
 
+test("display fraction gets a real rule and stacks taller than inline", () => {
+  const g = renderKatex("\\frac{a}{b}", true, 28);
+  expect(g.height).toBeGreaterThan(40);
+  const w = Number(/frac-line[^>]*width="([0-9.]+)"/.exec(g.svg)?.[1] ?? "0");
+  expect(w).toBeGreaterThan(12);
+  expect(g.svg).toContain("#1F6FEB");
+  expect(g.svg).not.toContain("foreignObject");
+});
+
 test("layoutLabel sizes a box around the formula", () => {
   const lines = layoutLabel("loss $$\\sum_i x_i$$", 28, 400);
   const [w, h] = [lines.reduce((m, l) => Math.max(m, l.w), 0), lines.reduce((s, l) => s + l.h, 0)];
