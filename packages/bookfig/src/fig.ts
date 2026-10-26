@@ -1039,7 +1039,9 @@ export class Fig {
       `<rect width="14" height="14" fill="${c.lighter}"/>` +
       `<circle cx="7" cy="7" r="2.4" fill="${c.line}"/>` +
       `</pattern></defs>`;
-    const style = `<style>text{font-family:'${this.fontFamily}'}</style>`;
+    // Inherit on the root. A `text{font-family}` rule would beat presentation
+    // attributes and restyle KaTeX glyphs as Noto (hat becomes ^y, metrics slip).
+    const style = `<style>svg{font-family:'${this.fontFamily}'}</style>`;
     const crosses = [i, W - i]
       .flatMap((px) =>
         [i, H - i].map((py) => `<path d="M${px - i},${py}h${2 * i}M${px},${py - i}v${2 * i}"/>`),

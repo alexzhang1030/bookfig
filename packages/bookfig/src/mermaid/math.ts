@@ -52,6 +52,8 @@ function parseEm(value: string | undefined): number {
   return 0;
 }
 
+const SIZE_MULT = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.44, 1.728, 2.074, 2.488];
+
 function fontFromClasses(classes: string[]): {
   family: string;
   weight: string;
@@ -61,7 +63,14 @@ function fontFromClasses(classes: string[]): {
   let family = "KaTeX_Main";
   let weight = "normal";
   let style = "normal";
-  if (c.has("mathcal") || c.has("cal")) family = "KaTeX_Caligraphic";
+  if (c.has("large-op")) family = "KaTeX_Size2";
+  else if (c.has("small-op")) family = "KaTeX_Size1";
+  else if (c.has("delimsizing")) {
+    if (c.has("size4")) family = "KaTeX_Size4";
+    else if (c.has("size3")) family = "KaTeX_Size3";
+    else if (c.has("size2")) family = "KaTeX_Size2";
+    else family = "KaTeX_Size1";
+  } else if (c.has("mathcal") || c.has("cal")) family = "KaTeX_Caligraphic";
   else if (c.has("mathbb") || c.has("amsrm")) family = "KaTeX_AMS";
   else if (c.has("mathfrak")) family = "KaTeX_Fraktur";
   else if (c.has("mathsf")) family = "KaTeX_SansSerif";
@@ -80,6 +89,24 @@ function fontFromClasses(classes: string[]): {
     weight = "bold";
   }
   return { family, weight, style };
+}
+
+function childEm(node: KatexDom, em: number): number {
+  const classes = node.classes ?? [];
+  if (!classes.includes("katex-sizing") && !classes.includes("fontsize-ensurer")) return em;
+  let from: number | undefined;
+  let to: number | undefined;
+  for (const name of classes) {
+    const reset = /^reset-size(\d+)$/.exec(name);
+    const size = /^size(\d+)$/.exec(name);
+    if (reset?.[1]) from = Number(reset[1]);
+    else if (size?.[1]) to = Number(size[1]);
+  }
+  if (!from || !to) return em;
+  const a = SIZE_MULT[from - 1];
+  const b = SIZE_MULT[to - 1];
+  if (!a || !b) return em;
+  return em * (b / a);
 }
 
 function ctor(node: KatexDom): string {
@@ -174,22 +201,24 @@ function shift(box: Box, dx: number, dy: number): Box {
   };
 }
 
-function layoutNode(node: KatexDom, em: number, color: string): Box {
+function layoutNode(node: KatexDom, em: number, root: number, color: string): Box {
   if (hasClass(node, "katex-strut") || hasClass(node, "pstrut") || hasClass(node, "vlist-s")) {
     return emptyBox();
   }
   if (isSymbol(node)) {
     const text = node.text ?? "";
     if (!text || text === "\u200b") return emptyBox();
-    const scale = node.maxFontSize && node.maxFontSize > 0 ? node.maxFontSize : 1;
-    const fs = em * scale;
+    const scale = node.maxFontSize && node.maxFontSize > 0 ? node.maxFontSize : em / root;
+    const fs = root * scale;
     const { family, weight, style } = fontFromClasses(node.classes ?? []);
-    const w = (node.width ?? 0) * em + (node.italic ?? 0) * em;
-    const h = (node.height ?? 0) * em;
-    const d = (node.depth ?? 0) * em;
+    const w = (node.width ?? 0) * fs;
+    const italic = (node.italic ?? 0) * fs;
+    const h = (node.height ?? 0) * fs;
+    const d = (node.depth ?? 0) * fs;
     const dy = parseEm(node.style?.top) * em;
-    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${family}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" fill="${color}">${escapeXml(text)}</text>`;
-    return { w: Math.max(w, 0), h, d, parts: [part] };
+    const face = `font-family:${family};font-weight:${weight};font-style:${style}`;
+    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${family}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" style="${face}" fill="${color}">${escapeXml(text)}</text>`;
+    return { w: Math.max(w + italic, 0), h, d, parts: [part] };
   }
   if (ctor(node) === "PathNode") {
     const d = node.alternate ?? "";
@@ -224,6 +253,10 @@ function layoutNode(node: KatexDom, em: number, color: string): Box {
       ],
     };
   }
+  if (hasClass(node, "accent-body") && !hasClass(node, "accent-full")) {
+    const inner = layoutFlow(node, em, root, color, true);
+    return { w: 0, h: inner.h, d: inner.d, parts: inner.parts };
+  }
   if (hasClass(node, "mspace")) {
     return { w: parseEm(node.style?.marginRight) * em, h: 0, d: 0, parts: [] };
   }
@@ -231,12 +264,12 @@ function layoutNode(node: KatexDom, em: number, color: string): Box {
     return { w: 0.12 * em, h: 0, d: 0, parts: [] };
   }
   if (hasClass(node, "vlist")) {
-    return layoutVList(node, em, color);
+    return layoutVList(node, em, root, color);
   }
-  return layoutFlow(node, em, color);
+  return layoutFlow(node, em, root, color);
 }
 
-function layoutVList(node: KatexDom, em: number, color: string): Box {
+function layoutVList(node: KatexDom, em: number, root: number, color: string): Box {
   const kids = node.children ?? [];
   const placed: Box[] = [];
   let maxW = 0;
@@ -247,44 +280,50 @@ function layoutVList(node: KatexDom, em: number, color: string): Box {
     const pH = parseEm(pstrut?.style?.height);
     const ml = parseEm(child.style?.marginLeft) * em;
     const mr = parseEm(child.style?.marginRight) * em;
-    const inner = layoutFlow(child, em, color);
+    const inner = layoutFlow(child, em, root, color);
     const yB = (top + pH) * em;
     const shifted = shift(inner, ml, yB);
     shifted.w += ml + mr;
     placed.push(shifted);
     maxW = Math.max(maxW, shifted.w);
   }
-  const h = (node.height ?? 0) * em;
-  const d = (node.depth ?? 0) * em;
+  const h = (node.height ?? 0) * root;
+  const d = (node.depth ?? 0) * root;
   const ruleW = Math.max(maxW, 1);
   const parts = placed.flatMap((b) => {
     const isRule = b.parts.some((p) => p.includes("__FRAC__"));
-    const dx = isRule ? 0 : (maxW - b.w) / 2;
+    const dx = isRule || b.w < 0.01 ? 0 : (maxW - b.w) / 2;
     const moved = dx ? shift(b, dx, 0) : b;
     return moved.parts.map((p) => p.replaceAll("__FRAC__", ruleW.toFixed(2)));
   });
   return { w: maxW, h, d, parts };
 }
 
-function layoutFlow(node: KatexDom, em: number, color: string): Box {
+function layoutFlow(
+  node: KatexDom,
+  em: number,
+  root: number,
+  color: string,
+  ignoreOwnWidth = false,
+): Box {
   if (hasClass(node, "vlist-t") || hasClass(node, "vlist-t2")) {
     const rows = node.children ?? [];
     const first = rows[0];
-    const body = first ? layoutFlow(first, em, color) : emptyBox();
-    body.h = (node.height ?? body.h / em) * em;
-    body.d = (node.depth ?? body.d / em) * em;
+    const body = first ? layoutFlow(first, em, root, color) : emptyBox();
+    body.h = (node.height ?? 0) * root || body.h;
+    body.d = (node.depth ?? 0) * root || body.d;
     return body;
   }
   if (hasClass(node, "vlist-r")) {
     const v = (node.children ?? []).find((c) => hasClass(c, "vlist"));
-    if (v) return layoutVList(v, em, color);
+    if (v) return layoutVList(v, em, root, color);
   }
-  if (hasClass(node, "vlist")) return layoutVList(node, em, color);
+  if (hasClass(node, "vlist")) return layoutVList(node, em, root, color);
 
   const kids = node.children ?? [];
   if (!kids.length) {
-    const w = (node.width ?? parseEm(node.style?.width)) * em;
-    return { w, h: (node.height ?? 0) * em, d: (node.depth ?? 0) * em, parts: [] };
+    const w = (node.width ?? 0) * root || parseEm(node.style?.width) * em;
+    return { w, h: (node.height ?? 0) * root, d: (node.depth ?? 0) * root, parts: [] };
   }
   let x = parseEm(node.style?.paddingLeft) * em + parseEm(node.style?.marginLeft) * em;
   let h = 0;
@@ -294,7 +333,8 @@ function layoutFlow(node: KatexDom, em: number, color: string): Box {
     if (hasClass(child, "katex-strut") || hasClass(child, "pstrut") || hasClass(child, "vlist-s")) {
       continue;
     }
-    const box = layoutNode(child, em, color);
+    const nextEm = childEm(child, em);
+    const box = layoutNode(child, nextEm, root, color);
     const left = parseEm(child.style?.left) * em;
     const shifted = shift(box, x + left, 0);
     parts.push(...shifted.parts);
@@ -303,8 +343,10 @@ function layoutFlow(node: KatexDom, em: number, color: string): Box {
     d = Math.max(d, box.d);
   }
   x += parseEm(node.style?.paddingRight) * em + parseEm(node.style?.marginRight) * em;
-  if ((node.height ?? 0) * em > h) h = (node.height ?? 0) * em;
-  if ((node.depth ?? 0) * em > d) d = (node.depth ?? 0) * em;
+  if (!ignoreOwnWidth) {
+    if ((node.height ?? 0) * root > h) h = (node.height ?? 0) * root;
+    if ((node.depth ?? 0) * root > d) d = (node.depth ?? 0) * root;
+  }
   return { w: Math.max(x, 0), h, d, parts };
 }
 
@@ -340,7 +382,7 @@ export function renderKatex(
       errorColor: color,
     });
     const html = (tree.children ?? []).find((c) => hasClass(c, "katex-html")) ?? tree;
-    const box = layoutNode(html, size, color);
+    const box = layoutNode(html, size, size, color);
     const pad = size * 0.12;
     const width = Math.max(1, box.w) + pad * 2;
     const height = Math.max(

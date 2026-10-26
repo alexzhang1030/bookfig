@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2845" height="551" viewBox="0 0 2845 551"><defs><pattern id="hatch-f2" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f2" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2845" height="551" fill="#F8FBFF"/><rect x="22" y="22" width="2801" height="507" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,529h44M22,507v44"/><path d="M2801,22h44M2823,0v44"/><path d="M2801,529h44M2823,507v44"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" width="2845" height="553" viewBox="0 0 2845 553"><defs><pattern id="hatch-f2" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f2" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2845" height="553" fill="#F8FBFF"/><rect x="22" y="22" width="2801" height="509" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,531h44M22,509v44"/><path d="M2801,22h44M2823,0v44"/><path d="M2801,531h44M2823,509v44"/></g>
 <rect x="70.2" y="114.0" width="909.0" height="321.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
 <rect x="88.2" y="123.5" width="148.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
 <text x="162.2" y="151.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">数据 DATA</text>
@@ -42,12 +42,11 @@
 <path d="M1750.4,303.0 L1803.4,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
 <path d="M1953.4,303.0 L2006.4,303.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
 <path d="M1989.9,314.3 L2006.4,303.0 L1989.9,291.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1750.4,303.0 L1770.4,303.0 L1770.4,418.0 L1790.4,418.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1790.4,440.6 L1790.4,480.6 L415.2,480.6 L415.2,332.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M426.5,348.5 L415.2,332.0 L403.9,348.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1587.8,375.6 L1587.8,463.0 L268.7,463.0 L268.7,377.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M280.0,394.0 L268.7,377.5 L257.4,394.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
 <path d="M2589.3,303.0 L2629.3,303.0" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
 <path d="M2612.8,314.3 L2629.3,303.0 L2612.8,291.7" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
 <rect x="1804.4" y="283.8" width="148.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
 <text x="1878.4" y="312.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">通过 PASS</text>
-<rect x="1791.4" y="398.8" width="174.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1878.4" y="427.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">不通过 FAIL</text></svg>
+<rect x="1500.8" y="443.8" width="174.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1587.8" y="472.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">不通过 FAIL</text></svg>
