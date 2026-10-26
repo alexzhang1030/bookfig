@@ -1,25 +1,31 @@
-import { wrap } from "../text.ts";
 import type { CaseMode } from "../types.ts";
 import { applyCase } from "./case-mode.ts";
+import { laidBlockSize, layoutLabel, type LaidLine } from "./math.ts";
 import type { MermaidNode } from "./model.ts";
-import { blockSize, FS, LH, LS, MAXW } from "./pen.ts";
+import { FS, LH, LS, MAXW } from "./pen.ts";
 
 export function linesFor(s: string, size = FS, maxw = MAXW): string[] {
-  const out: string[] = [];
-  for (const ln of s.split("\n")) {
-    if (ln) out.push(...wrap(ln, maxw, size, LS));
-    else out.push("");
-  }
-  return out;
+  return layoutLabel(s, size, maxw).map((ln) =>
+    ln.inlines
+      .map((i) => (i.kind === "text" ? i.text : i.display ? `$$${i.tex}$$` : `$${i.tex}$`))
+      .join(""),
+  );
 }
 
-export function nodeGeometry(n: MermaidNode, mode: CaseMode): readonly [string[], number, number] {
+export function laidFor(s: string, size = FS, maxw = MAXW): LaidLine[] {
+  return layoutLabel(s, size, maxw);
+}
+
+export function nodeGeometry(
+  n: MermaidNode,
+  mode: CaseMode,
+): readonly [LaidLine[], number, number] {
   const shape = n.shape;
   if (shape === "start" || shape === "end") return [[], 44, 44];
   const lab = applyCase(n.label, mode);
   const maxw = shape === "diamond" ? 300 : MAXW;
-  const ls = linesFor(lab, FS, maxw);
-  const [tw, th] = blockSize(ls);
+  const ls = layoutLabel(lab, FS, maxw);
+  const [tw, th] = laidBlockSize(ls);
   const padX = n.kind === "hatch" ? 70 : 40;
   const padY = n.kind === "hatch" ? 46 : 26;
   let w = tw + 2 * padX;

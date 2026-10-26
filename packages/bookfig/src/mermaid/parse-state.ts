@@ -91,7 +91,7 @@ export function parseState(lines: string[], g: MermaidGraph): void {
       } else {
         ensureNode(g, b, sub);
       }
-      g.edges.push({ a, b, style: "solid", head: true, tail: false, label: cleanLabel(lab) });
+      g.edges.push({ a, b, style: "solid", head: "arrow", tail: "none", label: cleanLabel(lab) });
       continue;
     }
     const desc = /^([\w\u4e00-\u9fff]+)\s*:\s*(.+)$/.exec(s);

@@ -11,32 +11,31 @@ export {
 } from "./fig.ts";
 export {
   applyCase,
+  hasMath,
+  layoutLabel,
   parseFlowchart,
   parseFlowchartDocument,
+  parsePie,
   parseSequence,
   parseState,
   parseStateDocument,
   preprocess,
+  renderKatex,
   renderMermaid,
+  splitMath,
   unsupportedFigure,
   UnsupportedError,
   type RenderOptions,
   type RenderResult,
 } from "./mermaid/index.ts";
-export {
-  DEFAULT_FONT_FAMILY,
-  PALETTES,
-  isPaletteName,
-  resolvePalette,
-  type Palette,
-  type PaletteName,
-} from "./palettes.ts";
+export { DEFAULT_FONT_FAMILY, PALETTE, type Palette } from "./palettes.ts";
 export { escapeXml, isWide, textWidth, wrap } from "./text.ts";
 export {
   assertNever,
   isCaseMode,
   type BoxKind,
   type CaseMode,
+  type HeadMark,
   type LineStyle,
   type NodeShape,
 } from "./types.ts";

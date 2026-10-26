@@ -1,5 +1,5 @@
 import { Box, fmt, type Point } from "./geom.ts";
-import { DEFAULT_FONT_FAMILY, resolvePalette, type Palette, type PaletteName } from "./palettes.ts";
+import { DEFAULT_FONT_FAMILY, PALETTE, type Palette } from "./palettes.ts";
 import { escapeXml, textWidth, wrap } from "./text.ts";
 import {
   assertNever,
@@ -15,7 +15,6 @@ import {
 
 export type FigOptions = {
   width?: number;
-  palette?: PaletteName | Palette;
   size?: number;
   ls?: number;
   lw?: number;
@@ -112,7 +111,7 @@ let figSeq = 0;
 export class Fig {
   static readonly INSET = 22;
 
-  readonly W: number;
+  W: number;
   readonly c: Palette;
   size: number;
   ls: number;
@@ -126,7 +125,7 @@ export class Fig {
 
   constructor(opts: FigOptions = {}) {
     this.W = opts.width ?? 2000;
-    this.c = resolvePalette(opts.palette ?? "blue");
+    this.c = PALETTE;
     this.size = opts.size ?? 34;
     this.ls = opts.ls ?? 2;
     this.lw = opts.lw ?? 3;
@@ -226,6 +225,43 @@ export class Fig {
       [tip[0] - size * Math.cos(ang + 0.6), tip[1] - size * Math.sin(ang + 0.6)],
     ];
     this.line(pts, false, color);
+  }
+
+  circleHead(tip: Point, frm: Point, size = 18, color?: string): void {
+    const ang = Math.atan2(tip[1] - frm[1], tip[0] - frm[0]);
+    const r = Math.max(5, size * 0.42);
+    const cx = tip[0] - r * Math.cos(ang);
+    const cy = tip[1] - r * Math.sin(ang);
+    const col = color ?? this.c.line;
+    this.add(
+      `<circle cx="${fmt(cx)}" cy="${fmt(cy)}" r="${fmt(r)}" fill="${this.c.bg}" stroke="${col}" stroke-width="${this.lw}"/>`,
+      cy + r,
+    );
+  }
+
+  crossHead(tip: Point, frm: Point, size = 18, color?: string): void {
+    const ang = Math.atan2(tip[1] - frm[1], tip[0] - frm[0]);
+    const s = Math.max(8, size * 0.55);
+    const ux = Math.cos(ang);
+    const uy = Math.sin(ang);
+    const cx = tip[0] - s * 0.2 * ux;
+    const cy = tip[1] - s * 0.2 * uy;
+    this.line(
+      [
+        [cx - s * Math.cos(ang + Math.PI / 4), cy - s * Math.sin(ang + Math.PI / 4)],
+        [cx + s * Math.cos(ang + Math.PI / 4), cy + s * Math.sin(ang + Math.PI / 4)],
+      ],
+      false,
+      color,
+    );
+    this.line(
+      [
+        [cx - s * Math.cos(ang - Math.PI / 4), cy - s * Math.sin(ang - Math.PI / 4)],
+        [cx + s * Math.cos(ang - Math.PI / 4), cy + s * Math.sin(ang - Math.PI / 4)],
+      ],
+      false,
+      color,
+    );
   }
 
   arrow(

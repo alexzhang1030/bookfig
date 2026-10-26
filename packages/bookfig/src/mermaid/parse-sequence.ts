@@ -2,12 +2,18 @@ import { cleanLabel } from "./preprocess.ts";
 
 export type SeqAlias = readonly [label: string, kind: "participant" | "actor"];
 
+export type SeqAct = "" | "+" | "-";
+
 export type SeqEvent =
-  | readonly ["msg", string, string, string, string]
+  | readonly ["msg", string, string, string, string, SeqAct]
   | readonly ["note", string, string[], string]
   | readonly ["begin", string, string]
   | readonly ["else", string, string]
-  | readonly ["end"];
+  | readonly ["end"]
+  | readonly ["activate", string]
+  | readonly ["deactivate", string];
+
+export type SeqBox = { title: string; members: string[] };
 
 const SEQ_MSG =
   /^(.+?)\s*(<<-->>|<<->>|-->>|->>|--x|-x|--\)|-\)|-->|->)\s*([+-]?)\s*(.+?)\s*:\s*(.*)$/;
@@ -17,14 +23,32 @@ export type SequenceModel = {
   parts: string[];
   alias: Map<string, SeqAlias>;
   events: SeqEvent[];
+  boxes: SeqBox[];
   auto: boolean;
   warnings: string[];
 };
+
+function boxTitle(rest: string): string {
+  let s = rest.trim();
+  s = s.replace(/^rgba?\([^)]*\)\s*/i, "");
+  s = s.replace(/^#[0-9a-fA-F]{3,8}\s*/, "");
+  const tok = /^([A-Za-z]+)\s+(.*)$/.exec(s);
+  if (
+    tok?.[1] &&
+    /^(transparent|aqua|azure|beige|bisque|brown|coral|crimson|cyan|gold|gray|grey|green|ivory|khaki|lime|linen|navy|olive|orange|pink|plum|purple|red|salmon|sienna|silver|snow|tan|teal|tomato|violet|wheat|yellow|white|black|blue|lightyellow|lightblue|lightgreen|lightgray|lightgrey)$/i.test(
+      tok[1],
+    )
+  ) {
+    s = tok[2] ?? "";
+  }
+  return cleanLabel(s);
+}
 
 export function parseSequence(lines: string[]): SequenceModel {
   const parts: string[] = [];
   const alias = new Map<string, SeqAlias>();
   const events: SeqEvent[] = [];
+  const boxes: SeqBox[] = [];
   const warnings: string[] = [];
   const addPart = (name: string): string => {
     const n = name.trim();
@@ -35,6 +59,8 @@ export function parseSequence(lines: string[]): SequenceModel {
     return n;
   };
   let auto = false;
+  type Ctx = { kind: "block" } | { kind: "box"; box: SeqBox };
+  const stack: Ctx[] = [];
   for (const raw of lines) {
     const s = raw.trim();
     if (!s) continue;
@@ -45,18 +71,41 @@ export function parseSequence(lines: string[]): SequenceModel {
       if (!alias.has(nid)) parts.push(nid);
       const kind = part[1]?.toLowerCase() === "actor" ? "actor" : "participant";
       alias.set(nid, [cleanLabel(part[3] ?? nid), kind]);
+      const top = stack[stack.length - 1];
+      if (top?.kind === "box" && !top.box.members.includes(nid)) top.box.members.push(nid);
       continue;
     }
     if (low.startsWith("autonumber")) {
       auto = true;
       continue;
     }
+    if (low.startsWith("activate ")) {
+      events.push(["activate", addPart(s.slice(9))]);
+      continue;
+    }
+    if (low.startsWith("deactivate ")) {
+      events.push(["deactivate", addPart(s.slice(11))]);
+      continue;
+    }
+    if (low.startsWith("box")) {
+      const box: SeqBox = { title: boxTitle(s.slice(3)), members: [] };
+      boxes.push(box);
+      stack.push({ kind: "box", box });
+      continue;
+    }
+    if (low === "end") {
+      const top = stack[stack.length - 1];
+      if (top?.kind === "box") {
+        stack.pop();
+        continue;
+      }
+      if (top?.kind === "block") stack.pop();
+      events.push(["end"]);
+      continue;
+    }
     if (
-      low.startsWith("activate ") ||
-      low.startsWith("deactivate ") ||
       low.startsWith("destroy ") ||
       low.startsWith("title") ||
-      low.startsWith("box ") ||
       low.startsWith("links ") ||
       low.startsWith("link ")
     ) {
@@ -70,6 +119,7 @@ export function parseSequence(lines: string[]): SequenceModel {
     }
     const w = low.split(/\s+/)[0] ?? "";
     if (BLOCKS.has(w)) {
+      stack.push({ kind: "block" });
       events.push(["begin", w, cleanLabel(s.slice(w.length))]);
       continue;
     }
@@ -77,18 +127,15 @@ export function parseSequence(lines: string[]): SequenceModel {
       events.push(["else", w, cleanLabel(s.slice(w.length))]);
       continue;
     }
-    if (low === "end") {
-      events.push(["end"]);
-      continue;
-    }
     const msg = SEQ_MSG.exec(s);
     if (msg) {
       const a = addPart(msg[1] ?? "");
       const b = addPart(msg[4] ?? "");
-      events.push(["msg", a, b, msg[2] ?? "->", cleanLabel(msg[5] ?? "")]);
+      const act = (msg[3] === "+" || msg[3] === "-" ? msg[3] : "") as SeqAct;
+      events.push(["msg", a, b, msg[2] ?? "->", cleanLabel(msg[5] ?? ""), act]);
       continue;
     }
     warnings.push(`unparsed: ${s}`);
   }
-  return { parts, alias, events, auto, warnings };
+  return { parts, alias, events, boxes, auto, warnings };
 }

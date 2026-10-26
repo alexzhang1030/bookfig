@@ -1,22 +1,25 @@
 import { Fig } from "../fig.ts";
 import { textWidth } from "../text.ts";
-import type { BoxKind, LineStyle, NodeShape, TagKind, TextAnchor } from "../types.ts";
+import type { BoxKind, HeadMark, LineStyle, NodeShape, TagKind, TextAnchor } from "../types.ts";
 import { drawShape } from "./shapes.ts";
+import type { LaidLine } from "./math.ts";
 
 export const FS = 30;
 export const LS = 2;
 export const LH = 1.3;
 export const MAXW = 420;
-export const AVAIL_W = 1800;
 
 export type PenOp =
   | readonly ["shape", BoxKind, NodeShape, number, number, number, number]
   | readonly ["text", number, number, string[], number, "line" | "bg" | "dark", TextAnchor, string]
+  | readonly ["rich", number, number, LaidLine[], "line" | "bg" | "dark", TextAnchor]
   | readonly ["line", Array<readonly [number, number]>, LineStyle]
-  | readonly ["head", readonly [number, number], readonly [number, number], LineStyle]
+  | readonly ["head", readonly [number, number], readonly [number, number], LineStyle, HeadMark]
   | readonly ["tag", number, number, string, number, TagKind]
   | readonly ["group", number, number, number, number, string | undefined, number]
-  | readonly ["backing", number, number, number, number];
+  | readonly ["backing", number, number, number, number]
+  | readonly ["bar", number, number, number, number]
+  | readonly ["wedge", number, number, number, number, number, string];
 
 export function blockSize(lines: string[], size = FS): readonly [number, number] {
   const w = lines.reduce((m, l) => Math.max(m, textWidth(l, size, LS)), 0);
@@ -57,6 +60,20 @@ export class Pen {
     this.ext(xa, cy - h / 2, xa + w, cy + h / 2);
   }
 
+  rich(
+    cx: number,
+    cy: number,
+    lines: LaidLine[],
+    color: "line" | "bg" | "dark" = "line",
+    anchor: TextAnchor = "middle",
+  ): void {
+    this.ops.push(["rich", cx, cy, lines, color, anchor]);
+    const w = lines.reduce((m, l) => Math.max(m, l.w), 0);
+    const h = lines.reduce((s, l) => s + l.h, 0);
+    const xa = anchor === "middle" ? cx - w / 2 : anchor === "start" ? cx : cx - w;
+    this.ext(xa, cy - h / 2, xa + w, cy + h / 2);
+  }
+
   line(pts: Array<readonly [number, number]>, style: LineStyle = "solid"): void {
     this.ops.push(["line", pts, style]);
     this.ext(
@@ -71,8 +88,9 @@ export class Pen {
     tip: readonly [number, number],
     frm: readonly [number, number],
     style: LineStyle = "solid",
+    mark: HeadMark = "arrow",
   ): void {
-    this.ops.push(["head", tip, frm, style]);
+    this.ops.push(["head", tip, frm, style, mark]);
   }
 
   tag(
@@ -98,14 +116,26 @@ export class Pen {
     this.ops.push(["backing", cx, cy, w, h]);
   }
 
+  bar(x: number, y: number, w: number, h: number): void {
+    this.ops.push(["bar", x, y, w, h]);
+    this.ext(x, y, x + w, y + h);
+  }
+
+  wedge(cx: number, cy: number, r: number, a0: number, a1: number, fill: string): void {
+    this.ops.push(["wedge", cx, cy, r, a0, a1, fill]);
+    this.ext(cx - r, cy - r, cx + r, cy + r);
+  }
+
   toBackLast(): void {
     const last = this.ops.pop();
     if (last) this.ops.unshift(last);
   }
 
-  emit(f: Fig, top: number, avail = AVAIL_W): number {
+  emit(f: Fig, top: number): number {
     const W = this.x1 - this.x0;
-    const s = Math.min(1, avail / Math.max(W, 1));
+    const s = 1;
+    const need = Math.max(f.W, Math.ceil(W + 2 * f.pad));
+    if (need > f.W) f.W = need;
     const ox = (f.W - W * s) / 2 - this.x0 * s;
     const oy = top - this.y0 * s;
     const T = (p: readonly [number, number]): readonly [number, number] => [
@@ -128,9 +158,14 @@ export class Pen {
         }
       }
     };
-    const ordered = [...this.ops].sort(
-      (a, b) => Number(a[0] !== "group") - Number(b[0] !== "group"),
-    );
+    const ordered = [...this.ops].sort((a, b) => {
+      const rank = (op: PenOp): number => {
+        if (op[0] === "group") return 0;
+        if (op[0] === "bar") return 1;
+        return 2;
+      };
+      return rank(a) - rank(b);
+    });
     for (const op of ordered) {
       switch (op[0]) {
         case "group": {
@@ -171,9 +206,24 @@ export class Pen {
           break;
         }
         case "head": {
-          const [, tip, frm, style] = op;
-          if (style !== "invis") {
-            f.head(T(tip), T(frm), Math.max(12, 20 * s), style === "thick" ? c.dark : undefined);
+          const [, tip, frm, style, mark] = op;
+          if (style === "invis" || mark === "none") break;
+          const color = style === "thick" ? c.dark : undefined;
+          const size = Math.max(12, 20 * s);
+          switch (mark) {
+            case "arrow":
+              f.head(T(tip), T(frm), size, color);
+              break;
+            case "circle":
+              f.circleHead(T(tip), T(frm), size, color);
+              break;
+            case "cross":
+              f.crossHead(T(tip), T(frm), size, color);
+              break;
+            default: {
+              const _n: never = mark;
+              void _n;
+            }
           }
           break;
         }
@@ -183,6 +233,28 @@ export class Pen {
           f.raw(
             `<rect x="${(X - (w * s) / 2).toFixed(1)}" y="${(Y - (h * s) / 2).toFixed(1)}" width="${(w * s).toFixed(1)}" height="${(h * s).toFixed(1)}" fill="${c.bg}"/>`,
           );
+          break;
+        }
+        case "bar": {
+          const [, x, y, w, h] = op;
+          const [X, Y] = T([x, y]);
+          f.raw(
+            `<rect x="${X.toFixed(1)}" y="${Y.toFixed(1)}" width="${(w * s).toFixed(1)}" height="${(h * s).toFixed(1)}" fill="${c.mid}" stroke="${c.line}" stroke-width="${f.lw}"/>`,
+            Y + h * s,
+          );
+          break;
+        }
+        case "wedge": {
+          const [, cx, cy, r, a0, a1, fill] = op;
+          const [X, Y] = T([cx, cy]);
+          const R = r * s;
+          const large = a1 - a0 > Math.PI ? 1 : 0;
+          const x0 = X + R * Math.cos(a0);
+          const y0 = Y + R * Math.sin(a0);
+          const x1 = X + R * Math.cos(a1);
+          const y1 = Y + R * Math.sin(a1);
+          const d = `M${X.toFixed(1)},${Y.toFixed(1)} L${x0.toFixed(1)},${y0.toFixed(1)} A${R.toFixed(1)},${R.toFixed(1)} 0 ${large} 1 ${x1.toFixed(1)},${y1.toFixed(1)} Z`;
+          f.raw(`<path d="${d}" fill="${fill}" stroke="${c.line}" stroke-width="${f.lw}"/>`, Y + R);
           break;
         }
         case "text": {
@@ -203,6 +275,41 @@ export class Pen {
               f.ls,
             );
           });
+          break;
+        }
+        case "rich": {
+          const [, cx, cy, lines, color, anchor] = op;
+          const [X, Y] = T([cx, cy]);
+          const totalH = lines.reduce((sum, l) => sum + l.h, 0);
+          let yy = Y - totalH / 2;
+          for (const line of lines) {
+            let xx = anchor === "middle" ? X - line.w / 2 : anchor === "start" ? X : X - line.w;
+            const mid = yy + line.h / 2;
+            for (const inline of line.inlines) {
+              if (inline.kind === "text") {
+                f.text(
+                  xx,
+                  mid,
+                  inline.text,
+                  inline.h / LH,
+                  "start",
+                  col(color),
+                  "normal",
+                  false,
+                  f.ls,
+                );
+                xx += inline.w;
+              } else {
+                const gx = xx + 2;
+                const gy = mid - inline.h / 2 + 2;
+                f.raw(
+                  `<g transform="translate(${gx.toFixed(1)},${gy.toFixed(1)})">${inline.svg}</g>`,
+                );
+                xx += inline.w;
+              }
+            }
+            yy += line.h;
+          }
           break;
         }
         case "tag": {

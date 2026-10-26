@@ -1,6 +1,6 @@
-import type { LineStyle, NodeShape } from "../types.ts";
+import type { HeadMark, LineStyle, NodeShape } from "../types.ts";
+import { applyLinkStyles, emptyGraph, type MermaidEdge, type MermaidGraph } from "./model.ts";
 import { cleanLabel } from "./preprocess.ts";
-import { emptyGraph, type MermaidEdge, type MermaidGraph } from "./model.ts";
 import { ID_SRC, matchAt, splitMax } from "./regex.ts";
 
 const SHAPES: ReadonlyArray<readonly [string, string, NodeShape]> = [
@@ -20,8 +20,44 @@ const SHAPES: ReadonlyArray<readonly [string, string, NodeShape]> = [
   [">", "]", "flag"],
 ];
 
-const EDGE_RE = String.raw`(<)?(-{2,}>|-\.+->|-\.+-|={2,}>|-{2,}[ox](?![\w])|={2,}[ox](?![\w])|-{3,}|={3,}|~~~)`;
-const EDGE_TEXT_RE = String.raw`(<)?(--|==|-\.)\s*([^\-=>.|\s][^|]*?)\s*(-{2,}[>ox]?|={2,}[>ox]?|\.-+[>ox]?)(?=\s|[\w\u4e00-\u9fff"]|$)`;
+const EDGE_RE = String.raw`([<ox])?(-{2,}>|-\.+->|-\.+-|={2,}>|-{2,}[ox](?![\w])|={2,}[ox](?![\w])|-{3,}|={3,}|~~~)`;
+const EDGE_TEXT_RE = String.raw`([<ox])?(--|==|-\.)\s*([^\-=>.|\s][^|]*?)\s*(-{2,}[>ox]?|={2,}[>ox]?|\.-+[>ox]?)(?=\s|[\w\u4e00-\u9fff"]|$)`;
+
+function looksLikeEdge(s: string): boolean {
+  return /^([<ox])?(-{2,}|={2,}|-\.|~~~)/.test(s);
+}
+
+function nodeEndsAfter(s: string, pos: number): boolean {
+  const rest = s.slice(pos).replace(/^\s+/, "");
+  if (!rest) return true;
+  if (rest.startsWith(":::") || rest.startsWith(";") || rest.startsWith("&")) return true;
+  return looksLikeEdge(rest);
+}
+
+function findCloser(s: string, start: number, closer: string): number {
+  let k = start;
+  while (k < s.length) {
+    const j = s.indexOf(closer, k);
+    if (j < 0) return -1;
+    if (nodeEndsAfter(s, j + closer.length)) return j;
+    k = j + 1;
+  }
+  return -1;
+}
+
+function markOf(ch: string): HeadMark {
+  switch (ch) {
+    case ">":
+    case "<":
+      return "arrow";
+    case "o":
+      return "circle";
+    case "x":
+      return "cross";
+    default:
+      return "none";
+  }
+}
 
 function parseNode(
   g: MermaidGraph,
@@ -40,13 +76,14 @@ function parseNode(
       const j = pos + op.length;
       const rest = s.slice(j).trimStart();
       let k = -1;
-      if (rest.startsWith('"')) {
-        const q = s.indexOf('"', j);
-        const q2 = q >= 0 ? s.indexOf('"', q + 1) : -1;
+      if (rest.startsWith('"') || rest.startsWith("`")) {
+        const qch = rest[0] ?? '"';
+        const q = s.indexOf(qch, j);
+        const q2 = q >= 0 ? s.indexOf(qch, q + 1) : -1;
         if (q2 < 0) continue;
         k = s.indexOf(cl, q2);
       } else {
-        k = s.indexOf(cl, j);
+        k = findCloser(s, j, cl);
       }
       if (k < 0) continue;
       label = s.slice(j, k);
@@ -105,9 +142,10 @@ function parseEdge(s: string, pos: number): [Omit<MermaidEdge, "a" | "b"> | unde
     }
     const style: LineStyle =
       op === "~~~" ? "invis" : op.includes(".") ? "dashed" : op.includes("=") ? "thick" : "solid";
-    const last = op[op.length - 1];
-    const head = last === ">" || last === "o" || last === "x";
-    const tail = Boolean(m[1]);
+    const last = op[op.length - 1] ?? "";
+    const prefix = m[1] ?? "";
+    const head = markOf(last === ">" || last === "o" || last === "x" ? last : "");
+    const tail = markOf(prefix);
     return [{ style, head, tail, label: text ? cleanLabel(text) : "" }, pos];
   }
   return [undefined, pos];
@@ -213,9 +251,22 @@ export function parseFlowchart(lines: string[], g: MermaidGraph): void {
         g.styles.set(nid, cur);
         continue;
       }
+      if (low.startsWith("linkstyle")) {
+        const parts = splitMax(stmt, 2);
+        const spec = parts[2] ?? "";
+        const ids = (parts[1] ?? "").split(",").map((x) => x.trim());
+        if (ids[0]?.toLowerCase() === "default") g.linkDefault = spec;
+        else {
+          for (const id of ids) {
+            const i = Number(id);
+            if (Number.isFinite(i)) g.linkStyles.set(i, spec);
+          }
+        }
+        continue;
+      }
       if (
-        low.startsWith("linkstyle") ||
         low.startsWith("click") ||
+        low.startsWith("href") ||
         low.startsWith("acctitle") ||
         low.startsWith("accdescr")
       ) {
@@ -226,6 +277,7 @@ export function parseFlowchart(lines: string[], g: MermaidGraph): void {
       }
     }
   }
+  applyLinkStyles(g);
 }
 
 export function parseFlowchartDocument(

@@ -3,11 +3,9 @@ import {
   GALLERY,
   UnsupportedError,
   isCaseMode,
-  isPaletteName,
   renderMermaid,
   unsupportedFigure,
   type CaseMode,
-  type PaletteName,
 } from "bookfig";
 
 type PreviewState =
@@ -17,15 +15,10 @@ type PreviewState =
   | { kind: "error"; message: string; svg: string };
 
 const source = ref(GALLERY[0]?.source ?? "");
-const palette = ref<PaletteName>("blue");
 const caseMode = ref<CaseMode>("auto");
 const activeId = ref(GALLERY[0]?.id ?? "");
 const state = ref<PreviewState>({ kind: "empty" });
 let seq = 0;
-
-function setPalette(name: string): void {
-  if (isPaletteName(name)) palette.value = name;
-}
 
 function setCase(name: string): void {
   if (isCaseMode(name)) caseMode.value = name;
@@ -47,7 +40,7 @@ async function renderNow(): Promise<void> {
   const token = ++seq;
   state.value = { kind: "loading" };
   try {
-    const r = await renderMermaid(text, { palette: palette.value, caseMode: caseMode.value });
+    const r = await renderMermaid(text, { caseMode: caseMode.value });
     if (token !== seq) return;
     state.value = { kind: "ready", svg: r.svg, warnings: r.warnings, scale: r.scale, type: r.type };
   } catch (err) {
@@ -57,12 +50,12 @@ async function renderNow(): Promise<void> {
     state.value = {
       kind: "error",
       message,
-      svg: unsupportedFigure(message, { palette: palette.value }),
+      svg: unsupportedFigure(message),
     };
   }
 }
 
-watch([source, palette, caseMode], () => {
+watch([source, caseMode], () => {
   if (!import.meta.client) return;
   void renderNow();
 });
@@ -95,7 +88,7 @@ async function exportPng(): Promise<void> {
     body: JSON.stringify({ svg }),
   });
   if (!res.ok) {
-    state.value = { kind: "error", message: `PNG 导出失败：${res.status}`, svg };
+    state.value = { kind: "error", message: `PNG export failed: ${res.status}`, svg };
     return;
   }
   download("bookfig.png", await res.blob());
@@ -104,13 +97,13 @@ async function exportPng(): Promise<void> {
 const statusLabel = computed(() => {
   switch (state.value.kind) {
     case "empty":
-      return "空编辑器 · 从左侧示例或自己写一段 Mermaid";
+      return "Empty editor · pick an example or write Mermaid";
     case "loading":
-      return "正在布局…";
+      return "Laying out…";
     case "ready":
       return `${state.value.type} · scale ${state.value.scale}`;
     case "error":
-      return "无法绘制这张图";
+      return "Could not draw this diagram";
     default: {
       const _n: never = state.value;
       return _n;
@@ -124,27 +117,11 @@ const statusLabel = computed(() => {
     <header class="top">
       <div class="brand">
         <h1>BOOKFIG</h1>
-        <p>技术书风格图 · Mermaid → SVG / PNG</p>
+        <p>Technical-book figures · Mermaid → SVG / PNG</p>
       </div>
       <div class="controls">
-        <button
-          class="chip"
-          :data-on="palette === 'blue'"
-          type="button"
-          @click="setPalette('blue')"
-        >
-          蓝色 BLUE
-        </button>
-        <button
-          class="chip"
-          :data-on="palette === 'green'"
-          type="button"
-          @click="setPalette('green')"
-        >
-          绿色 GREEN
-        </button>
         <button class="chip" :data-on="caseMode === 'auto'" type="button" @click="setCase('auto')">
-          大小写 AUTO
+          CASE AUTO
         </button>
         <button
           class="chip"
@@ -152,10 +129,10 @@ const statusLabel = computed(() => {
           type="button"
           @click="setCase('upper')"
         >
-          全大写 UPPER
+          UPPER
         </button>
         <button class="chip" :data-on="caseMode === 'keep'" type="button" @click="setCase('keep')">
-          保持 KEEP
+          KEEP
         </button>
         <button
           class="btn primary"
@@ -163,7 +140,7 @@ const statusLabel = computed(() => {
           :disabled="state.kind === 'empty' || state.kind === 'loading'"
           @click="exportSvg"
         >
-          导出 SVG
+          Export SVG
         </button>
         <button
           class="btn"
@@ -171,14 +148,14 @@ const statusLabel = computed(() => {
           :disabled="state.kind === 'empty' || state.kind === 'loading'"
           @click="exportPng"
         >
-          导出 PNG
+          Export PNG
         </button>
       </div>
     </header>
     <main class="main">
       <section class="pane">
         <div class="pane-head">
-          <span>MERMAID 源</span><span>{{ activeId }}</span>
+          <span>MERMAID SOURCE</span><span>{{ activeId }}</span>
         </div>
         <div class="examples">
           <button
@@ -196,19 +173,22 @@ const statusLabel = computed(() => {
           v-model="source"
           class="editor"
           spellcheck="false"
-          aria-label="Mermaid 源码"
-          placeholder="flowchart TD&#10;    A[开始] --> B[结束]"
+          aria-label="Mermaid source"
+          placeholder="flowchart TD&#10;    A[Start] --> B[End]"
         />
       </section>
       <section class="pane">
         <div class="pane-head">
-          <span>预览</span><span>{{ statusLabel }}</span>
+          <span>PREVIEW</span><span>{{ statusLabel }}</span>
         </div>
         <div class="preview">
           <div v-if="state.kind === 'empty'" class="state">
-            左边写入 flowchart / sequenceDiagram / stateDiagram，这里会实时出图。
+            Write a flowchart, sequenceDiagram, stateDiagram, or pie on the left. The figure updates
+            live.
           </div>
-          <div v-else-if="state.kind === 'loading'" class="state">正在用 Graphviz WASM 排版…</div>
+          <div v-else-if="state.kind === 'loading'" class="state">
+            Laying out with Graphviz WASM…
+          </div>
           <div v-else-if="state.kind === 'error'" class="state error">
             {{ state.message }}
             <div style="margin-top: 16px" v-html="state.svg" />

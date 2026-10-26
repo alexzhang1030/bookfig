@@ -4,6 +4,8 @@ export type LineStyle = "solid" | "dashed" | "thick" | "invis";
 
 export type HeadStyle = "end" | "both" | "none" | "start";
 
+export type HeadMark = "none" | "arrow" | "circle" | "cross";
+
 export type TextAnchor = "start" | "middle" | "end";
 
 export type FontWeight = "normal" | "bold";

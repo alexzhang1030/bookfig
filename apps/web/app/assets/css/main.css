@@ -172,7 +172,8 @@ textarea.editor {
 
 .preview svg {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: none;
   height: auto;
   background: var(--bg);
   border: 2px solid var(--light);

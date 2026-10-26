@@ -1,0 +1,12 @@
+sequenceDiagram
+    box Robot stack
+    participant A as Agent
+    participant S as Server
+    end
+    participant R as Robot
+    A->>+S: set_task
+    activate R
+    S->>R: chunk
+    R-->>S: obs
+    deactivate R
+    S->>-A: done

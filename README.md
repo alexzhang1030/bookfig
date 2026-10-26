@@ -1,48 +1,61 @@
 # bookfig
 
-仓库：[github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)  
-线上： [bookfig.alexzx.com](https://bookfig.alexzx.com)
+Repository: [github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)  
+Live: [bookfig.alexzx.com](https://bookfig.alexzx.com)
 
-单色技术书风格图：TypeScript 画图库 + Mermaid（flowchart / sequence / state）转 SVG/PNG，以及 Nuxt 实时预览。
+Single-hue technical-book figures: a TypeScript drawing library, Mermaid (flowchart / sequence / state / pie) to SVG and PNG, and a Nuxt live preview.
 
-配色、原语和排版规则对齐 Baseten _Inference Engineering_（2026）那套蓝图风：一种颜色六档、等宽中英文字、虚线外框、角十字、直角折线。默认蓝色，主色 `#1F6FEB`。
+Colour, primitives, and type follow the Baseten _Inference Engineering_ (2026) blueprint look: one hue in six steps, monospace Latin and CJK, dashed outer frame, corner crosses, orthogonal elbows. The only palette is blue, line `#1F6FEB`.
 
-## 仓库结构
+## Repository layout
 
 ```
-apps/web/                 Nuxt 4 编辑器：左 Mermaid，右实时预览
-packages/bookfig/         纯 TS 库（浏览器 + Node）
-  src/fig.ts              原语：box / group / arrow / elbow / fan-out / chart / bars / table / code / icon
-  src/mermaid/            解析器 + Graphviz WASM 布局 + 绘制
-  src/cli.ts              CLI：.mmd → svg/png
-  fixtures/mermaid/       9 张验收图（08 是故意不支持的 pie）
-  tests/                  解析单测 + 9 张 SVG 快照
-artifacts/                Node 端渲出的 PNG / 总览
+apps/web/                 Nuxt 4 editor: Mermaid on the left, live preview on the right
+packages/bookfig/         Pure TS library (browser + Node)
+  src/fig.ts              Primitives: box / group / arrow / elbow / fan-out / chart / bars / table / code / icon
+  src/mermaid/            Parser + Graphviz WASM layout + draw
+  src/cli.ts              CLI: .mmd → svg/png
+  fixtures/mermaid/       Acceptance diagrams (01–10 plus extra syntax tests)
+  tests/                  Parser unit tests + SVG snapshots
+artifacts/                Node-rendered PNG / overview sheets
 ```
 
-包管理器是 **pnpm 12.15.0**（当前最新），用 Vite+ 官方 monorepo 的 `pnpm-workspace.yaml` + catalog。
+Package manager is **pnpm 12.15.0** (current latest), using the official Vite+ monorepo `pnpm-workspace.yaml` + catalog.
 
-## 布局引擎
+## Layout engine
 
-flowchart / state 的位置来自 **`@hpcc-js/wasm-graphviz`（dot + `splines=ortho`）**。
+flowchart / state positions come from **`@hpcc-js/wasm-graphviz` (`dot` + `splines=ortho`)**.
 
-选它而不是 ELK 的理由：Python 原型用系统 Graphviz `dot`，这套 WASM 是同一套引擎，浏览器和 Node 都能跑，验收图的相对位置才能对上。ELK 的正交路由和簇边距不同，会直接偏离开 `mermaid_sheet.png`。
+That matches the Python prototype’s system Graphviz `dot`. The WASM build is the same engine in the browser and Node, so acceptance diagrams keep the same relative placement. ELK’s orthogonal routing and cluster margins would drift off `mermaid_sheet.png`.
 
-## 工具链
+## Wide left-to-right diagrams
 
-| 用途                        | 工具                                                            | 状态                      |
-| --------------------------- | --------------------------------------------------------------- | ------------------------- |
-| 构建 / 测试 / lint / format | Vite+ 1.4.0（`vp`、`vp test`、`vp lint`、`vp fmt`、`vp pack`）  | 已装                      |
-| 类型检查                    | `@typescript/native-preview@7.0.0-dev.20260707.2` 的 **`tsgo`** | 已装                      |
-| 语言版本                    | `typescript@7.0.2`（稳定版原生 `tsc`）                          | 已装，给编辑器和 Vite+ 用 |
+Wide LR figures such as `02_subgraphs` used to be **scaled down to fit a 2000 px canvas**. Type dropped to ~16 px and became hard to read at a normal viewing size.
 
-`@typescript/native-preview` 最后一版预览停在 2026-07-07；次日 TypeScript 7.0 稳定版把原生编译器收进了 `typescript` 包，可执行文件改名为 `tsc`，不再提供 `tsgo`。本仓库按需求同时装了两者：**类型检查走 `tsgo`，不静默换成 `tsc`。**
+bookfig now **lets the canvas grow with the content** and keeps a scale of 1. Type stays at the book-figure size (about 24–30 px). The preview pane scrolls horizontally instead of shrinking the figure.
 
-Nuxt 自己的开发服务器是 `nuxt dev`，不用 `vp dev`（`vp dev` 是 Vite 应用开发服务器）。
+Why not wrap labels or flip to TD?
 
-## 本地运行
+- `02_subgraphs` is wide because three nested subgraphs sit in a row (data → train → serve), not because a single label is long. Wrapping node text would not shorten that chain.
+- Flipping to TD would rewrite the left-to-right story the diagram is making.
 
-需要 Node ≥ 22.18 和 pnpm 12.15.0。中文 PNG 依赖本机字体 **Noto Sans Mono CJK SC**（Debian/Ubuntu：`fonts-noto-cjk`）。可用 `BOOKFIG_FONT_PATH` 指向字体文件。
+A wider SVG or PNG is the honest figure. Readers scroll or zoom; they should not have to squint.
+
+## Tooling
+
+| Use                          | Tool                                                          | Status                 |
+| ---------------------------- | ------------------------------------------------------------- | ---------------------- |
+| Build / test / lint / format | Vite+ 1.4.0 (`vp`, `vp test`, `vp lint`, `vp fmt`, `vp pack`) | installed              |
+| Typecheck                    | `@typescript/native-preview@7.0.0-dev.20260707.2` **`tsgo`**  | installed              |
+| Language                     | `typescript@7.0.2` (stable native `tsc`)                      | installed, for editors |
+
+`@typescript/native-preview` last preview stopped on 2026-07-07; the next day TypeScript 7.0 stable folded the native compiler into `typescript` and renamed the binary `tsc`. This repo installs both: **typecheck uses `tsgo`**, not a silent swap to `tsc`.
+
+The Nuxt dev server is `nuxt dev`, not `vp dev` (`vp dev` is the Vite app dev server).
+
+## Run locally
+
+Needs Node ≥ 22.18 and pnpm 12.15.0. CJK PNG depends on **Noto Sans Mono CJK SC** on the machine (Debian/Ubuntu: `fonts-noto-cjk`). Point `BOOKFIG_FONT_PATH` at a font file if needed. KaTeX TTF files ship with the `katex` package and are registered for Node PNG.
 
 ```bash
 corepack enable
@@ -53,76 +66,81 @@ pnpm exec vp lint
 pnpm exec tsgo --noEmit -p packages/bookfig/tsconfig.json
 pnpm exec vp test
 
-# 库 CLI
-pnpm exec vpx packages/bookfig/src/cli.ts fixtures/01.mmd out.png --palette blue --case auto --svg out.svg
+# library CLI
+pnpm exec vpx packages/bookfig/src/cli.ts fixtures/mermaid/01_agent_loop.mmd out.png --case auto --svg out.svg
 
-# Nuxt 预览（43173）
+# Nuxt preview (43173)
 pnpm --filter web dev
 ```
 
-CLI 用法：
+CLI:
 
 ```
-bookfig <in.mmd> <out.png|out.svg> [--palette blue|green] [--svg out.svg] [--case auto|upper|keep]
+bookfig <in.mmd> <out.png|out.svg> [--svg out.svg] [--case auto|upper|keep]
 ```
 
-`--case auto`：普通标签转大写，看起来像代码的（`next_subtask()`、snake_case、camelCase）保持原样。
+`--case auto`: ordinary labels go uppercase; code-like labels (`next_subtask()`, snake_case, camelCase) stay as written. Math between `$…$` / `$$…$$` is never uppercased.
 
-不支持的图（例如 `pie`）打印 `unsupported: …`，退出码 **2**，不会崩；需要落盘时会画一张说明卡。
+Unsupported diagram kinds print `unsupported: …`, exit **2**, and do not crash. If an output path is given they draw an explanation card.
 
-## 库 API
+## Library API
 
 ```ts
 import { Fig, renderMermaid } from "bookfig";
 
-const f = new Fig({ palette: "blue" });
+const f = new Fig();
 const a = f.box(100, 200, 320, 160, "VLM 规划器");
 const b = f.box(600, 200, 320, 160, "VLA", { kind: "hatch" });
 f.arrow(a.r, b.l);
 const svg = f.svg();
 
-const { svg: mermaidSvg } = await renderMermaid(source, { palette: "green", caseMode: "auto" });
+const { svg: mermaidSvg } = await renderMermaid(source, { caseMode: "auto" });
 ```
 
-Node 端转 PNG：
+Node PNG:
 
 ```ts
 import { writePng } from "bookfig/node";
 writePng("out.png", svg);
 ```
 
-原语：`box` / `group` / `arrow` / `polyline` / `elbow` / `fanOut` / `fanIn` / `lineChart` / `barCompare` / `table` / `codeCard` / `iconDoc` / `iconPerson` / `iconRobotArm` / `bracket` / `legend` / `title` / `tag`。
+Primitives: `box` / `group` / `arrow` / `polyline` / `elbow` / `fanOut` / `fanIn` / `lineChart` / `barCompare` / `table` / `codeCard` / `iconDoc` / `iconPerson` / `iconRobotArm` / `bracket` / `legend` / `title` / `tag`.
 
-## 支持的 Mermaid
+## Supported Mermaid
 
 - **flowchart / graph / flowchart-elk**
-  - 方向 TD / LR / RL / BT
-  - 形状 `[] () ([]) {} [[ ]] (( )) [( )] {{ }} >] [/ /]`
-  - 边 `--> --- -.-> ==> <-->`，以及 `|label|` / `-- text --`
-  - 链式、`&`、嵌套 subgraph、`<br/>`、中文
-  - class 名 focus / hatch / model / dark / group（以及 style 里的深色 fill、虚线描边）映射到 box kind
-- **sequenceDiagram**：participant / actor、autonumber、消息、note、loop / alt / opt / par（画成虚线组）
-- **stateDiagram / stateDiagram-v2**：`[*]`、`state "…" as`、复合状态、`<<choice>>`
+  - Directions TD / LR / RL / BT
+  - Shapes `[] () ([]) {} [[ ]] (( )) [( )] {{ }} >] [/ /]`
+  - Edges `--> --- -.-> ==> <--> --o --x o--o`, plus `|label|` / `-- text --`
+  - Chains, `&`, nested subgraphs, `<br/>`, CJK
+  - `classDef` / `class` / `style` map onto box kinds
+  - `linkStyle` maps dash and width onto book-figure line styles (custom colours stay blue)
+  - `click` is a safe no-op on export (no error)
+  - Markdown markers in labels (`**bold**`, `*italic*`, `` `code` ``, `[text](url)`) are stripped
+  - Unquoted `)` inside a label no longer truncates the node
+- **sequenceDiagram**: participant / actor, autonumber, messages, note, loop / alt / opt / par, `activate` / `deactivate` (and `+` / `-` on messages), `box`
+- **stateDiagram / stateDiagram-v2**: `[*]`, `state "…" as`, composite states, `<<choice>>`
+- **pie**: `pie` / `pie showData` / `title`, `"label" : value` slices, drawn in the same blueprint style
+- **Math**: `$...$` and `$$...$$` in node and edge labels, including Mermaid’s `$$` math. Rendered with **KaTeX** to SVG `<text>` / `<path>` (no `foreignObject`), so Node PNG export matches the preview. Formula colour is the blue line colour. Boxes are sized from KaTeX’s own metrics.
 
-已知缺口（与原型一致）：
+Known gaps:
 
-- 很宽的 LR 图会缩放到 2000px 画布内，字会变小。改成 TD 或拆图。
-- 回流边可能绕远。
-- `--o` / `--x` 仍用普通箭头（`x` 在 sequence 里会画叉）。
-- 不处理：`linkStyle`、`click`、markdown 字符串、sequence 的 `activate` 条和 `box`。
-- 标签里未加引号的 `)` 会截断标签。
-- `pie` 以及其它图种：明确报错，退出码 2。
+- Other Mermaid kinds (class, er, gantt, git, mindmap, …) still error with exit 2.
+- `linkStyle` colours are ignored so the figure stays monochrome blue.
+- `click` does not emit real hyperlinks.
+- Graphviz still influences node placement; a leftover dummy-node gap can appear near a labeled back-edge.
+- Stretchy KaTeX constructs (very tall radicals, large matrices) may be slightly loose in the SVG walker.
 
-## 文字
+## Text
 
-布局宽度按等宽公式算：拉丁 0.5em，CJK 1em，字间距默认 2px。中文字体可配 `Fig({ fontFamily })` / `BOOKFIG_FONT_PATH`。
+Layout width uses a monospace rule: Latin 0.5 em, CJK 1 em, default letter-spacing 2 px. CJK font is `Fig({ fontFamily })` / `BOOKFIG_FONT_PATH`. The library still accepts Chinese in labels; the website chrome and this README are English.
 
-## 开发脚本
+## Dev scripts
 
-| 命令                                                        | 作用                       |
-| ----------------------------------------------------------- | -------------------------- |
-| `pnpm exec vp lint`                                         | Oxlint                     |
-| `pnpm exec vp fmt`                                          | Oxfmt                      |
-| `pnpm exec tsgo --noEmit -p packages/bookfig/tsconfig.json` | TS7 原生类型检查           |
-| `pnpm exec vp test`                                         | Vitest（含 9 张 SVG 快照） |
-| `pnpm artifacts`                                            | 重渲 artifacts/ 下的 PNG   |
+| Command                                                     | What                            |
+| ----------------------------------------------------------- | ------------------------------- |
+| `pnpm exec vp lint`                                         | Oxlint                          |
+| `pnpm exec vp fmt`                                          | Oxfmt                           |
+| `pnpm exec tsgo --noEmit -p packages/bookfig/tsconfig.json` | TS7 native typecheck            |
+| `pnpm exec vp test`                                         | Vitest (SVG snapshots)          |
+| `pnpm artifacts`                                            | Re-render PNGs under artifacts/ |

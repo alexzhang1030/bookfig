@@ -1,7 +1,21 @@
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 import { DEFAULT_FONT_FAMILY } from "./palettes.ts";
+
+function katexFontFiles(): string[] {
+  try {
+    const req = createRequire(import.meta.url);
+    const root = dirname(req.resolve("katex/package.json"));
+    const dir = join(root, "dist/fonts");
+    return readdirSync(dir)
+      .filter((f) => f.endsWith(".ttf"))
+      .map((f) => join(dir, f));
+  } catch {
+    return [];
+  }
+}
 
 const FONT_CANDIDATES = [
   process.env.BOOKFIG_FONT_PATH,
@@ -9,6 +23,7 @@ const FONT_CANDIDATES = [
   "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
   "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
   "/usr/share/fonts/truetype/noto/NotoSansMono-Regular.ttf",
+  ...katexFontFiles(),
 ].filter((p): p is string => Boolean(p));
 
 export type PngOptions = {

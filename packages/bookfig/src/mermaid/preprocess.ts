@@ -1,3 +1,5 @@
+import { mapTextRuns } from "./math.ts";
+
 export function unescapeEntities(s: string): string {
   return s
     .replace(/#(\w+);/g, (_m, name: string) => {
@@ -22,6 +24,17 @@ export function unescapeEntities(s: string): string {
     );
 }
 
+function stripMarkdown(s: string): string {
+  let out = s;
+  out = out.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  out = out.replace(/\*\*([^*]+)\*\*/g, "$1");
+  out = out.replace(/__([^_]+)__/g, "$1");
+  out = out.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,;:!?-]|$)/g, "$1$2");
+  out = out.replace(/`([^`]+)`/g, "$1");
+  out = out.replace(/^#{1,6}\s+/gm, "");
+  return out;
+}
+
 export function cleanLabel(s: string): string {
   let out = s.trim();
   if (
@@ -32,7 +45,8 @@ export function cleanLabel(s: string): string {
     out = out.slice(1, -1);
   }
   out = out.replace(/<br\s*\/?>/gi, "\n");
-  out = unescapeEntities(out).replaceAll("**", "").replaceAll("`", "");
+  out = unescapeEntities(out);
+  out = mapTextRuns(out, (text) => stripMarkdown(text));
   return out
     .split("\n")
     .map((l) => l.trim())

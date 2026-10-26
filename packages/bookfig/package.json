@@ -1,7 +1,7 @@
 {
   "name": "bookfig",
   "version": "0.1.0",
-  "description": "Single-colour technical-book figures: primitives plus Mermaid (flowchart, sequence, state) to SVG/PNG.",
+  "description": "Single-colour technical-book figures: primitives plus Mermaid (flowchart, sequence, state, pie) to SVG/PNG.",
   "license": "MIT",
   "bin": {
     "bookfig": "./dist/cli.mjs"
@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "@hpcc-js/wasm-graphviz": "^1.30.0",
-    "@resvg/resvg-js": "^2.6.2"
+    "@resvg/resvg-js": "^2.6.2",
+    "katex": "catalog:"
   },
   "devDependencies": {
     "@types/node": "catalog:",
