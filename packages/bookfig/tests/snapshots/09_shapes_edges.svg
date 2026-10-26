@@ -1,65 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="463" viewBox="0 0 2000 463"><defs><pattern id="hatch-f11" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f11" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="463" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="419" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,441h44M22,419v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,441h44M1978,419v44"/></g>
-<path d="M100.0,220.3 h113.2 v70.6 h-113.2 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="156.6" y="264.4" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">RECT</text>
-<path d="M301.3,118.7 h126.4 v70.6 h-126.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="364.5" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">ROUND</text>
-<path d="M515.7,118.7 h152.8 v70.6 h-152.8 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="592.1" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">STADIUM</text>
-<path d="M699.5,118.7 h215.6 v70.6 h-215.6 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M710.3,118.7 v70.6 M904.2,118.7 v70.6" stroke="#1F6FEB" stroke-width="3"/>
-<text x="807.3" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">SUBROUTINE</text>
-<circle cx="1010.0" cy="154.0" r="64.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1010.0" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">CIRCLE</text>
-<path d="M1105.1,109.4 h174.5 v89.2 h-174.5 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M1105.1,118.7 h174.5 M1105.1,128.0 h174.5" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1192.3" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">数据库 DB</text>
-<path d="M1344.3,118.7 H1479.0 L1512.7,154.0 L1479.0,189.3 H1344.3 L1310.6,154.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1411.6" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">HEXAGON</text>
-<path d="M1543.7,118.7 H1706.4 V189.3 H1543.7 L1567.3,154.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1625.1" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">FLAG</text>
-<path d="M1760.9,118.7 H1900.0 L1876.5,189.3 H1737.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1818.7" y="162.8" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">PARA</text>
-<path d="M244.3,220.3 h240.4 v70.6 h-240.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="364.5" y="264.4" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">无箭头 NO HEAD</text>
-<path d="M276.4,321.9 h176.0 v70.6 h-176.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="364.5" y="366.0" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">双向 BOTH</text>
-<path d="M711.1,321.9 h192.3 v70.6 h-192.3 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="807.3" y="366.0" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">PLAIN LINE</text>
-<path d="M1129.1,321.9 h126.4 v70.6 h-126.4 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1192.3" y="366.0" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">THICK</text>
-<path d="M1555.3,321.9 h139.6 v70.6 h-139.6 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1625.1" y="366.0" text-anchor="middle" font-size="23.264410363519335" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">DASHED</text>
-<path d="M213.2,255.6 L228.7,255.6 L228.7,154.0 L301.3,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M288.5,162.7 L301.3,154.0 L288.5,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M427.7,154.0 L515.7,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M502.9,162.7 L515.7,154.0 L502.9,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M668.5,154.0 L699.5,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M686.7,162.7 L699.5,154.0 L686.7,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M915.1,154.0 L946.0,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M933.2,162.7 L946.0,154.0 L933.2,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1074.0,154.0 L1105.1,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1092.3,162.7 L1105.1,154.0 L1092.3,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1279.6,154.0 L1310.6,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1297.8,162.7 L1310.6,154.0 L1297.8,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1512.7,154.0 L1543.7,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1530.9,162.7 L1543.7,154.0 L1530.9,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1706.4,154.0 L1737.4,154.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1724.6,162.7 L1737.4,154.0 L1724.6,145.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M213.2,255.6 L244.3,255.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M213.2,255.6 L228.7,255.6 L228.7,357.1 L276.4,357.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M263.6,365.9 L276.4,357.1 L263.6,348.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M226.0,246.8 L213.2,255.6 L226.0,264.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M452.5,357.1 L533.9,357.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M650.2,357.1 L711.1,357.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M903.4,357.1 L972.0,357.1" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
-<path d="M1048.0,357.1 L1129.1,357.1" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
-<path d="M1116.3,365.9 L1129.1,357.1 L1116.3,348.4" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1255.5,357.1 L1373.6,357.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1449.6,357.1 L1555.3,357.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1542.5,365.9 L1555.3,357.1 L1542.5,348.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="534.7" y="342.3" width="114.8" height="29.8" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="592.1" y="364.2" text-anchor="middle" font-size="18.611528290815468" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">文本 TEXT</text>
-<rect x="972.8" y="342.3" width="74.4" height="29.8" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1010.0" y="364.2" text-anchor="middle" font-size="18.611528290815468" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">HEAVY</text>
-<rect x="1374.4" y="342.3" width="74.4" height="29.8" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1411.6" y="364.2" text-anchor="middle" font-size="18.611528290815468" letter-spacing="1.550960690901289" font-weight="normal" fill="#1F6FEB">MAYBE</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2805" height="550" viewBox="0 0 2805 550"><defs><pattern id="hatch-f9" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f9" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>text{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2805" height="550" fill="#F8FBFF"/><rect x="22" y="22" width="2761" height="506" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,528h44M22,506v44"/><path d="M2761,22h44M2783,0v44"/><path d="M2761,528h44M2783,506v44"/></g>
+<path d="M70.3,258.0 h146.0 v91.0 h-146.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="143.3" y="314.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RECT</text>
+<path d="M329.8,127.0 h163.0 v91.0 h-163.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="411.3" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROUND</text>
+<path d="M606.3,127.0 h197.0 v91.0 h-197.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="704.8" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">STADIUM</text>
+<path d="M843.3,127.0 h278.0 v91.0 h-278.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M857.3,127.0 v91.0 M1107.3,127.0 v91.0" stroke="#1F6FEB" stroke-width="3"/>
+<text x="982.3" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">SUBROUTINE</text>
+<circle cx="1243.8" cy="172.5" r="82.5" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1243.8" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CIRCLE</text>
+<path d="M1366.4,115.0 h225.0 v115.0 h-225.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M1366.4,127.0 h225.0 M1366.4,139.0 h225.0" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1478.9" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">数据库 DB</text>
+<path d="M1674.8,127.0 H1848.6 L1892.0,172.5 L1848.6,218.0 H1674.8 L1631.3,172.5 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1761.7" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">HEXAGON</text>
+<path d="M1932.0,127.0 H2141.7 V218.0 H1932.0 L1962.4,172.5 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2036.9" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FLAG</text>
+<path d="M2239.7,127.0 H2419.0 L2388.7,218.0 H2209.3 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2314.2" y="183.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">PARA</text>
+<path d="M256.3,258.0 h310.0 v91.0 h-310.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="411.3" y="314.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">无箭头 NO HEAD</text>
+<path d="M297.8,389.0 h227.0 v91.0 h-227.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="411.3" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">双向 BOTH</text>
+<path d="M858.3,389.0 h248.0 v91.0 h-248.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="982.3" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">PLAIN LINE</text>
+<path d="M1397.4,389.0 h163.0 v91.0 h-163.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1478.9" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">THICK</text>
+<path d="M1946.9,389.0 h180.0 v91.0 h-180.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2036.9" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">DASHED</text>
+<path d="M2181.7,389.0 h265.0 v91.0 h-265.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2314.2" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CIRCLE HEAD</text>
+<path d="M2486.7,389.0 h248.0 v91.0 h-248.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="2610.7" y="445.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CROSS HEAD</text>
+<path d="M216.3,303.5 L236.3,303.5 L236.3,172.5 L329.8,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M313.3,183.8 L329.8,172.5 L313.3,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M492.8,172.5 L606.3,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M589.8,183.8 L606.3,172.5 L589.8,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M803.3,172.5 L843.3,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M826.8,183.8 L843.3,172.5 L826.8,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1121.3,172.5 L1161.3,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1144.8,183.8 L1161.3,172.5 L1144.8,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1326.3,172.5 L1366.4,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1349.9,183.8 L1366.4,172.5 L1349.9,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1591.4,172.5 L1631.3,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1614.8,183.8 L1631.3,172.5 L1614.8,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1892.0,172.5 L1932.0,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1915.5,183.8 L1932.0,172.5 L1915.5,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2141.7,172.5 L2209.3,172.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2192.8,183.8 L2209.3,172.5 L2192.8,161.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M216.3,303.5 L256.3,303.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M216.3,303.5 L236.3,303.5 L236.3,434.5 L297.8,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M281.3,445.8 L297.8,434.5 L281.3,423.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M232.8,292.2 L216.3,303.5 L232.8,314.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M524.8,434.5 L629.8,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M779.8,434.5 L858.3,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1106.3,434.5 L1194.8,434.5" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
+<path d="M1292.8,434.5 L1397.4,434.5" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
+<path d="M1380.9,445.8 L1397.4,434.5 L1380.9,423.2" fill="none" stroke="#0B3D91" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1560.4,434.5 L1712.7,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1810.7,434.5 L1946.9,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1930.4,445.8 L1946.9,434.5 L1930.4,423.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2126.9,434.5 L2181.7,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<circle cx="2173.3" cy="434.5" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M2446.7,434.5 L2486.7,434.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2476.7,426.7 L2492.3,442.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M2476.7,442.3 L2492.3,426.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="630.8" y="415.3" width="148.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="704.8" y="443.6" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">文本 TEXT</text>
+<rect x="1195.8" y="415.3" width="96.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1243.8" y="443.6" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">HEAVY</text>
+<rect x="1713.7" y="415.3" width="96.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1761.7" y="443.6" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">MAYBE</text></svg>

@@ -89,7 +89,7 @@ Unsupported diagram kinds print `unsupported: …`, exit **2**, and do not crash
 import { Fig, renderMermaid } from "bookfig";
 
 const f = new Fig();
-const a = f.box(100, 200, 320, 160, "VLM 规划器");
+const a = f.box(100, 200, 320, 160, "VLM planner");
 const b = f.box(600, 200, 320, 160, "VLA", { kind: "hatch" });
 f.arrow(a.r, b.l);
 const svg = f.svg();

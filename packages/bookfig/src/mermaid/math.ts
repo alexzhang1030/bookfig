@@ -256,9 +256,13 @@ function layoutVList(node: KatexDom, em: number, color: string): Box {
   }
   const h = (node.height ?? 0) * em;
   const d = (node.depth ?? 0) * em;
-  const parts = placed.flatMap((b) =>
-    b.parts.map((p) => p.replaceAll("__FRAC__", maxW.toFixed(2))),
-  );
+  const ruleW = Math.max(maxW, 1);
+  const parts = placed.flatMap((b) => {
+    const isRule = b.parts.some((p) => p.includes("__FRAC__"));
+    const dx = isRule ? 0 : (maxW - b.w) / 2;
+    const moved = dx ? shift(b, dx, 0) : b;
+    return moved.parts.map((p) => p.replaceAll("__FRAC__", ruleW.toFixed(2)));
+  });
   return { w: maxW, h, d, parts };
 }
 
@@ -301,8 +305,7 @@ function layoutFlow(node: KatexDom, em: number, color: string): Box {
   x += parseEm(node.style?.paddingRight) * em + parseEm(node.style?.marginRight) * em;
   if ((node.height ?? 0) * em > h) h = (node.height ?? 0) * em;
   if ((node.depth ?? 0) * em > d) d = (node.depth ?? 0) * em;
-  const filled = parts.map((p) => p.replaceAll("__FRAC__", Math.max(x, 1).toFixed(2)));
-  return { w: Math.max(x, 0), h, d, parts: filled };
+  return { w: Math.max(x, 0), h, d, parts };
 }
 
 function fallbackBox(tex: string, em: number, color: string): Box {
@@ -337,20 +340,19 @@ export function renderKatex(
       errorColor: color,
     });
     const html = (tree.children ?? []).find((c) => hasClass(c, "katex-html")) ?? tree;
-    const bases = (html.children ?? []).filter((c) => hasClass(c, "katex-base"));
-    const rows = (bases.length ? bases : [html]).map((b) => layoutNode(b, size, color));
-    const width = Math.max(1, ...rows.map((r) => r.w));
-    let y = 0;
-    const parts: string[] = [];
-    for (const row of rows) {
-      y += row.h;
-      parts.push(...shift(row, 0, y).parts);
-      y += row.d + (display ? size * 0.15 : 0);
-    }
-    const height = Math.max(y, ((tree.height ?? 0) + (tree.depth ?? 0)) * size, size);
-    const pad = size * 0.08;
-    const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="${color}">${parts.join("")}</g>`;
-    return { svg, width: width + pad * 2, height: height + pad * 2 };
+    const box = layoutNode(html, size, color);
+    const pad = size * 0.12;
+    const width = Math.max(1, box.w) + pad * 2;
+    const height = Math.max(
+      ((tree.height ?? 0) + (tree.depth ?? 0)) * size,
+      box.h + box.d,
+      size,
+    ) + pad * 2;
+    const baseline = pad + Math.max((tree.height ?? 0) * size, box.h);
+    const shifted = shift(box, pad, baseline);
+    const filled = shifted.parts.map((p) => p.replaceAll("__FRAC__", Math.max(box.w, 1).toFixed(2)));
+    const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="${color}">${filled.join("")}</g>`;
+    return { svg, width, height };
   } catch {
     const fb = fallbackBox(trimmed, size, color);
     return { svg: fb.parts.join(""), width: fb.w, height: fb.h + fb.d };
