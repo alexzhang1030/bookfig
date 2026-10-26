@@ -55,6 +55,27 @@ test("figure CSS cannot restyle KaTeX text to the book font", async () => {
   expect(r.svg).not.toContain(">hat</");
 });
 
+test("digits and \\log are upright KaTeX_Main, not italic", () => {
+  const g = renderKatex("\\log 10 = -3", false, 40);
+  const texts = [...g.svg.matchAll(/<text([^>]*)>([^<]*)<\/text>/g)];
+  const upright = /^([log]+|[10=−\-3])$/;
+  let seen = 0;
+  for (const [, attrs, ch] of texts) {
+    if (!ch || !upright.test(ch)) continue;
+    seen += 1;
+    expect(attrs.includes("KaTeX_Main-Regular"), `${ch} ${attrs}`).toBe(true);
+    expect(attrs.includes("font-style:italic") || /font-style="italic"/.test(attrs ?? "")).toBe(
+      false,
+    );
+    expect(attrs.includes("KaTeX_Math")).toBe(false);
+  }
+  expect(seen).toBeGreaterThanOrEqual(5);
+  const nest = renderKatex("10^{-3}", false, 40);
+  expect(nest.svg).toMatch(/KaTeX_Main-Regular[^>]*>−/);
+  expect(nest.svg).toMatch(/KaTeX_Main-Regular[^>]*>1/);
+  expect(nest.svg).toMatch(/KaTeX_Main-Regular[^>]*>3/);
+});
+
 test("script minus and digit stay tight, nested scripts stay compact", () => {
   const neg = renderKatex("10^{-3}", false, 40);
   const cube = renderKatex("10^{3}", false, 40);
