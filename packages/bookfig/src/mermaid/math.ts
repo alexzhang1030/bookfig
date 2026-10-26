@@ -1,6 +1,7 @@
 import katex, { type KatexOptions } from "katex";
 import { PALETTE } from "../palettes.ts";
 import { escapeXml, textWidth, wrap } from "../text.ts";
+import { ensureKatexFontsSync, outlineGlyph } from "./katex-outline.ts";
 
 const LH = 1.3;
 const LS = 2;
@@ -80,83 +81,32 @@ function fontMarks(classes: string[] | undefined): string[] {
   return (classes ?? []).filter((c) => FONT_MARK.has(c));
 }
 
-/** Exact TTF full name first: resvg ignores font-style and otherwise picks KaTeX_Main-Italic. */
-function fontFromClasses(classes: string[]): {
-  family: string;
-  face: string;
-  weight: string;
-  style: string;
-} {
+function fontFromClasses(classes: string[]): string {
   const c = new Set(classes.filter(Boolean));
   const bold = c.has("mathbf") || c.has("textbf");
-  if (c.has("large-op")) return { family: "KaTeX_Size2", face: "KaTeX_Size2-Regular", weight: "normal", style: "normal" };
-  if (c.has("small-op")) return { family: "KaTeX_Size1", face: "KaTeX_Size1-Regular", weight: "normal", style: "normal" };
+  if (c.has("large-op")) return "KaTeX_Size2-Regular";
+  if (c.has("small-op")) return "KaTeX_Size1-Regular";
   if (c.has("delimsizing")) {
     const n = c.has("size4") ? 4 : c.has("size3") ? 3 : c.has("size2") ? 2 : 1;
-    const family = `KaTeX_Size${n}`;
-    return { family, face: `${family}-Regular`, weight: "normal", style: "normal" };
+    return `KaTeX_Size${n}-Regular`;
   }
-  if (c.has("mathcal") || c.has("cal")) {
-    return {
-      family: "KaTeX_Caligraphic",
-      face: bold ? "KaTeX_Caligraphic-Bold" : "KaTeX_Caligraphic-Regular",
-      weight: bold ? "bold" : "normal",
-      style: "normal",
-    };
-  }
-  if (c.has("mathbb") || c.has("amsrm")) {
-    return { family: "KaTeX_AMS", face: "KaTeX_AMS-Regular", weight: "normal", style: "normal" };
-  }
-  if (c.has("mathfrak")) {
-    return {
-      family: "KaTeX_Fraktur",
-      face: bold ? "KaTeX_Fraktur-Bold" : "KaTeX_Fraktur-Regular",
-      weight: bold ? "bold" : "normal",
-      style: "normal",
-    };
-  }
+  if (c.has("mathcal") || c.has("cal"))
+    return bold ? "KaTeX_Caligraphic-Bold" : "KaTeX_Caligraphic-Regular";
+  if (c.has("mathbb") || c.has("amsrm")) return "KaTeX_AMS-Regular";
+  if (c.has("mathfrak")) return bold ? "KaTeX_Fraktur-Bold" : "KaTeX_Fraktur-Regular";
   if (c.has("mathsf")) {
-    if (c.has("textit") || c.has("mathsfit") || c.has("mathitsf")) {
-      return { family: "KaTeX_SansSerif", face: "KaTeX_SansSerif-Italic", weight: "normal", style: "italic" };
-    }
-    return {
-      family: "KaTeX_SansSerif",
-      face: bold ? "KaTeX_SansSerif-Bold" : "KaTeX_SansSerif-Regular",
-      weight: bold ? "bold" : "normal",
-      style: "normal",
-    };
+    if (c.has("textit") || c.has("mathsfit") || c.has("mathitsf")) return "KaTeX_SansSerif-Italic";
+    return bold ? "KaTeX_SansSerif-Bold" : "KaTeX_SansSerif-Regular";
   }
-  if (c.has("mathtt")) {
-    return { family: "KaTeX_Typewriter", face: "KaTeX_Typewriter-Regular", weight: "normal", style: "normal" };
-  }
-  if (c.has("mathscr")) {
-    return { family: "KaTeX_Script", face: "KaTeX_Script-Regular", weight: "normal", style: "normal" };
-  }
-  if (c.has("boldsymbol")) {
-    return { family: "KaTeX_Math", face: "KaTeX_Math-BoldItalic", weight: "bold", style: "italic" };
-  }
+  if (c.has("mathtt")) return "KaTeX_Typewriter-Regular";
+  if (c.has("mathscr")) return "KaTeX_Script-Regular";
+  if (c.has("boldsymbol")) return "KaTeX_Math-BoldItalic";
   if (c.has("mathnormal") || c.has("mathdefault")) {
-    return {
-      family: "KaTeX_Math",
-      face: bold ? "KaTeX_Math-BoldItalic" : "KaTeX_Math-Italic",
-      weight: bold ? "bold" : "normal",
-      style: "italic",
-    };
+    return bold ? "KaTeX_Math-BoldItalic" : "KaTeX_Math-Italic";
   }
-  if (c.has("mathit") || c.has("textit")) {
-    return {
-      family: "KaTeX_Main",
-      face: bold ? "KaTeX_Main-BoldItalic" : "KaTeX_Main-Italic",
-      weight: bold ? "bold" : "normal",
-      style: "italic",
-    };
-  }
-  return {
-    family: "KaTeX_Main",
-    face: bold ? "KaTeX_Main-Bold" : "KaTeX_Main-Regular",
-    weight: bold ? "bold" : "normal",
-    style: "normal",
-  };
+  if (c.has("mathit") || c.has("textit"))
+    return bold ? "KaTeX_Main-BoldItalic" : "KaTeX_Main-Italic";
+  return bold ? "KaTeX_Main-Bold" : "KaTeX_Main-Regular";
 }
 
 function childEm(node: KatexDom, em: number): number {
@@ -269,7 +219,13 @@ function shift(box: Box, dx: number, dy: number): Box {
   };
 }
 
-function layoutNode(node: KatexDom, em: number, root: number, color: string, inherited: string[] = []): Box {
+function layoutNode(
+  node: KatexDom,
+  em: number,
+  root: number,
+  color: string,
+  inherited: string[] = [],
+): Box {
   const marks = [...inherited, ...fontMarks(node.classes)];
   if (hasClass(node, "katex-strut") || hasClass(node, "pstrut") || hasClass(node, "vlist-s")) {
     return emptyBox();
@@ -279,15 +235,16 @@ function layoutNode(node: KatexDom, em: number, root: number, color: string, inh
     if (!text || text === "\u200b") return emptyBox();
     const scale = node.maxFontSize && node.maxFontSize > 0 ? node.maxFontSize : em / root;
     const fs = root * scale;
-    const { family, face, weight, style } = fontFromClasses([...marks, ...(node.classes ?? [])]);
-    const stack = `${face}, ${family}`;
+    const face = fontFromClasses([...marks, ...(node.classes ?? [])]);
     const w = (node.width ?? 0) * fs;
     const italic = (node.italic ?? 0) * fs;
     const h = (node.height ?? 0) * fs;
     const d = (node.depth ?? 0) * fs;
     const dy = parseEm(node.style?.top) * em;
-    const css = `font-family:${stack};font-weight:${weight};font-style:${style}`;
-    const part = `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-family="${stack}" font-size="${fs.toFixed(2)}" font-weight="${weight}" font-style="${style}" style="${css}" fill="${color}" stroke="none">${escapeXml(text)}</text>`;
+    const path = outlineGlyph(face, text, 0, dy, fs);
+    const part = path
+      ? `<path d="${path}" fill="${color}" stroke="none" data-face="${escapeXml(face)}" data-text="${escapeXml(text)}"/>`
+      : `<text x="0" y="${dy.toFixed(2)}" text-anchor="start" dominant-baseline="alphabetic" font-size="${fs.toFixed(2)}" fill="${color}" stroke="none">${escapeXml(text)}</text>`;
     return { w: Math.max(w + italic, 0), h, d, parts: [part] };
   }
   if (ctor(node) === "PathNode") {
@@ -449,6 +406,7 @@ export function renderKatex(
 ): MathGraphic {
   const trimmed = tex.trim();
   if (!trimmed) return { svg: "", width: 0, height: 0 };
+  ensureKatexFontsSync();
   try {
     const tree = ktx.__renderToHTMLTree(trimmed, {
       displayMode: display,
@@ -462,14 +420,13 @@ export function renderKatex(
     const box = layoutNode(html, size, size, color);
     const pad = size * 0.12;
     const width = Math.max(1, box.w) + pad * 2;
-    const height = Math.max(
-      ((tree.height ?? 0) + (tree.depth ?? 0)) * size,
-      box.h + box.d,
-      size,
-    ) + pad * 2;
+    const height =
+      Math.max(((tree.height ?? 0) + (tree.depth ?? 0)) * size, box.h + box.d, size) + pad * 2;
     const baseline = pad + Math.max((tree.height ?? 0) * size, box.h);
     const shifted = shift(box, pad, baseline);
-    const filled = shifted.parts.map((p) => p.replaceAll("__FRAC__", Math.max(box.w, 1).toFixed(2)));
+    const filled = shifted.parts.map((p) =>
+      p.replaceAll("__FRAC__", Math.max(box.w, 1).toFixed(2)),
+    );
     const svg = `<g data-tex="${escapeXml(trimmed)}" fill="${color}" stroke="none">${filled.join("")}</g>`;
     return { svg, width, height };
   } catch {

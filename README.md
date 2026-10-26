@@ -55,7 +55,7 @@ The Nuxt dev server is `nuxt dev`, not `vp dev` (`vp dev` is the Vite app dev se
 
 ## Run locally
 
-Needs Node ≥ 22.18 and pnpm 12.15.0. CJK PNG depends on **Noto Sans Mono CJK SC** on the machine (Debian/Ubuntu: `fonts-noto-cjk`). Point `BOOKFIG_FONT_PATH` at a font file if needed. KaTeX TTF files ship with the `katex` package and are registered for Node PNG.
+Needs Node ≥ 22.18 and pnpm 12.15.0. CJK PNG depends on **Noto Sans Mono CJK SC** on the machine (Debian/Ubuntu: `fonts-noto-cjk`). Point `BOOKFIG_FONT_PATH` at a font file if needed. Math glyphs are outlined from the KaTeX TTF files with `opentype.js`; diagram labels still use the book font for Node PNG.
 
 ```bash
 corepack enable
@@ -121,7 +121,7 @@ Primitives: `box` / `group` / `arrow` / `polyline` / `elbow` / `fanOut` / `fanIn
 - **sequenceDiagram**: participant / actor, autonumber, messages, note, loop / alt / opt / par, `activate` / `deactivate` (and `+` / `-` on messages), `box`
 - **stateDiagram / stateDiagram-v2**: `[*]`, `state "…" as`, composite states, `<<choice>>`
 - **pie**: `pie` / `pie showData` / `title`, `"label" : value` slices, drawn in the same blueprint style
-- **Math**: `$...$` and `$$...$$` in node and edge labels, including Mermaid’s `$$` math. Rendered with **KaTeX** to SVG `<text>` / `<path>` (no `foreignObject`), so Node PNG export matches the preview. Formula colour is the blue line colour. Boxes are sized from KaTeX’s own metrics.
+- **Math**: `$...$` and `$$...$$` in node and edge labels, including Mermaid’s `$$` math. Rendered with **KaTeX** to SVG `<path>` outlines (no `foreignObject`, no `<text>` for glyphs), so the browser preview and Node PNG share the same shapes. resvg’s fontdb cannot distinguish `KaTeX_Main` Regular from Italic; outlining bypasses that. Formula colour is the blue line colour. Boxes are sized from KaTeX’s own metrics.
 
 Known gaps:
 

@@ -28,10 +28,12 @@
   "dependencies": {
     "@hpcc-js/wasm-graphviz": "^1.30.0",
     "@resvg/resvg-js": "^2.6.2",
-    "katex": "catalog:"
+    "katex": "catalog:",
+    "opentype.js": "catalog:"
   },
   "devDependencies": {
     "@types/node": "catalog:",
+    "@types/opentype.js": "catalog:",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "typescript": "catalog:",
     "vite-plus": "catalog:"

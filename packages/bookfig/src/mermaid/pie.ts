@@ -42,6 +42,12 @@ export function drawPie(header: string, lines: string[], pen: Pen, mode: CaseMod
   const boxH = Math.max(R * 2, ly - (cy - R) + 20) + 80;
   const x0 = cx - R - 50;
   const y0 = cy - R - 70;
-  pen.group(x0, y0, Math.max(boxW, lx + legendW - x0 + 40), boxH, title ? applyCase(title, mode) : "PIE");
+  pen.group(
+    x0,
+    y0,
+    Math.max(boxW, lx + legendW - x0 + 40),
+    boxH,
+    title ? applyCase(title, mode) : "PIE",
+  );
   return warnings;
 }
