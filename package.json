@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "description": "Technical-book figure library and Nuxt preview (Vite+ monorepo)",
+  "homepage": "https://github.com/alexzhang1030/bookfig",
+  "bugs": {
+    "url": "https://github.com/alexzhang1030/bookfig/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexzhang1030/bookfig.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter web dev",

@@ -1,5 +1,7 @@
 # bookfig
 
+仓库：[github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)
+
 单色技术书风格图：TypeScript 画图库 + Mermaid（flowchart / sequence / state）转 SVG/PNG，以及 Nuxt 实时预览。
 
 配色、原语和排版规则对齐 Baseten _Inference Engineering_（2026）那套蓝图风：一种颜色六档、等宽中英文字、虚线外框、角十字、直角折线。默认蓝色，主色 `#1F6FEB`。
