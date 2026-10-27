@@ -15,5 +15,8 @@ export default defineConfig({
   test: {
     testTimeout: 30_000,
     hookTimeout: 90_000,
+    // Layout files share one Nuxt on :43173. Parallel afterAll would kill it
+    // under the other file and produce ERR_CONNECTION_REFUSED.
+    fileParallelism: false,
   },
 });
