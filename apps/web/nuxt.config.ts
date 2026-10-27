@@ -14,6 +14,12 @@ export default defineNuxtConfig({
           content: "width=device-width, initial-scale=1, viewport-fit=cover",
         },
       ],
+      link: [
+        { rel: "icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+      ],
     },
   },
   css: ["katex/dist/katex.min.css", "~/assets/css/main.css"],

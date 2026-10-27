@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="apps/web/public/logo-dark.svg" />
+  <img src="apps/web/public/logo-light.svg" alt="bookfig" height="24" />
+</picture>
+
 # bookfig
 
 Repository: [github.com/alexzhang1030/bookfig](https://github.com/alexzhang1030/bookfig)  
