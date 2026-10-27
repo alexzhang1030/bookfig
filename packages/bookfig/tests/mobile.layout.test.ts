@@ -96,6 +96,32 @@ async function openMobile(): Promise<Page> {
   return page;
 }
 
+async function measureFit(page: Page): Promise<{ svgW: number; previewW: number }> {
+  await page.getByTestId("zoom-fit").click();
+  await page.waitForFunction(() => {
+    const preview = document.querySelector("[data-testid='preview']");
+    const svg = preview?.querySelector("svg");
+    if (!preview || !svg) return false;
+    const previewW = preview.getBoundingClientRect().width;
+    const svgW = svg.getBoundingClientRect().width;
+    return previewW > 0 && svgW > previewW * 0.8 && svgW <= previewW + 1;
+  });
+  return page.evaluate(() => {
+    const preview = document.querySelector("[data-testid='preview']");
+    const svg = preview?.querySelector("svg");
+    return {
+      svgW: svg?.getBoundingClientRect().width ?? 0,
+      previewW: preview?.getBoundingClientRect().width ?? 0,
+    };
+  });
+}
+
+function expectFit(m: { svgW: number; previewW: number }): void {
+  expect(m.previewW).toBeGreaterThan(80);
+  expect(m.svgW).toBeLessThanOrEqual(m.previewW + 1);
+  expect(m.svgW).toBeGreaterThan(m.previewW * 0.8);
+}
+
 test("390-wide mobile chrome stays in viewport and export works", { timeout: 60_000 }, async () => {
   const page = await openMobile();
   try {
@@ -166,3 +192,21 @@ test("390-wide mobile chrome stays in viewport and export works", { timeout: 60_
     await page.close();
   }
 });
+
+test(
+  "390 Fit mode scales the default and wide figures to the preview width",
+  { timeout: 60_000 },
+  async () => {
+    const page = await openMobile();
+    try {
+      expectFit(await measureFit(page));
+      await page.locator(".examples button", { hasText: "02" }).click();
+      await page.waitForSelector(".preview svg");
+      expectFit(await measureFit(page));
+      const scale = await page.getByTestId("preview-scale").innerText();
+      expect(scale).toMatch(/scale 0\.\d{2}/);
+    } finally {
+      await page.close();
+    }
+  },
+);
