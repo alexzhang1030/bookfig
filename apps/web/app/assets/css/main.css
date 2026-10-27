@@ -287,11 +287,19 @@ textarea.editor {
     border-bottom: 0;
   }
 
+  .editor-pane {
+    padding-bottom: 12px;
+  }
+
   textarea.editor {
-    min-height: 96px;
-    height: 96px;
+    --editor-pad-y: 16px;
+    --editor-lh: 24px;
+    --editor-lines: 4;
     flex: none;
-    padding-bottom: 32px;
+    line-height: var(--editor-lh);
+    padding: var(--editor-pad-y);
+    height: calc(var(--editor-pad-y) * 2 + var(--editor-lh) * var(--editor-lines));
+    min-height: calc(var(--editor-pad-y) * 2 + var(--editor-lh) * var(--editor-lines));
   }
 
   textarea.editor.editor-open {
@@ -315,14 +323,19 @@ textarea.editor {
   }
 
   .preview[data-zoom="fit"] > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-width: 0;
     max-width: 100%;
+    max-height: 100%;
   }
 
   .preview[data-zoom="fit"] svg {
-    width: 100%;
+    width: auto;
     max-width: 100%;
+    max-height: 100%;
     height: auto;
   }
 

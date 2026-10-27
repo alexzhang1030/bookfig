@@ -7,6 +7,7 @@ import {
   type CaseMode,
 } from "bookfig";
 import { SITE_EXAMPLES } from "../examples";
+import { applyFitViewBox, rememberSvgSize, restoreSvgSize } from "../preview-fit";
 
 type PreviewState =
   | { kind: "empty" }
@@ -75,11 +76,21 @@ function measureVisualScale(): void {
     visualScale.value = null;
     return;
   }
-  const attr = Number(svg.getAttribute("width"));
   const box = svg.viewBox.baseVal.width;
-  const intrinsic = attr > 0 ? attr : box;
   const shown = svg.getBoundingClientRect().width;
-  visualScale.value = intrinsic > 0 ? shown / intrinsic : null;
+  visualScale.value = box > 0 ? Math.min(1, shown / box) : null;
+}
+
+function applyPreviewFit(): void {
+  const svg = previewEl.value?.querySelector("svg");
+  if (!svg) {
+    visualScale.value = null;
+    return;
+  }
+  rememberSvgSize(svg);
+  if (narrow.value && previewZoom.value === "fit") applyFitViewBox(svg);
+  else restoreSvgSize(svg);
+  measureVisualScale();
 }
 
 function syncNarrow(): void {
@@ -97,14 +108,14 @@ watch([source, caseMode], () => {
 
 watch([state, previewZoom, narrow], () => {
   if (!import.meta.client) return;
-  void nextTick(() => measureVisualScale());
+  void nextTick(() => applyPreviewFit());
 });
 
 onMounted(() => {
   syncNarrow();
   mediaQuery = window.matchMedia("(max-width: 860px)");
   mediaQuery.addEventListener("change", syncNarrow);
-  previewObserver = new ResizeObserver(() => measureVisualScale());
+  previewObserver = new ResizeObserver(() => applyPreviewFit());
   if (previewEl.value) previewObserver.observe(previewEl.value);
   void renderNow();
 });
@@ -234,7 +245,7 @@ const statusLabel = computed(() => {
       </div>
     </header>
     <main class="main">
-      <section class="pane" data-testid="editor-pane">
+      <section class="pane editor-pane" data-testid="editor-pane">
         <div class="pane-head">
           <span>MERMAID SOURCE</span><span>{{ activeId }}</span>
         </div>
