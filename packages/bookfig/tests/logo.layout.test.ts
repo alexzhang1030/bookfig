@@ -120,6 +120,21 @@ test("top-bar logo and icon set at 1440 and 390", { timeout: 90_000 }, async () 
         expect(tag.exists, tag.href).toBe(true);
       }
 
+      const heading = await page.evaluate(() => {
+        const titles = [...document.querySelectorAll("h1")];
+        const logo = document.querySelector<HTMLImageElement>(
+          '[data-testid="toolbar"] img[alt="bookfig"]',
+        );
+        return {
+          count: titles.length,
+          containsLogo: Boolean(titles[0] && logo && titles[0].contains(logo)),
+          title: document.title,
+        };
+      });
+      expect(heading.count).toBe(1);
+      expect(heading.containsLogo).toBe(true);
+      expect(heading.title).toBe("bookfig");
+
       const metrics = await page.evaluate((viewport) => {
         const toolbar = document.querySelector<HTMLElement>('[data-testid="toolbar"]');
         const logo = toolbar?.querySelector<HTMLImageElement>('img[alt="bookfig"]');

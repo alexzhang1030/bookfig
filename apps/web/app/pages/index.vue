@@ -241,7 +241,9 @@ const statusLabel = computed(() => {
   <div class="app">
     <header class="top" data-testid="toolbar">
       <div class="brand">
-        <img class="brand-logo" src="/logo-light.svg" alt="bookfig" height="24" />
+        <h1>
+          <img class="brand-logo" src="/logo-light.svg" alt="bookfig" height="24" />
+        </h1>
         <p>Technical-book figures · Mermaid → SVG / PNG</p>
       </div>
       <div class="controls">

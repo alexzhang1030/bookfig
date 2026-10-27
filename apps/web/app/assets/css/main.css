@@ -87,6 +87,13 @@ button {
   min-width: 0;
 }
 
+.brand h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  font-size: inherit;
+}
+
 .brand-logo {
   display: block;
   height: 24px;
