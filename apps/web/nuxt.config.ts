@@ -4,6 +4,18 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
   telemetry: false,
+  app: {
+    head: {
+      htmlAttrs: { lang: "en" },
+      title: "BOOKFIG",
+      meta: [
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1, viewport-fit=cover",
+        },
+      ],
+    },
+  },
   css: ["katex/dist/katex.min.css", "~/assets/css/main.css"],
   devServer: {
     host: "127.0.0.1",

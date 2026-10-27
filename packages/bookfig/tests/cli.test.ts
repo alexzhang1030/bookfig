@@ -22,7 +22,10 @@ test("repo README and Nuxt chrome are English", () => {
   const root = join(here, "../../..");
   const readme = readFileSync(join(root, "README.md"), "utf8");
   const page = readFileSync(join(root, "apps/web/app/pages/index.vue"), "utf8");
+  const examples = readFileSync(join(root, "apps/web/app/examples.ts"), "utf8");
   expect(readme).not.toMatch(HAN);
   expect(page).not.toMatch(HAN);
+  expect(examples).not.toMatch(HAN);
   expect(page).not.toMatch(/palette|green theme/i);
+  expect(examples).toContain("$x^2$");
 });

@@ -18,6 +18,9 @@ jobs:
           node-version: "22"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Install Playwright Chromium
+        working-directory: packages/bookfig
+        run: pnpm exec playwright install --with-deps chromium
       - name: Lint (vite-plus / oxlint)
         run: pnpm exec vp lint
       - name: Typecheck (tsgo)
