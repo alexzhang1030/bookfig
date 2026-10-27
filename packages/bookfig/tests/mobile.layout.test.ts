@@ -210,3 +210,68 @@ test(
     }
   },
 );
+
+test(
+  "390 editor grows to half the screen on focus and keeps bottom padding",
+  { timeout: 60_000 },
+  async () => {
+    const page = await openMobile();
+    try {
+      const editor = page.getByTestId("editor");
+      const rest = await editor.evaluate((el) => {
+        const cs = getComputedStyle(el);
+        return { h: el.getBoundingClientRect().height, pad: Number.parseFloat(cs.paddingBottom) };
+      });
+      expect(rest.h).toBeLessThan(140);
+      expect(rest.pad).toBeGreaterThanOrEqual(24);
+      await editor.focus();
+      const open = await editor.evaluate((el) => el.getBoundingClientRect().height);
+      expect(open).toBeGreaterThanOrEqual(VH * 0.5 - 2);
+      await page.getByTestId("preview").click();
+      const after = await editor.evaluate((el) => el.getBoundingClientRect().height);
+      expect(after).toBeLessThan(140);
+    } finally {
+      await page.close();
+    }
+  },
+);
+
+test("area $x^2$ keeps a space-sized gap after AREA", { timeout: 60_000 }, async () => {
+  const page = await openMobile();
+  try {
+    await page.getByTestId("editor").fill('flowchart TD\n    A["area $x^2$"] --> B["plain"]');
+    await page.waitForFunction(() =>
+      Boolean(document.querySelector("[data-testid='preview'] svg [data-tex='x^2']")),
+    );
+    await page.getByTestId("zoom-fit").click();
+    const measured = await page.evaluate(() => {
+      const svg = document.querySelector<SVGSVGElement>("[data-testid='preview'] svg");
+      if (!svg) return null;
+      const area = [...svg.querySelectorAll("text")].find((t) =>
+        (t.textContent ?? "").includes("AREA"),
+      );
+      const math = svg.querySelector('[data-tex="x^2"]');
+      const node = area?.firstChild;
+      if (!area || !math || !node) return null;
+      const end = Math.min(4, node.textContent?.length ?? 0);
+      const range = document.createRange();
+      range.setStart(node, 0);
+      range.setEnd(node, end);
+      const word = range.getBoundingClientRect();
+      const formula = math.getBoundingClientRect();
+      const fs = Number(area.getAttribute("font-size") ?? 30);
+      const ls = Number(area.getAttribute("letter-spacing") ?? 2);
+      const vb = svg.viewBox.baseVal.width;
+      const shown = svg.getBoundingClientRect().width;
+      const space = (fs * 0.5 + ls) * (vb > 0 ? shown / vb : 1);
+      return { gap: formula.left - word.right, space };
+    });
+    expect(measured).toBeTruthy();
+    if (!measured) return;
+    expect(measured.gap).toBeGreaterThan(0);
+    expect(measured.gap).toBeGreaterThan(measured.space * 0.5);
+    expect(measured.gap).toBeLessThan(measured.space * 3);
+  } finally {
+    await page.close();
+  }
+});

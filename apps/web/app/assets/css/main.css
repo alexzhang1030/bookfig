@@ -202,7 +202,7 @@ textarea.editor {
   width: 100%;
   border: 0;
   resize: none;
-  padding: 16px;
+  padding: 16px 16px 28px;
   background: var(--bg);
   color: var(--dark);
   font-size: 16px;
@@ -291,6 +291,12 @@ textarea.editor {
     min-height: 96px;
     height: 96px;
     flex: none;
+    padding-bottom: 32px;
+  }
+
+  textarea.editor.editor-open {
+    height: 50dvh;
+    min-height: 50dvh;
   }
 
   .zoom-bar {

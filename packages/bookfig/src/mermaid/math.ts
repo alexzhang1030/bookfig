@@ -496,6 +496,10 @@ export function layoutLabel(s: string, size: number, maxw: number): LaidLine[] {
         if (!cur.length) pushText("");
         return;
       }
+      if (/^ +$/.test(para)) {
+        pushText(para);
+        return;
+      }
       const remain = Math.max(40, maxw - curW);
       const first = wrap(para, remain, size, LS);
       const head = first[0] ?? "";

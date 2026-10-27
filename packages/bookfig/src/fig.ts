@@ -165,9 +165,10 @@ export class Fig {
     const drawn = upper ? s.toUpperCase() : s;
     const base = vcenter ? y + fs * 0.38 : y;
     const col = color ?? this.c.line;
+    const preserve = /^\s|\s$/.test(drawn) ? ` xml:space="preserve"` : "";
     this.add(
       `<text x="${fmt(x)}" y="${fmt(base)}" text-anchor="${anchor}" font-size="${fs}" ` +
-        `letter-spacing="${spacing}" font-weight="${weight}" fill="${col}">${escapeXml(drawn)}</text>`,
+        `letter-spacing="${spacing}" font-weight="${weight}" fill="${col}"${preserve}>${escapeXml(drawn)}</text>`,
       base + fs * 0.15,
     );
     return textWidth(drawn, fs, spacing);
