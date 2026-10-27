@@ -1,18 +1,13 @@
-import { spawn, type ChildProcess } from "node:child_process";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { chromium, webkit, type Browser, type Page } from "playwright";
 import { afterAll, beforeAll, expect, test } from "vite-plus/test";
+import { ensureWeb, WEB } from "./web-harness.ts";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "../../..");
-const WEB = "http://127.0.0.1:43173";
 const VW = 390;
 const VH = 844;
 
 type Box = { x: number; y: number; width: number; height: number };
 
 let browser: Browser | undefined;
-let started: ChildProcess | undefined;
 
 function overlaps(a: Box, b: Box, slop = 1): boolean {
   return !(
@@ -32,24 +27,6 @@ function withinViewport(box: Box, vw: number, vh: number, slop = 1): boolean {
   );
 }
 
-async function webUp(): Promise<boolean> {
-  try {
-    const res = await fetch(WEB, { signal: AbortSignal.timeout(1500) });
-    return res.ok;
-  } catch {
-    return false;
-  }
-}
-
-async function waitForWeb(timeoutMs: number): Promise<void> {
-  const t0 = Date.now();
-  while (Date.now() - t0 < timeoutMs) {
-    if (await webUp()) return;
-    await new Promise((r) => setTimeout(r, 400));
-  }
-  throw new Error(`Nuxt preview did not start on ${WEB}`);
-}
-
 async function launchBrowser(): Promise<Browser> {
   const errors: string[] = [];
   for (const [name, launcher] of [
@@ -66,24 +43,17 @@ async function launchBrowser(): Promise<Browser> {
 }
 
 beforeAll(async () => {
-  if (!(await webUp())) {
-    started = spawn("pnpm", ["--filter", "web", "dev"], {
-      cwd: root,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: { ...process.env, NUXT_TELEMETRY_DISABLED: "1" },
-    });
-    await waitForWeb(80_000);
-  }
+  await ensureWeb();
   browser = await launchBrowser();
 });
 
 afterAll(async () => {
   await browser?.close();
-  if (started?.pid) started.kill("SIGTERM");
 });
 
 async function openMobile(): Promise<Page> {
   if (!browser) throw new Error("browser missing");
+  await ensureWeb();
   const page = await browser.newPage({
     viewport: { width: VW, height: VH },
     deviceScaleFactor: 3,
