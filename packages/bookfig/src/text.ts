@@ -70,7 +70,7 @@ export function wrap(s: string, maxW: number, size = 34, ls = 2): string[] {
         cur = trial;
       }
     }
-    lines.push(cur.trim());
+    lines.push(cur);
   }
   return lines;
 }

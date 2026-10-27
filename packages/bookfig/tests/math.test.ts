@@ -1,8 +1,10 @@
 import { expect, test } from "vite-plus/test";
 import { katexFontFile, katexFontFiles, svgToPngBuffer, svgToRgba } from "../src/node.ts";
+import { applyCase } from "../src/mermaid/case-mode.ts";
 import { listKatexFaceNames, outlineGlyph } from "../src/mermaid/katex-outline.ts";
 import { hasMath, layoutLabel, renderKatex, splitMath } from "../src/mermaid/math.ts";
 import { renderMermaid } from "../src/mermaid/render.ts";
+import { textWidth } from "../src/text.ts";
 
 function meanAbs(a: Buffer, b: Buffer): number {
   const n = Math.min(a.length, b.length);
@@ -187,6 +189,51 @@ test("layoutLabel sizes a box around the formula", () => {
   expect(w).toBeGreaterThan(80);
   expect(h).toBeGreaterThan(20);
   expect(lines.some((l) => l.inlines.some((i) => i.kind === "math"))).toBe(true);
+});
+
+test("space between words and $x^2$ survives auto case and layout", () => {
+  const cased = applyCase("area $x^2$", "auto");
+  expect(cased).toBe("AREA $x^2$");
+  const lines = layoutLabel(cased, 30, 420);
+  const row = lines[0]?.inlines ?? [];
+  const text = row.find((i) => i.kind === "text");
+  const math = row.find((i) => i.kind === "math");
+  expect(text?.kind === "text" && text.text.endsWith(" ")).toBe(true);
+  expect(text?.kind === "text" ? text.text.trim() : "").toBe("AREA");
+  expect(math?.kind).toBe("math");
+  const word = textWidth("AREA", 30, 2);
+  const space = textWidth(" ", 30, 2);
+  expect(text?.w ?? 0).toBeGreaterThan(word);
+  expect((text?.w ?? 0) - word).toBeGreaterThan(space * 0.8);
+  expect((text?.w ?? 0) - word).toBeLessThan(space * 2.5);
+});
+
+test("rendered AREA and $x^2$ keep a space-sized gap", async () => {
+  const r = await renderMermaid(`flowchart TD\n    A["area $x^2$"]`);
+  const texts = [
+    ...r.svg.matchAll(
+      /<text x="(-?[\d.]+)"[^>]*font-size="([\d.]+)"[^>]*letter-spacing="([\d.]+)"[^>]*>([^<]*)<\/text>/g,
+    ),
+  ];
+  const area = texts.find((t) => (t[4] ?? "").includes("AREA"));
+  const math = /<g transform="translate\((-?[\d.]+),(-?[\d.]+)\)">[\s\S]{0,80}data-tex="x\^2"/.exec(
+    r.svg,
+  );
+  expect(area).toBeTruthy();
+  expect(math).toBeTruthy();
+  const x = Number(area?.[1] ?? 0);
+  const fs = Number(area?.[2] ?? 30);
+  const ls = Number(area?.[3] ?? 2);
+  const raw = (area?.[4] ?? "").replace(/&nbsp;/g, " ");
+  expect(raw.endsWith(" ")).toBe(true);
+  expect(r.svg).toContain('xml:space="preserve"');
+  const wordW = textWidth(raw.trimEnd(), fs, ls);
+  const spaceW = textWidth(" ", fs, ls);
+  const mathX = Number(math?.[1] ?? 0);
+  const gap = mathX - (x + wordW);
+  expect(gap).toBeGreaterThan(0);
+  expect(gap).toBeGreaterThan(spaceW * 0.5);
+  expect(gap).toBeLessThan(spaceW * 3);
 });
 
 test("Node PNG of a math diagram is a real PNG", async () => {

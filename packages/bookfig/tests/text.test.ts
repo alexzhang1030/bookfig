@@ -19,3 +19,8 @@ test("wrap breaks on spaces and between CJK", () => {
 test("explicit newline forces a break", () => {
   expect(wrap("AA\nBB", 1000, 10, 0)).toEqual(["AA", "BB"]);
 });
+
+test("wrap keeps spaces next to words so math gaps survive", () => {
+  expect(wrap("area ", 1000, 10, 0)).toEqual(["area "]);
+  expect(wrap(" more", 1000, 10, 0)).toEqual([" more"]);
+});

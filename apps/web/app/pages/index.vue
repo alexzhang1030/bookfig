@@ -24,6 +24,7 @@ const previewZoom = ref<PreviewZoom>("fit");
 const narrow = ref(false);
 const visualScale = ref<number | null>(null);
 const previewEl = ref<HTMLElement | null>(null);
+const editorFocused = ref(false);
 let seq = 0;
 let mediaQuery: MediaQueryList | undefined;
 let previewObserver: ResizeObserver | undefined;
@@ -253,9 +254,12 @@ const statusLabel = computed(() => {
           v-model="source"
           class="editor"
           data-testid="editor"
+          :class="{ 'editor-open': editorFocused }"
           spellcheck="false"
           aria-label="Mermaid source"
           placeholder="flowchart TD&#10;    A[Start] --> B[End]"
+          @focus="editorFocused = true"
+          @blur="editorFocused = false"
         />
       </section>
       <section class="pane" data-testid="preview-pane">
