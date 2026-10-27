@@ -1,0 +1,52 @@
+{
+  "1440x900": {
+    "viewport": "1440x900",
+    "innerWidth": 1440,
+    "innerHeight": 900,
+    "scrollWidth": 1440,
+    "logo": {
+      "naturalWidth": 120,
+      "naturalHeight": 24,
+      "height": 24,
+      "width": 120.375,
+      "x": 20,
+      "y": 16,
+      "right": 140.375,
+      "bottom": 40
+    },
+    "toolbar": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 78
+    },
+    "logoInsideToolbar": true,
+    "logoInsideViewport": true,
+    "overlapCount": 0
+  },
+  "390x844": {
+    "viewport": "390x844",
+    "innerWidth": 390,
+    "innerHeight": 844,
+    "scrollWidth": 390,
+    "logo": {
+      "naturalWidth": 120,
+      "naturalHeight": 24,
+      "height": 24,
+      "width": 120.375,
+      "x": 20,
+      "y": 16,
+      "right": 140.375,
+      "bottom": 40
+    },
+    "toolbar": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 203
+    },
+    "logoInsideToolbar": true,
+    "logoInsideViewport": true,
+    "overlapCount": 0
+  }
+}

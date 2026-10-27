@@ -180,7 +180,7 @@ test("top-bar logo and icon set at 1440 and 390", { timeout: 90_000 }, async () 
       expect(metrics.scrollWidth).toBe(metrics.innerWidth);
       expect(metrics.overlapCount).toBe(0);
 
-      await page.screenshot({ path: join(root, "artifacts", vp.screenshot) });
+      await page.screenshot({ path: join(root, "artifacts", vp.screenshot), scale: "css" });
       measured[vp.name] = metrics;
     } finally {
       await page.close();
