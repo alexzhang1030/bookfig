@@ -14,11 +14,19 @@ type PreviewState =
   | { kind: "ready"; svg: string; warnings: string[]; scale: number; type: string }
   | { kind: "error"; message: string; svg: string };
 
+type PreviewZoom = "fit" | "actual";
+
 const source = ref(SITE_EXAMPLES[0]?.source ?? "");
 const caseMode = ref<CaseMode>("auto");
 const activeId = ref(SITE_EXAMPLES[0]?.id ?? "");
 const state = ref<PreviewState>({ kind: "empty" });
+const previewZoom = ref<PreviewZoom>("fit");
+const narrow = ref(false);
+const visualScale = ref<number | null>(null);
+const previewEl = ref<HTMLElement | null>(null);
 let seq = 0;
+let mediaQuery: MediaQueryList | undefined;
+let previewObserver: ResizeObserver | undefined;
 
 function setCase(name: string): void {
   if (isCaseMode(name)) caseMode.value = name;
@@ -55,13 +63,54 @@ async function renderNow(): Promise<void> {
   }
 }
 
+function formatScale(n: number): string {
+  if (Math.abs(n - 1) < 0.005) return "1";
+  return n.toFixed(2);
+}
+
+function measureVisualScale(): void {
+  const svg = previewEl.value?.querySelector("svg");
+  if (!svg) {
+    visualScale.value = null;
+    return;
+  }
+  const attr = Number(svg.getAttribute("width"));
+  const box = svg.viewBox.baseVal.width;
+  const intrinsic = attr > 0 ? attr : box;
+  const shown = svg.getBoundingClientRect().width;
+  visualScale.value = intrinsic > 0 ? shown / intrinsic : null;
+}
+
+function syncNarrow(): void {
+  narrow.value = window.matchMedia("(max-width: 860px)").matches;
+}
+
+function setZoom(mode: PreviewZoom): void {
+  previewZoom.value = mode;
+}
+
 watch([source, caseMode], () => {
   if (!import.meta.client) return;
   void renderNow();
 });
 
+watch([state, previewZoom, narrow], () => {
+  if (!import.meta.client) return;
+  void nextTick(() => measureVisualScale());
+});
+
 onMounted(() => {
+  syncNarrow();
+  mediaQuery = window.matchMedia("(max-width: 860px)");
+  mediaQuery.addEventListener("change", syncNarrow);
+  previewObserver = new ResizeObserver(() => measureVisualScale());
+  if (previewEl.value) previewObserver.observe(previewEl.value);
   void renderNow();
+});
+
+onUnmounted(() => {
+  mediaQuery?.removeEventListener("change", syncNarrow);
+  previewObserver?.disconnect();
 });
 
 function isAppleTouch(): boolean {
@@ -124,8 +173,13 @@ const statusLabel = computed(() => {
       return "Empty editor · pick an example or write Mermaid";
     case "loading":
       return "Laying out…";
-    case "ready":
-      return `${state.value.type} · scale ${state.value.scale}`;
+    case "ready": {
+      const shown =
+        narrow.value && previewZoom.value === "fit" && visualScale.value != null
+          ? visualScale.value
+          : state.value.scale;
+      return `${state.value.type} · scale ${formatScale(shown)}`;
+    }
     case "error":
       return "Could not draw this diagram";
     default: {
@@ -205,10 +259,33 @@ const statusLabel = computed(() => {
         />
       </section>
       <section class="pane" data-testid="preview-pane">
-        <div class="pane-head">
-          <span>PREVIEW</span><span>{{ statusLabel }}</span>
+        <div class="pane-head preview-head">
+          <div class="preview-head-left">
+            <span>PREVIEW</span>
+            <div class="zoom-bar">
+              <button
+                class="chip"
+                type="button"
+                data-testid="zoom-fit"
+                :data-on="previewZoom === 'fit'"
+                @click="setZoom('fit')"
+              >
+                Fit
+              </button>
+              <button
+                class="chip"
+                type="button"
+                data-testid="zoom-actual"
+                :data-on="previewZoom === 'actual'"
+                @click="setZoom('actual')"
+              >
+                100%
+              </button>
+            </div>
+          </div>
+          <span data-testid="preview-scale">{{ statusLabel }}</span>
         </div>
-        <div class="preview" data-testid="preview">
+        <div ref="previewEl" class="preview" data-testid="preview" :data-zoom="previewZoom">
           <div v-if="state.kind === 'empty'" class="state">
             Write a flowchart, sequenceDiagram, stateDiagram, or pie on the left. The figure updates
             live.
@@ -218,9 +295,9 @@ const statusLabel = computed(() => {
           </div>
           <div v-else-if="state.kind === 'error'" class="state error">
             {{ state.message }}
-            <div style="margin-top: 16px" v-html="state.svg" />
+            <div class="preview-figure" v-html="state.svg" />
           </div>
-          <div v-else v-html="state.svg" />
+          <div v-else class="preview-figure" v-html="state.svg" />
         </div>
         <div v-if="state.kind === 'ready' && state.warnings.length" class="warns">
           <div v-for="(w, i) in state.warnings" :key="i">warning: {{ w }}</div>
