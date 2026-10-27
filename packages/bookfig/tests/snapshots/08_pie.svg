@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="684" viewBox="0 0 2000 684"><defs><pattern id="hatch-f8" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f8" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="684" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="640" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,662h44M22,640v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,662h44M1978,640v44"/></g>
-<rect x="588.0" y="114.0" width="824.0" height="500.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="606.0" y="123.5" width="194.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="703.0" y="151.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">PETS ADOPTED</text>
-<path d="M848.0,394.0 L848.0,184.0 A210.0,210.0 0 1 1 638.7,377.1 Z" fill="#0B3D91" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M848.0,394.0 L638.7,377.1 A210.0,210.0 0 0 1 759.6,203.5 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M848.0,394.0 L759.6,203.5 A210.0,210.0 0 0 1 848.0,184.0 Z" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="1128.0" y="198.9" width="24.0" height="24.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="684" viewBox="0 0 2000 684"><defs><pattern id="hatch-f8" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f8" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="684" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="640" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,662h44M22,640v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,662h44M1978,640v44"/></g>
+<rect x="575.0" y="114.0" width="850.0" height="500.0" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="593.0" y="123.5" width="222.8" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="704.4" y="151.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">PETS ADOPTED</text>
+<path d="M835.0,394.0 L835.0,184.0 A210.0,210.0 0 1 1 625.7,377.1 Z" fill="#0B3D91" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M835.0,394.0 L625.7,377.1 A210.0,210.0 0 0 1 746.6,203.5 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M835.0,394.0 L746.6,203.5 A210.0,210.0 0 0 1 835.0,184.0 Z" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="1115.0" y="198.9" width="24.0" height="24.0" fill="#0B3D91" stroke="#1F6FEB" stroke-width="3"/>
 <text x="1248.0" y="220.8" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">DOGS   386</text>
-<rect x="1128.0" y="260.7" width="24.0" height="24.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1240.5" y="282.6" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CATS   85</text>
-<rect x="1128.0" y="322.5" width="24.0" height="24.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1240.5" y="344.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RATS   35</text></svg>
+<rect x="1115.0" y="260.7" width="24.0" height="24.0" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1239.2" y="282.6" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CATS   85</text>
+<rect x="1115.0" y="322.5" width="24.0" height="24.0" fill="#9DC1F7" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1239.2" y="344.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RATS   35</text></svg>

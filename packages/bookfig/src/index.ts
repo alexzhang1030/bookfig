@@ -28,6 +28,14 @@ export {
   type RenderOptions,
   type RenderResult,
 } from "./mermaid/index.ts";
+export {
+  BUNDLED_FONT_FAMILY,
+  bookFontFamily,
+  embedBookFont,
+  ensureBookFont,
+  fontFromSvg,
+  parseSvgFontFamily,
+} from "./book-font.ts";
 export { DEFAULT_FONT_FAMILY, PALETTE, type Palette } from "./palettes.ts";
 export { escapeXml, isWide, textWidth, wrap } from "./text.ts";
 export {

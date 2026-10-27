@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="815" viewBox="0 0 2000 815"><defs><pattern id="hatch-f4" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f4" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="815" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="771" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,793h44M22,771v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,793h44M1978,771v44"/></g>
-<path d="M696.8,90.0 h261.0 v91.0 h-261.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="827.3" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">相机 CAMERA</text>
-<path d="M610.3,221.0 h434.0 v131.0 h-434.0 Z" fill="url(#hatch-f4)" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="628.3" y="239.0" width="398.0" height="95.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="827.3" y="297.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">视觉编码器 ENCODER</text>
-<path d="M703.3,392.0 h248.0 v91.0 h-248.0 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
-<text x="827.3" y="448.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">VLA POLICY</text>
-<path d="M629.8,523.0 h395.0 v91.0 h-395.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="827.3" y="579.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">动作块 ACTION CHUNK</text>
-<path d="M830.8,654.0 h393.0 v91.0 h-393.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1027.3" y="710.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">底层控制 CONTROLLER</text>
-<path d="M1064.8,523.0 h325.0 v91.0 h-325.0 Z" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<text x="1227.3" y="579.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">安全监控 SAFETY</text>
-<path d="M827.3,181.0 L827.3,221.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M816.0,204.5 L827.3,221.0 L838.5,204.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M827.3,352.0 L827.3,392.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M816.0,375.5 L827.3,392.0 L838.5,375.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M827.3,483.0 L827.3,523.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M816.0,506.5 L827.3,523.0 L838.5,506.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M827.3,614.0 L827.3,634.0 L1013.3,634.0 L1013.3,654.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1002.0,637.5 L1013.3,654.0 L1024.5,637.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1227.3,614.0 L1227.3,634.0 L1041.3,634.0 L1041.3,654.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1030.0,637.5 L1041.3,654.0 L1052.5,637.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="815" viewBox="0 0 2000 815"><defs><pattern id="hatch-f4" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f4" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="815" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="771" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,793h44M22,771v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,793h44M1978,771v44"/></g>
+<path d="M672.0,90.0 h282.0 v91.0 h-282.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="813.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">相机 CAMERA</text>
+<path d="M584.0,221.0 h458.0 v131.0 h-458.0 Z" fill="url(#hatch-f4)" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="602.0" y="239.0" width="422.0" height="95.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="813.0" y="297.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">视觉编码器 ENCODER</text>
+<path d="M674.0,392.0 h278.0 v91.0 h-278.0 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
+<text x="813.0" y="448.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">VLA POLICY</text>
+<path d="M596.0,523.0 h434.0 v91.0 h-434.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="813.0" y="579.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">动作块 ACTION CHUNK</text>
+<path d="M815.0,654.0 h426.0 v91.0 h-426.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1028.0" y="710.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">底层控制 CONTROLLER</text>
+<path d="M1070.0,523.0 h346.0 v91.0 h-346.0 Z" fill="#EEF4FE" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1243.0" y="579.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">安全监控 SAFETY</text>
+<path d="M813.0,181.0 L813.0,221.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M801.7,204.5 L813.0,221.0 L824.3,204.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M813.0,352.0 L813.0,392.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M801.7,375.5 L813.0,392.0 L824.3,375.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M813.0,483.0 L813.0,523.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M801.7,506.5 L813.0,523.0 L824.3,506.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M813.0,614.0 L813.0,634.0 L1014.0,634.0 L1014.0,654.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1002.7,637.5 L1014.0,654.0 L1025.3,637.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1243.0,614.0 L1243.0,634.0 L1042.0,634.0 L1042.0,654.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1030.7,637.5 L1042.0,654.0 L1053.3,637.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/></svg>

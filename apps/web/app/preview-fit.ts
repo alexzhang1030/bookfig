@@ -1,6 +1,16 @@
 export type FitBox = { x: number; y: number; w: number; h: number };
 
 const FIT_PAD = 36;
+export const FIT_MIN_HEIGHT_PX = 200;
+export const FIT_MIN_HEIGHT_VH = 0.35;
+
+export function clampFitAvail(
+  avail: { w: number; h: number },
+  viewportH: number,
+): { w: number; h: number } {
+  const minH = Math.max(FIT_MIN_HEIGHT_PX, viewportH * FIT_MIN_HEIGHT_VH);
+  return { w: Math.max(1, avail.w), h: Math.max(minH, avail.h) };
+}
 
 export function rememberSvgSize(svg: SVGSVGElement): void {
   if (svg.dataset.origViewBox !== undefined && svg.dataset.origViewBox !== "") return;

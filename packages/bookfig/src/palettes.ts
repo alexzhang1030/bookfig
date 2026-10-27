@@ -17,4 +17,4 @@ export const PALETTE: Palette = {
   bg: "#F8FBFF",
 };
 
-export const DEFAULT_FONT_FAMILY = "Noto Sans Mono CJK SC";
+export const DEFAULT_FONT_FAMILY = "Noto Sans Mono";

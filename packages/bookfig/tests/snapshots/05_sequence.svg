@@ -1,68 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1823" viewBox="0 0 2000 1823"><defs><pattern id="hatch-f5" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f5" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="1823" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1779" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1801h44M22,1779v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1801h44M1978,1779v44"/></g>
-<rect x="1075.0" y="536.6" width="549.0" height="281.6" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="652.0" y="858.2" width="972.0" height="479.4" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<path d="M1584.0,251.0 L1584.0,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1115.0,251.0 L1115.0,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M702.0,251.0 L702.0,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M393.0,251.0 L393.0,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M283.0,168.0 h220.0 v83.0 h-220.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="393.0" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">操作员</text>
-<circle cx="393.0" cy="108.0" r="16.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M367.0,156.0 L367.0,140.0 L419.0,140.0 L419.0,156.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M574.5,168.0 h255.0 v83.0 h-255.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="702.0" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">AGENT (VLM)</text>
-<path d="M996.0,168.0 h238.0 v83.0 h-238.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1115.0" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
-<path d="M1451.0,168.0 h266.0 v83.0 h-266.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1584.0" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROBOT 机械臂</text>
-<rect x="420.0" y="309.0" width="255.0" height="37.8" fill="#F8FBFF"/>
-<text x="547.5" y="337.8" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">1. 把杯子放进篮子</text>
-<path d="M393.0,362.8 L702.0,362.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M685.5,374.1 L702.0,362.8 L685.5,351.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="729.0" y="416.8" width="359.0" height="37.8" fill="#F8FBFF"/>
-<text x="908.5" y="445.6" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">2. set_task(&quot;pick cup&quot;)</text>
-<path d="M702.0,470.6 L1115.0,470.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1098.5,481.9 L1115.0,470.6 L1098.5,459.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1142.0" y="594.6" width="415.0" height="37.8" fill="#F8FBFF"/>
-<text x="1349.5" y="623.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">3. 观测 OBS (RGB + PROPRIO)</text>
-<path d="M1584.0,648.4 L1115.0,648.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1131.5,637.1 L1115.0,648.4 L1131.5,659.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1230.0" y="702.4" width="239.0" height="37.8" fill="#F8FBFF"/>
-<text x="1349.5" y="731.2" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">4. ACTION CHUNK</text>
-<path d="M1115.0,756.2 L1584.0,756.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1567.5,767.5 L1584.0,756.2 L1567.5,744.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1099.0" y="517.4" width="416.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1307.0" y="545.7" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">LOOP 每 100 MS / EVERY CHUNK</text>
-<rect x="1083.5" y="916.2" width="119.0" height="37.8" fill="#F8FBFF"/>
-<text x="1143.0" y="945.0" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">5. DONE</text>
-<path d="M1584.0,970.0 L702.0,970.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M718.5,958.7 L702.0,970.0 L718.5,981.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1025.5" y="1088.0" width="235.0" height="37.8" fill="#F8FBFF"/>
-<text x="1143.0" y="1116.8" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">6. ERROR + 截图</text>
-<path d="M1584.0,1141.8 L702.0,1141.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<circle cx="710.4" cy="1141.8" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="814.0" y="1195.8" width="276.0" height="37.8" fill="#F8FBFF"/>
-<text x="822.0" y="1224.6" text-anchor="start" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">7. 重新规划 REPLAN</text>
-<path d="M702.0,1241.6 L792.0,1241.6 L792.0,1291.6 L702.0,1291.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M718.5,1280.3 L702.0,1291.6 L718.5,1302.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="676.0" y="839.0" width="246.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="799.0" y="867.3" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ALT 成功 SUCCESS</text>
-<path d="M652.0,1026.0 L1624.0,1026.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<rect x="676.0" y="1008.4" width="139.0" height="35.2" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="745.5" y="1034.4" text-anchor="middle" font-size="22" letter-spacing="2" font-weight="normal" fill="#1F6FEB">失败 FAIL</text>
-<path d="M642.0,1367.6 h533.0 v63.8 h-533.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="908.5" y="1409.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">子任务完成后上报 REPORT</text>
-<rect x="452.5" y="1469.4" width="190.0" height="37.8" fill="#F8FBFF"/>
-<text x="547.5" y="1498.2" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">8. 完成 DONE</text>
-<path d="M702.0,1523.2 L393.0,1523.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M409.5,1511.9 L393.0,1523.2 L409.5,1534.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M283.0,1589.2 h220.0 v83.0 h-220.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="393.0" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">操作员</text>
-<circle cx="393.0" cy="1704.2" r="16.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M367.0,1752.2 L367.0,1736.2 L419.0,1736.2 L419.0,1752.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M574.5,1589.2 h255.0 v83.0 h-255.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="702.0" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">AGENT (VLM)</text>
-<path d="M996.0,1589.2 h238.0 v83.0 h-238.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1115.0" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
-<path d="M1451.0,1589.2 h266.0 v83.0 h-266.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1584.0" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROBOT 机械臂</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1823" viewBox="0 0 2000 1823"><defs><pattern id="hatch-f5" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f5" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="1823" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1779" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1801h44M22,1779v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1801h44M1978,1779v44"/></g>
+<rect x="1074.4" y="536.6" width="608.8" height="281.6" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="591.6" y="858.2" width="1091.6" height="479.4" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<path d="M1643.2,251.0 L1643.2,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1114.4,251.0 L1114.4,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M641.6,251.0 L641.6,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M324.8,251.0 L324.8,1589.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M214.8,168.0 h220.0 v83.0 h-220.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="324.8" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">操作员</text>
+<circle cx="324.8" cy="108.0" r="16.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M298.8,156.0 L298.8,140.0 L350.8,140.0 L350.8,156.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M497.6,168.0 h288.0 v83.0 h-288.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="641.6" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">AGENT (VLM)</text>
+<path d="M980.4,168.0 h268.0 v83.0 h-268.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1114.4" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
+<path d="M1501.2,168.0 h284.0 v83.0 h-284.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1643.2" y="220.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROBOT 机械臂</text>
+<rect x="351.8" y="309.0" width="262.8" height="37.8" fill="#F8FBFF"/>
+<text x="483.2" y="337.8" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">1. 把杯子放进篮子</text>
+<path d="M324.8,362.8 L641.6,362.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M625.1,374.1 L641.6,362.8 L625.1,351.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="668.6" y="416.8" width="418.8" height="37.8" fill="#F8FBFF"/>
+<text x="878.0" y="445.6" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">2. set_task(&quot;pick cup&quot;)</text>
+<path d="M641.6,470.6 L1114.4,470.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1097.9,481.9 L1114.4,470.6 L1097.9,459.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1141.4" y="594.6" width="474.8" height="37.8" fill="#F8FBFF"/>
+<text x="1378.8" y="623.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">3. 观测 OBS (RGB + PROPRIO)</text>
+<path d="M1643.2,648.4 L1114.4,648.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1130.9,637.1 L1114.4,648.4 L1130.9,659.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1239.8" y="702.4" width="278.0" height="37.8" fill="#F8FBFF"/>
+<text x="1378.8" y="731.2" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">4. ACTION CHUNK</text>
+<path d="M1114.4,756.2 L1643.2,756.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1626.7,767.5 L1643.2,756.2 L1626.7,744.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1098.4" y="517.4" width="478.4" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1337.6" y="545.7" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">LOOP 每 100 MS / EVERY CHUNK</text>
+<rect x="1073.8" y="916.2" width="137.2" height="37.8" fill="#F8FBFF"/>
+<text x="1142.4" y="945.0" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">5. DONE</text>
+<path d="M1643.2,970.0 L641.6,970.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M658.1,958.7 L641.6,970.0 L658.1,981.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1010.6" y="1088.0" width="263.6" height="37.8" fill="#F8FBFF"/>
+<text x="1142.4" y="1116.8" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">6. ERROR + 截图</text>
+<path d="M1643.2,1141.8 L641.6,1141.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<circle cx="650.0" cy="1141.8" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="753.6" y="1195.8" width="302.0" height="37.8" fill="#F8FBFF"/>
+<text x="761.6" y="1224.6" text-anchor="start" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">7. 重新规划 REPLAN</text>
+<path d="M641.6,1241.6 L731.6,1241.6 L731.6,1291.6 L641.6,1291.6" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M658.1,1280.3 L641.6,1291.6 L658.1,1302.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="615.6" y="839.0" width="274.8" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="753.0" y="867.3" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ALT 成功 SUCCESS</text>
+<path d="M591.6,1026.0 L1683.2,1026.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<rect x="615.6" y="1008.4" width="150.0" height="35.2" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="690.6" y="1034.4" text-anchor="middle" font-size="22" letter-spacing="2" font-weight="normal" fill="#1F6FEB">失败 FAIL</text>
+<path d="M581.6,1367.6 h592.8 v63.8 h-592.8 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="878.0" y="1409.4" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">子任务完成后上报 REPORT</text>
+<rect x="377.8" y="1469.4" width="210.8" height="37.8" fill="#F8FBFF"/>
+<text x="483.2" y="1498.2" text-anchor="middle" font-size="26.000000000000004" letter-spacing="2" font-weight="normal" fill="#1F6FEB">8. 完成 DONE</text>
+<path d="M641.6,1523.2 L324.8,1523.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M341.3,1511.9 L324.8,1523.2 L341.3,1534.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M214.8,1589.2 h220.0 v83.0 h-220.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="324.8" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">操作员</text>
+<circle cx="324.8" cy="1704.2" r="16.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M298.8,1752.2 L298.8,1736.2 L350.8,1736.2 L350.8,1752.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M497.6,1589.2 h288.0 v83.0 h-288.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="641.6" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">AGENT (VLM)</text>
+<path d="M980.4,1589.2 h268.0 v83.0 h-268.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1114.4" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLA SERVER</text>
+<path d="M1501.2,1589.2 h284.0 v83.0 h-284.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1643.2" y="1642.1" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ROBOT 机械臂</text></svg>

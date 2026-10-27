@@ -53,8 +53,8 @@ async function waitForWeb(timeoutMs: number): Promise<void> {
 async function launchBrowser(): Promise<Browser> {
   const errors: string[] = [];
   for (const [name, launcher] of [
-    ["chromium", chromium],
     ["webkit", webkit],
+    ["chromium", chromium],
   ] as const) {
     try {
       return await launcher.launch({ headless: true });
@@ -251,8 +251,15 @@ test(
       expect(Math.abs(rest.lines - Math.round(rest.lines))).toBeLessThan(0.15);
       expect(Math.round(rest.lines)).toBeGreaterThanOrEqual(2);
       await editor.focus();
-      const open = await editor.evaluate((el) => el.getBoundingClientRect().height);
-      expect(open).toBeGreaterThanOrEqual(VH * 0.5 - 2);
+      const open = await editor.evaluate((el) => {
+        const preview = document.querySelector("[data-testid='preview']");
+        return {
+          editorH: el.getBoundingClientRect().height,
+          previewH: preview?.getBoundingClientRect().height ?? 0,
+        };
+      });
+      expect(open.editorH).toBeGreaterThan(200);
+      expect(open.previewH).toBeGreaterThanOrEqual(Math.max(200, VH * 0.35) - 2);
       await page.getByTestId("preview").click();
       const after = await editor.evaluate((el) => el.getBoundingClientRect().height);
       expect(after).toBeLessThan(140);
@@ -340,11 +347,12 @@ test("area $x^2$ keeps a space-sized gap after AREA", { timeout: 60_000 }, async
       const ls = Number(area.getAttribute("letter-spacing") ?? 2);
       let wordW = 0;
       let n = 0;
+      const em = 0.6;
       for (const _ch of letters) {
-        wordW += fs * 0.5 + (n ? ls : 0);
+        wordW += fs * em + (n ? ls : 0);
         n += 1;
       }
-      const space = fs * 0.5 + ls;
+      const space = fs * em + ls;
       const tr = math.parentElement?.getAttribute("transform") ?? "";
       const mathX = Number(/translate\((-?[\d.]+)/.exec(tr)?.[1] ?? 0);
       return { gap: mathX - (x + wordW), space, raw };
@@ -359,3 +367,69 @@ test("area $x^2$ keeps a space-sized gap after AREA", { timeout: 60_000 }, async
     await page.close();
   }
 });
+
+test(
+  "390 focused two-node Fit stays readable and blur keeps nodes wide",
+  { timeout: 60_000 },
+  async () => {
+    const page = await openMobile();
+    try {
+      const editor = page.getByTestId("editor");
+      await editor.click();
+      await editor.fill('flowchart TD\n    A["area $x^2$"] --> B["plain"]');
+      await editor.focus();
+      await editor.dispatchEvent("input");
+      await page.waitForFunction(() =>
+        Boolean(document.querySelector("[data-testid='preview'] svg [data-tex='x^2']")),
+      );
+      await page.waitForFunction(() => {
+        const editorEl = document.querySelector<HTMLTextAreaElement>("[data-testid='editor']");
+        const scaleText = document.querySelector("[data-testid='preview-scale']")?.textContent ?? "";
+        const m = /scale ([\d.]+)/.exec(scaleText);
+        const preview = document.querySelector("[data-testid='preview']");
+        const ph = preview?.getBoundingClientRect().height ?? 0;
+        return document.activeElement === editorEl && m !== null && Number(m[1]) >= 0.5 && ph >= 200;
+      });
+      const focused = await page.evaluate(() => {
+        const editorEl = document.querySelector<HTMLTextAreaElement>("[data-testid='editor']");
+        const preview = document.querySelector("[data-testid='preview']");
+        const svg = preview?.querySelector("svg");
+        const scaleText = document.querySelector("[data-testid='preview-scale']")?.textContent ?? "";
+        const m = /scale ([\d.]+)/.exec(scaleText);
+        return {
+          focused: document.activeElement === editorEl,
+          scale: m ? Number(m[1]) : 0,
+          previewH: preview?.getBoundingClientRect().height ?? 0,
+          svgW: svg?.getBoundingClientRect().width ?? 0,
+          svgH: svg?.getBoundingClientRect().height ?? 0,
+        };
+      });
+      expect(focused.focused).toBe(true);
+      expect(focused.scale).toBeGreaterThanOrEqual(0.5);
+      expect(focused.previewH).toBeGreaterThanOrEqual(Math.max(200, VH * 0.35) - 2);
+      expect(focused.svgW).toBeGreaterThan(40);
+      expect(focused.svgH).toBeGreaterThan(40);
+
+      await page.getByTestId("preview").click();
+      await page.waitForFunction(() => document.activeElement?.tagName !== "TEXTAREA");
+      const blurred = await page.evaluate(() => {
+        const preview = document.querySelector("[data-testid='preview']");
+        const svg = preview?.querySelector("svg");
+        const nodes = [...(svg?.querySelectorAll("path") ?? [])].filter((p) => {
+          const d = p.getAttribute("d") ?? "";
+          return /h-?[0-9.]+\s+v-?[0-9.]+/.test(d) && d.includes("Z");
+        });
+        const widths = nodes.map((n) => n.getBoundingClientRect().width);
+        return {
+          nodeW: widths.length ? Math.max(...widths) : 0,
+          svgW: svg?.getBoundingClientRect().width ?? 0,
+          previewW: preview?.getBoundingClientRect().width ?? 0,
+        };
+      });
+      expect(blurred.nodeW).toBeGreaterThanOrEqual(60);
+      expect(blurred.svgW).toBeLessThanOrEqual(blurred.previewW + 1);
+    } finally {
+      await page.close();
+    }
+  },
+);
