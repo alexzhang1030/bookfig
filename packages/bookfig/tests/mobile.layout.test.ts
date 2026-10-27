@@ -251,21 +251,24 @@ test("area $x^2$ keeps a space-sized gap after AREA", { timeout: 60_000 }, async
         (t.textContent ?? "").includes("AREA"),
       );
       const math = svg.querySelector('[data-tex="x^2"]');
-      const node = area?.firstChild;
-      if (!area || !math || !node) return null;
-      const end = Math.min(4, node.textContent?.length ?? 0);
-      const range = document.createRange();
-      range.setStart(node, 0);
-      range.setEnd(node, end);
-      const word = range.getBoundingClientRect();
-      const formula = math.getBoundingClientRect();
+      if (!area || !math) return null;
+      const raw = area.textContent ?? "";
+      const letters = raw.trimEnd();
+      const x = Number(area.getAttribute("x") ?? 0);
       const fs = Number(area.getAttribute("font-size") ?? 30);
       const ls = Number(area.getAttribute("letter-spacing") ?? 2);
-      const vb = svg.viewBox.baseVal.width;
-      const shown = svg.getBoundingClientRect().width;
-      const space = (fs * 0.5 + ls) * (vb > 0 ? shown / vb : 1);
-      return { gap: formula.left - word.right, space };
+      let wordW = 0;
+      let n = 0;
+      for (const _ch of letters) {
+        wordW += fs * 0.5 + (n ? ls : 0);
+        n += 1;
+      }
+      const space = fs * 0.5 + ls;
+      const tr = math.parentElement?.getAttribute("transform") ?? "";
+      const mathX = Number(/translate\((-?[\d.]+)/.exec(tr)?.[1] ?? 0);
+      return { gap: mathX - (x + wordW), space, raw };
     });
+    expect(measured?.raw?.endsWith(" ")).toBe(true);
     expect(measured).toBeTruthy();
     if (!measured) return;
     expect(measured.gap).toBeGreaterThan(0);
