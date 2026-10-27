@@ -212,7 +212,7 @@ test(
 );
 
 test(
-  "390 editor grows to half the screen on focus and keeps bottom padding",
+  "390 editor sits above the dashed rule and shows whole lines",
   { timeout: 60_000 },
   async () => {
     const page = await openMobile();
@@ -220,16 +220,88 @@ test(
       const editor = page.getByTestId("editor");
       const rest = await editor.evaluate((el) => {
         const cs = getComputedStyle(el);
-        return { h: el.getBoundingClientRect().height, pad: Number.parseFloat(cs.paddingBottom) };
+        const pane = document.querySelector("[data-testid='editor-pane']");
+        if (!pane) return null;
+        const ta = el.getBoundingClientRect();
+        const pb = pane.getBoundingClientRect();
+        const border = Number.parseFloat(getComputedStyle(pane).borderBottomWidth);
+        const lh = Number.parseFloat(cs.lineHeight);
+        const padT = Number.parseFloat(cs.paddingTop);
+        const padB = Number.parseFloat(cs.paddingBottom);
+        const content = ta.height - padT - padB;
+        return {
+          h: ta.height,
+          gap: pb.bottom - border - ta.bottom,
+          lines: lh > 0 ? content / lh : 0,
+        };
       });
+      expect(rest).toBeTruthy();
+      if (!rest) return;
       expect(rest.h).toBeLessThan(140);
-      expect(rest.pad).toBeGreaterThanOrEqual(24);
+      expect(rest.gap).toBeGreaterThanOrEqual(8);
+      expect(Math.abs(rest.lines - Math.round(rest.lines))).toBeLessThan(0.15);
+      expect(Math.round(rest.lines)).toBeGreaterThanOrEqual(2);
       await editor.focus();
       const open = await editor.evaluate((el) => el.getBoundingClientRect().height);
       expect(open).toBeGreaterThanOrEqual(VH * 0.5 - 2);
       await page.getByTestId("preview").click();
       const after = await editor.evaluate((el) => el.getBoundingClientRect().height);
       expect(after).toBeLessThan(140);
+    } finally {
+      await page.close();
+    }
+  },
+);
+
+test(
+  "390 Fit crops small figures so a node is at least 60px wide",
+  { timeout: 60_000 },
+  async () => {
+    const page = await openMobile();
+    try {
+      await page.getByTestId("editor").fill('flowchart TD\n    A["area $x^2$"] --> B["plain"]');
+      await page.waitForFunction(() =>
+        Boolean(document.querySelector("[data-testid='preview'] svg [data-tex='x^2']")),
+      );
+      await page.getByTestId("zoom-fit").click();
+      await page.waitForFunction(() => {
+        const svg = document.querySelector<SVGSVGElement>("[data-testid='preview'] svg");
+        return Boolean(
+          svg?.dataset.fitApplied === "1" || (svg && svg.viewBox.baseVal.width < 1200),
+        );
+      });
+      const small = await page.evaluate(() => {
+        const preview = document.querySelector("[data-testid='preview']");
+        const svg = preview?.querySelector("svg");
+        const nodes = [...(svg?.querySelectorAll("path") ?? [])].filter((p) => {
+          const d = p.getAttribute("d") ?? "";
+          return /h-?[0-9.]+\s+v-?[0-9.]+/.test(d) && d.includes("Z");
+        });
+        const widths = nodes.map((n) => n.getBoundingClientRect().width);
+        return {
+          nodeW: widths.length ? Math.max(...widths) : 0,
+          svgW: svg?.getBoundingClientRect().width ?? 0,
+          previewW: preview?.getBoundingClientRect().width ?? 0,
+          viewW: svg?.viewBox.baseVal.width ?? 0,
+          origW: Number(svg?.getAttribute("width") ?? 0),
+          scale: document.querySelector("[data-testid='preview-scale']")?.textContent ?? "",
+          scrollW: document.documentElement.scrollWidth,
+          innerW: window.innerWidth,
+        };
+      });
+      expect(small.nodeW).toBeGreaterThanOrEqual(60);
+      expect(small.svgW).toBeLessThanOrEqual(small.previewW + 1);
+      expect(small.scrollW).toBeLessThanOrEqual(small.innerW + 1);
+      expect(small.viewW).toBeLessThan(1600);
+
+      await page.locator(".examples button", { hasText: "01" }).click();
+      await page.waitForSelector(".preview svg");
+      expectFit(await measureFit(page));
+      const big = await page.evaluate(() => ({
+        scrollW: document.documentElement.scrollWidth,
+        innerW: window.innerWidth,
+      }));
+      expect(big.scrollW).toBeLessThanOrEqual(big.innerW + 1);
     } finally {
       await page.close();
     }
