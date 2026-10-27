@@ -1042,6 +1042,7 @@ export class Fig {
       `</pattern></defs>`;
     // Inherit on the root. A `text{font-family}` rule would beat presentation
     // attributes and restyle KaTeX glyphs as Noto (hat becomes ^y, metrics slip).
+    // Export paths call embedBookFont() so the same TTF travels with the file.
     const style = `<style>svg{font-family:'${this.fontFamily}'}</style>`;
     const crosses = [i, W - i]
       .flatMap((px) =>

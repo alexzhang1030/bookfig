@@ -1,3 +1,4 @@
+import { DEFAULT_FONT_FAMILY } from "../palettes.ts";
 import type { CaseMode, LineStyle, NodeShape } from "../types.ts";
 import { applyCase } from "./case-mode.ts";
 import { layoutDot } from "./graphviz.ts";
@@ -225,7 +226,7 @@ async function layoutFlowchart(
   const rankdir = g.direction === "TD" ? "TB" : g.direction;
   const lines: string[] = [
     `digraph G { rankdir=${rankdir}; splines=ortho; nodesep=0.55; ranksep=0.55; newrank=true;`,
-    `fontname=${quote("Noto Sans Mono CJK SC")}; fontsize=26; node [shape=box fixedsize=true label=""]; edge [dir=none];`,
+    `fontname=${quote(DEFAULT_FONT_FAMILY)}; fontsize=26; node [shape=box fixedsize=true label=""]; edge [dir=none];`,
   ];
   for (const nid of g.nodes.keys()) lines.push(nodeDecl(nid));
 

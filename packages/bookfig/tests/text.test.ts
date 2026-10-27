@@ -1,12 +1,16 @@
 import { expect, test } from "vite-plus/test";
+import { ensureBookFont, latinAdvanceEm } from "../src/book-font.ts";
 import { isWide, textWidth, wrap } from "../src/text.ts";
 
-test("latin is half-em, CJK is full-em", () => {
+test("latin uses the bundled mono advance, CJK is full-em", async () => {
+  await ensureBookFont();
+  const em = latinAdvanceEm();
+  expect(em).toBeCloseTo(0.6, 5);
   expect(isWide("A")).toBe(false);
   expect(isWide("中")).toBe(true);
-  expect(textWidth("AA", 10, 0)).toBe(10);
+  expect(textWidth("AA", 10, 0)).toBeCloseTo(20 * em, 5);
   expect(textWidth("中", 10, 0)).toBe(10);
-  expect(textWidth("A中", 10, 2)).toBe(15 + 2);
+  expect(textWidth("A中", 10, 2)).toBeCloseTo(10 * em + 10 + 2, 5);
 });
 
 test("wrap breaks on spaces and between CJK", () => {

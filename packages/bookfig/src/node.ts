@@ -2,6 +2,7 @@ import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
+import { bookFontFiles, embedBookFont } from "./book-font.ts";
 import { DEFAULT_FONT_FAMILY } from "./palettes.ts";
 
 export function katexFontFile(name: string): string {
@@ -21,6 +22,7 @@ export function katexFontFiles(): string[] {
 }
 
 const FONT_CANDIDATES = [
+  ...bookFontFiles(),
   process.env.BOOKFIG_FONT_PATH,
   "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
   "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
@@ -59,7 +61,7 @@ export function svgToPngBuffer(svg: string, opts: PngOptions = {}): Buffer {
 
 export function writeSvg(path: string, svg: string): void {
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, svg, "utf8");
+  writeFileSync(path, embedBookFont(svg), "utf8");
 }
 
 export function writePng(path: string, svg: string, opts: PngOptions = {}): void {

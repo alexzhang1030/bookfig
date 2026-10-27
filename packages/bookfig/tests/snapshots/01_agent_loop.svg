@@ -1,62 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1470" viewBox="0 0 2000 1470"><defs><pattern id="hatch-f1" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f1" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="1470" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1426" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1448h44M22,1426v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1448h44M1978,1426v44"/></g>
-<rect x="749.0" y="68.0" width="502.0" height="64.0" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1614" viewBox="0 0 2000 1614"><defs><pattern id="hatch-f1" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f1" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="1614" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="1570" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,1592h44M22,1570v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,1592h44M1978,1570v44"/></g>
+<rect x="735.0" y="68.0" width="530.0" height="64.0" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
 <text x="1000.0" y="115.2" text-anchor="middle" font-size="40" letter-spacing="2" font-weight="normal" fill="#1F6FEB">机器人 AGENT 控制回路</text>
-<rect x="1081.0" y="453.3" width="392.0" height="685.7" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
-<rect x="1099.0" y="462.8" width="282.0" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1240.0" y="491.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">电梯状态机 ELEVATOR</text>
-<path d="M1089.0,190.0 h376.0 v170.0 h-376.0 Z" fill="url(#hatch-f1)" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="1107.0" y="208.0" width="340.0" height="134.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1277.0" y="266.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLM 规划器</text>
-<text x="1277.0" y="305.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">next_subtask()</text>
-<path d="M535.0,661.5 h520.0 v130.0 h-520.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="795.0" y="718.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">LeRobot</text>
-<text x="795.0" y="757.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RolloutController.set_task</text>
-<path d="M660.0,831.5 h304.0 v131.0 h-304.0 Z" fill="url(#hatch-f1)" stroke="#1F6FEB" stroke-width="3"/>
-<path d="M674.0,831.5 v131.0 M950.0,831.5 v131.0" stroke="#1F6FEB" stroke-width="3"/>
-<rect x="678.0" y="849.5" width="268.0" height="95.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="812.0" y="908.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WALL VLA</text>
-<path d="M603.0,1002.5 h452.0 v130.0 h-452.0 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
-<text x="829.0" y="1059.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">单臂 + 腕部相机</text>
-<text x="829.0" y="1098.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">SINGLE ARM + WRIST CAM</text>
-<path d="M1031.0,1172.5 L1288.8,1245.1 L1031.0,1317.8 L773.2,1245.1 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1031.0" y="1256.5" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">仲裁 ARBITRATION</text>
-<path d="M1138.0,530.5 h278.0 v91.0 h-278.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1277.0" y="587.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">等待 WAITING</text>
-<path d="M1129.5,681.0 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1277.0" y="737.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">灯亮 LIGHT ON</text>
-<path d="M1107.0,832.0 h340.0 v130.0 h-340.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1277.0" y="888.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">激光测门开 LASER</text>
-<text x="1277.0" y="927.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">DOOR-OPEN</text>
-<path d="M1117.5,1022.0 h295.0 v91.0 h-295.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1265.0" y="1078.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">进入 ENTERING</text>
-<path d="M1277.0,360.0 L1277.0,380.0 L795.0,380.0 L795.0,661.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M783.7,645.0 L795.0,661.5 L806.3,645.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M812.0,791.5 L812.0,831.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M800.7,815.0 L812.0,831.5 L823.3,815.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M829.0,962.5 L829.0,1002.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M817.7,986.0 L829.0,1002.5 L840.3,986.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M829.0,1132.5 L829.0,1152.5 L1017.0,1152.5 L1017.0,1176.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1005.7,1159.9 L1017.0,1176.4 L1028.3,1159.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1031.0,1317.8 L1031.0,1337.8 L1161.0,1337.8 L1161.0,1357.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1224.0,1357.8 L1505.0,1357.8 L1505.0,360.0 L1465.0,360.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1481.5,348.7 L1465.0,360.0 L1481.5,371.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1031.0,1317.8 L1031.0,1337.8 L901.0,1337.8 L901.0,1357.8" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M803.0,1357.8 L495.0,1357.8 L495.0,791.5 L535.0,791.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M518.5,802.8 L535.0,791.5 L518.5,780.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1277.0,621.4 L1277.0,681.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1265.7,664.5 L1277.0,681.0 L1288.3,664.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1277.0,772.0 L1277.0,832.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1265.7,815.5 L1277.0,832.0 L1288.3,815.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1265.0,962.0 L1265.0,1022.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1253.7,1005.5 L1265.0,1022.0 L1276.3,1005.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1277.0,360.0 L1277.0,400.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1277.0,445.2 L1277.0,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1265.7,513.9 L1277.0,530.5 L1288.3,513.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1265.0,1113.0 L1265.0,1152.5 L1045.0,1152.5 L1045.0,1176.4" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1033.7,1159.9 L1045.0,1176.4 L1056.3,1159.9" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="1099.0" y="1361.2" width="124.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1161.0" y="1389.5" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">SUCCESS</text>
-<rect x="804.0" y="1361.2" width="194.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="901.0" y="1389.5" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FAIL / RETRY</text>
-<rect x="1165.0" y="403.4" width="224.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1277.0" y="431.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">子任务 = 乘电梯</text></svg>
+<rect x="1105.0" y="453.3" width="410.0" height="705.2" fill="#EEF4FE" fill-opacity="0.55" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1123.0" y="462.8" width="303.6" height="38.4" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1274.8" y="491.1" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">电梯状态机 ELEVATOR</text>
+<path d="M1101.0,190.0 h418.0 v170.0 h-418.0 Z" fill="url(#hatch-f1)" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="1119.0" y="208.0" width="382.0" height="134.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1310.0" y="266.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">VLM 规划器</text>
+<text x="1310.0" y="305.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">next_subtask()</text>
+<path d="M481.0,661.5 h598.0 v130.0 h-598.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="780.0" y="718.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">LeRobot</text>
+<text x="780.0" y="757.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RolloutController.set_task</text>
+<path d="M668.0,831.5 h328.0 v131.0 h-328.0 Z" fill="url(#hatch-f1)" stroke="#1F6FEB" stroke-width="3"/>
+<path d="M682.0,831.5 v131.0 M982.0,831.5 v131.0" stroke="#1F6FEB" stroke-width="3"/>
+<rect x="686.0" y="849.5" width="292.0" height="95.0" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="832.0" y="908.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">WALL VLA</text>
+<path d="M641.0,1002.5 h438.0 v169.0 h-438.0 Z" fill="#1F6FEB" stroke="#1F6FEB" stroke-width="3"/>
+<text x="860.0" y="1059.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">单臂 + 腕部相机</text>
+<text x="860.0" y="1098.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">SINGLE ARM + WRIST</text>
+<text x="860.0" y="1137.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#F8FBFF">CAM</text>
+<path d="M1071.0,1211.5 L1290.4,1336.8 L1071.0,1462.1 L851.6,1336.8 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1071.0" y="1328.7" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">仲裁</text>
+<text x="1071.0" y="1367.7" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">ARBITRATION</text>
+<path d="M1159.0,530.5 h302.0 v91.0 h-302.0 Z" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1310.0" y="587.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">等待 WAITING</text>
+<path d="M1149.0,681.0 h322.0 v91.0 h-322.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1310.0" y="737.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">灯亮 LIGHT ON</text>
+<path d="M1131.0,832.0 h358.0 v130.0 h-358.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1310.0" y="888.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">激光测门开 LASER</text>
+<text x="1310.0" y="927.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">DOOR-OPEN</text>
+<path d="M1140.0,1041.5 h322.0 v91.0 h-322.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1301.0" y="1098.4" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">进入 ENTERING</text>
+<path d="M1310.0,360.0 L1310.0,380.1 L780.0,380.1 L780.0,661.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M768.7,645.0 L780.0,661.5 L791.3,645.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M780.0,791.5 L780.0,811.5 L832.0,811.5 L832.0,831.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M820.7,815.0 L832.0,831.5 L843.3,815.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M860.0,962.5 L860.0,1002.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M848.7,986.0 L860.0,1002.5 L871.3,986.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M860.0,1171.5 L860.0,1191.5 L1057.0,1191.5 L1057.0,1219.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1045.7,1203.0 L1057.0,1219.5 L1068.3,1203.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1071.0,1462.1 L1071.0,1482.1 L1197.0,1482.1 L1197.0,1502.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1268.4,1502.1 L1559.0,1502.1 L1559.0,360.0 L1519.0,360.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1535.5,348.7 L1519.0,360.0 L1535.5,371.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1071.0,1462.1 L1071.0,1482.1 L945.0,1482.1 L945.0,1502.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M832.6,1502.1 L441.0,1502.1 L441.0,791.5 L481.0,791.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M464.5,802.8 L481.0,791.5 L464.5,780.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1310.0,621.5 L1310.0,681.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1298.7,664.5 L1310.0,681.0 L1321.3,664.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1310.0,772.0 L1310.0,832.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1298.7,815.5 L1310.0,832.0 L1321.3,815.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1301.0,962.0 L1301.0,1041.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1289.7,1025.0 L1301.0,1041.5 L1312.3,1025.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1310.0,360.0 L1310.0,400.1" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1310.0,445.3 L1310.0,530.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1298.7,514.0 L1310.0,530.5 L1321.3,514.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1301.0,1132.5 L1301.0,1191.5 L1085.0,1191.5 L1085.0,1219.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1073.7,1203.0 L1085.0,1219.5 L1096.3,1203.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="1126.6" y="1505.5" width="140.8" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1197.0" y="1533.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">SUCCESS</text>
+<rect x="833.6" y="1505.5" width="222.8" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="945.0" y="1533.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">FAIL / RETRY</text>
+<rect x="1194.4" y="403.5" width="231.2" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1310.0" y="431.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">子任务 = 乘电梯</text></svg>

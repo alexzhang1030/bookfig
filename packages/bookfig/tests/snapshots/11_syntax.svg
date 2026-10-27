@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="251" viewBox="0 0 2000 251"><defs><pattern id="hatch-f11" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f11" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="251" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="207" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,229h44M22,207v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,229h44M1978,207v44"/></g>
-<path d="M232.0,90.0 h163.0 v91.0 h-163.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="313.5" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">foo()</text>
-<path d="M435.0,90.0 h418.0 v91.0 h-418.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="644.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">BOLD AND ITALIC ITEM</text>
-<path d="M893.0,90.0 h265.0 v91.0 h-265.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1025.5" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CIRCLE HEAD</text>
-<path d="M1198.0,90.0 h248.0 v91.0 h-248.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1322.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CROSS HEAD</text>
-<path d="M1486.0,90.0 h282.0 v91.0 h-282.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1627.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">BOTH CIRCLES</text>
-<path d="M395.0,135.5 L435.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M418.5,146.8 L435.0,135.5 L418.5,124.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M853.0,135.5 L893.0,135.5" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
-<circle cx="884.6" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#0B3D91" stroke-width="3"/>
-<path d="M1158.0,135.5 L1198.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
-<path d="M1188.1,127.7 L1203.6,143.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1188.1,143.3 L1203.6,127.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1446.0,135.5 L1486.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<circle cx="1477.6" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<circle cx="1454.4" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="251" viewBox="0 0 2000 251"><defs><pattern id="hatch-f11" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f11" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="251" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="207" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,229h44M22,207v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,229h44M1978,207v44"/></g>
+<path d="M145.0,90.0 h178.0 v91.0 h-178.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="234.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">foo()</text>
+<path d="M363.0,90.0 h478.0 v91.0 h-478.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="602.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">BOLD AND ITALIC ITEM</text>
+<path d="M881.0,90.0 h298.0 v91.0 h-298.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1030.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CIRCLE HEAD</text>
+<path d="M1219.0,90.0 h278.0 v91.0 h-278.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1358.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">CROSS HEAD</text>
+<path d="M1537.0,90.0 h318.0 v91.0 h-318.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1696.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">BOTH CIRCLES</text>
+<path d="M323.0,135.5 L363.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M346.5,146.8 L363.0,135.5 L346.5,124.2" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M841.0,135.5 L881.0,135.5" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linejoin="miter"/>
+<circle cx="872.6" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#0B3D91" stroke-width="3"/>
+<path d="M1179.0,135.5 L1219.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="12 9" stroke-linejoin="miter"/>
+<path d="M1209.0,127.7 L1224.6,143.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1209.0,143.3 L1224.6,127.7" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1497.0,135.5 L1537.0,135.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<circle cx="1528.6" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<circle cx="1505.4" cy="135.5" r="8.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/></svg>

@@ -6,8 +6,9 @@ import {
   unsupportedFigure,
   type CaseMode,
 } from "bookfig";
+import { embedBookFont } from "bookfig";
 import { SITE_EXAMPLES } from "../examples";
-import { applyFitViewBox, rememberSvgSize, restoreSvgSize } from "../preview-fit";
+import { applyFitViewBox, clampFitAvail, rememberSvgSize, restoreSvgSize } from "../preview-fit";
 
 type PreviewState =
   | { kind: "empty" }
@@ -27,6 +28,7 @@ const visualScale = ref<number | null>(null);
 const previewEl = ref<HTMLElement | null>(null);
 const editorFocused = ref(false);
 let seq = 0;
+let fitSeq = 0;
 let mediaQuery: MediaQueryList | undefined;
 let previewObserver: ResizeObserver | undefined;
 
@@ -81,7 +83,16 @@ function measureVisualScale(): void {
   visualScale.value = box > 0 ? Math.min(1, shown / box) : null;
 }
 
-function applyPreviewFit(): void {
+async function applyPreviewFit(): Promise<void> {
+  const token = ++fitSeq;
+  if (document.fonts) {
+    try {
+      await document.fonts.ready;
+    } catch {
+      /* preview can still fit with fallback metrics */
+    }
+  }
+  if (token !== fitSeq) return;
   const host = previewEl.value;
   const svg = host?.querySelector("svg");
   if (!host || !svg) {
@@ -89,12 +100,16 @@ function applyPreviewFit(): void {
     return;
   }
   rememberSvgSize(svg);
-  if (narrow.value && previewZoom.value === "fit") {
+  if (previewZoom.value === "fit") {
     const cs = getComputedStyle(host);
     const padX = Number.parseFloat(cs.paddingLeft) + Number.parseFloat(cs.paddingRight);
     const padY = Number.parseFloat(cs.paddingTop) + Number.parseFloat(cs.paddingBottom);
     const box = host.getBoundingClientRect();
-    applyFitViewBox(svg, { w: Math.max(1, box.width - padX), h: Math.max(1, box.height - padY) });
+    const avail = clampFitAvail(
+      { w: box.width - padX, h: box.height - padY },
+      window.innerHeight,
+    );
+    applyFitViewBox(svg, avail);
   } else restoreSvgSize(svg);
   measureVisualScale();
 }
@@ -112,22 +127,33 @@ watch([source, caseMode], () => {
   void renderNow();
 });
 
-watch([state, previewZoom, narrow], () => {
+watch([state, previewZoom, narrow, editorFocused], () => {
   if (!import.meta.client) return;
   void nextTick(() => applyPreviewFit());
 });
 
+function onViewportChange(): void {
+  syncNarrow();
+  void applyPreviewFit();
+}
+
 onMounted(() => {
   syncNarrow();
   mediaQuery = window.matchMedia("(max-width: 860px)");
-  mediaQuery.addEventListener("change", syncNarrow);
-  previewObserver = new ResizeObserver(() => applyPreviewFit());
+  mediaQuery.addEventListener("change", onViewportChange);
+  window.addEventListener("resize", onViewportChange);
+  window.visualViewport?.addEventListener("resize", onViewportChange);
+  previewObserver = new ResizeObserver(() => {
+    void applyPreviewFit();
+  });
   if (previewEl.value) previewObserver.observe(previewEl.value);
   void renderNow();
 });
 
 onUnmounted(() => {
-  mediaQuery?.removeEventListener("change", syncNarrow);
+  mediaQuery?.removeEventListener("change", onViewportChange);
+  window.removeEventListener("resize", onViewportChange);
+  window.visualViewport?.removeEventListener("resize", onViewportChange);
   previewObserver?.disconnect();
 });
 
@@ -167,7 +193,10 @@ async function download(filename: string, blob: Blob): Promise<void> {
 async function exportSvg(): Promise<void> {
   const svg = state.value.kind === "ready" || state.value.kind === "error" ? state.value.svg : "";
   if (!svg) return;
-  await download("bookfig.svg", new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+  await download(
+    "bookfig.svg",
+    new Blob([embedBookFont(svg)], { type: "image/svg+xml;charset=utf-8" }),
+  );
 }
 
 async function exportPng(): Promise<void> {
@@ -193,7 +222,7 @@ const statusLabel = computed(() => {
       return "Laying out…";
     case "ready": {
       const shown =
-        narrow.value && previewZoom.value === "fit" && visualScale.value != null
+        previewZoom.value === "fit" && visualScale.value != null
           ? visualScale.value
           : state.value.scale;
       return `${state.value.type} · scale ${formatScale(shown)}`;

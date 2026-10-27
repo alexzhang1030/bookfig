@@ -1,3 +1,4 @@
+import { ensureBookFont } from "../book-font.ts";
 import { Fig } from "../fig.ts";
 import type { CaseMode } from "../types.ts";
 import { applyCase } from "./case-mode.ts";
@@ -27,7 +28,7 @@ export type RenderResult = {
 const SUPPORTED = "flowchart/graph, sequenceDiagram, stateDiagram, pie";
 
 export async function renderMermaid(text: string, opts: RenderOptions = {}): Promise<RenderResult> {
-  await ensureKatexFonts();
+  await Promise.all([ensureKatexFonts(), ensureBookFont()]);
   const { title, lines } = preprocess(text);
   if (!lines.length) throw new UnsupportedError("empty diagram");
   const head = (lines[0] ?? "").trim().split(/\s+/);

@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="595" viewBox="0 0 2000 595"><defs><pattern id="hatch-f13" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f13" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono CJK SC'}</style><rect x="0" y="0" width="2000" height="595" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="551" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,573h44M22,551v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,573h44M1978,551v44"/></g>
-<path d="M925.2,90.0 h163.0 v91.0 h-163.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1006.7" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">START</text>
-<path d="M871.8,221.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="941.8" y="277.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">MID</text>
-<path d="M871.8,352.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
-<text x="941.8" y="408.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">END</text>
-<path d="M1006.7,181.0 L1006.7,201.0 L941.8,201.0 L941.8,221.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M930.5,204.5 L941.8,221.0 L953.0,204.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M941.8,312.0 L941.8,352.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M930.5,335.5 L941.8,352.0 L953.0,335.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M941.8,443.0 L941.8,463.0 L1006.7,463.0 L1006.7,483.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1006.7,483.0 L1128.2,483.0 L1128.2,181.0 L1088.2,181.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<path d="M1104.8,169.7 L1088.2,181.0 L1104.8,192.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
-<rect x="958.7" y="486.4" width="96.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
-<text x="1006.7" y="514.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RETRY</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="595" viewBox="0 0 2000 595"><defs><pattern id="hatch-f13" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#EEF4FE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#1F6FEB" stroke-width="3"/></pattern><pattern id="dots-f13" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEF4FE"/><circle cx="7" cy="7" r="2.4" fill="#1F6FEB"/></pattern></defs><style>svg{font-family:'Noto Sans Mono'}</style><rect x="0" y="0" width="2000" height="595" fill="#F8FBFF"/><rect x="22" y="22" width="1956" height="551" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-dasharray="8 8"/><g stroke="#1F6FEB" stroke-width="3"><path d="M0,22h44M22,0v44"/><path d="M0,573h44M22,551v44"/><path d="M1956,22h44M1978,0v44"/><path d="M1956,573h44M1978,551v44"/></g>
+<path d="M914.0,90.0 h178.0 v91.0 h-178.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1003.0" y="146.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">START</text>
+<path d="M868.0,221.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="938.0" y="277.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">MID</text>
+<path d="M868.0,352.0 h140.0 v91.0 h-140.0 Z" fill="#DCE9FD" stroke="#1F6FEB" stroke-width="3"/>
+<text x="938.0" y="408.9" text-anchor="middle" font-size="30" letter-spacing="2" font-weight="normal" fill="#1F6FEB">END</text>
+<path d="M1003.0,181.0 L1003.0,201.0 L938.0,201.0 L938.0,221.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M926.7,204.5 L938.0,221.0 L949.3,204.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,312.0 L938.0,352.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M926.7,335.5 L938.0,352.0 L949.3,335.5" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M938.0,443.0 L938.0,463.0 L1003.0,463.0 L1003.0,483.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1003.0,483.0 L1132.0,483.0 L1132.0,181.0 L1092.0,181.0" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<path d="M1108.5,169.7 L1092.0,181.0 L1108.5,192.3" fill="none" stroke="#1F6FEB" stroke-width="3" stroke-linejoin="miter"/>
+<rect x="949.0" y="486.4" width="108.0" height="38.4" fill="#F8FBFF" stroke="#1F6FEB" stroke-width="3"/>
+<text x="1003.0" y="514.8" text-anchor="middle" font-size="24" letter-spacing="2" font-weight="normal" fill="#1F6FEB">RETRY</text></svg>

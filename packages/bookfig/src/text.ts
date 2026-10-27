@@ -1,4 +1,6 @@
-/** East-Asian wide/fullwidth characters occupy 1em; everything else 0.5em. */
+import { ensureBookFontSync, glyphAdvanceEm, latinAdvanceEm } from "./book-font.ts";
+
+/** East-Asian wide/fullwidth characters occupy 1em; Latin uses the bundled mono. */
 
 const WIDE_RANGES: ReadonlyArray<readonly [number, number]> = [
   [0x1100, 0x115f],
@@ -17,6 +19,10 @@ const WIDE_RANGES: ReadonlyArray<readonly [number, number]> = [
   [0x30000, 0x3fffd],
 ];
 
+function charAdvanceEm(ch: string): number {
+  return glyphAdvanceEm(ch) ?? (isWide(ch) ? 1 : latinAdvanceEm());
+}
+
 export function isWide(ch: string): boolean {
   const code = ch.codePointAt(0);
   if (code === undefined) return false;
@@ -28,12 +34,13 @@ export function isWide(ch: string): boolean {
 
 export function textWidth(s: string, size = 34, ls = 2): number {
   if (!s) return 0;
+  ensureBookFontSync();
   let w = 0;
-  for (const ch of s) {
-    w += isWide(ch) ? size : size * 0.5;
-  }
   let nChars = 0;
-  for (const _ch of s) nChars += 1;
+  for (const ch of s) {
+    w += charAdvanceEm(ch) * size;
+    nChars += 1;
+  }
   return w + ls * Math.max(0, nChars - 1);
 }
 
