@@ -30,6 +30,14 @@ async function waitForWeb(timeoutMs: number): Promise<void> {
   throw new Error(`Nuxt preview did not start on ${WEB}`);
 }
 
+async function launchPref(first: typeof chromium, second: typeof chromium): Promise<Browser> {
+  try {
+    return await first.launch({ headless: true });
+  } catch {
+    return second.launch({ headless: true });
+  }
+}
+
 beforeAll(async () => {
   if (!(await webUp())) {
     started = spawn("pnpm", ["--filter", "web", "dev"], {
@@ -39,8 +47,8 @@ beforeAll(async () => {
     });
     await waitForWeb(80_000);
   }
-  desktop = await chromium.launch({ headless: true });
-  mobile = await webkit.launch({ headless: true });
+  desktop = await launchPref(chromium, webkit);
+  mobile = await launchPref(webkit, chromium);
 });
 
 afterAll(async () => {
