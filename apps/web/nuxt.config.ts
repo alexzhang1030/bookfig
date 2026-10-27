@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: "en" },
-      title: "BOOKFIG",
+      title: "bookfig",
       meta: [
         {
           name: "viewport",
