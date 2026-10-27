@@ -1,0 +1,65 @@
+{
+  "after": {
+    "scrollW": 390,
+    "innerW": 390,
+    "editorH": 96,
+    "editorPadBottom": 32,
+    "editorBottom": 407,
+    "paneBottom": 410,
+    "paneBorder": "3px dashed rgb(31, 111, 235)",
+    "previewBox": {
+      "x": 0,
+      "y": 501,
+      "width": 390,
+      "height": 343,
+      "top": 501,
+      "right": 390,
+      "bottom": 844,
+      "left": 0
+    },
+    "svgBox": {
+      "x": 16,
+      "y": 543.859375,
+      "width": 358,
+      "height": 257.28125,
+      "top": 543.859375,
+      "right": 374,
+      "bottom": 801.140625,
+      "left": 16
+    },
+    "svgW": "2000",
+    "svgH": "1431",
+    "scale": "flowchart · scale 0.18",
+    "previewPaneH": 434
+  },
+  "katex": {
+    "areaText": "AREA ",
+    "gap": 18.999999999999886,
+    "space": 17,
+    "xmlSpace": "preserve",
+    "hasTex": true,
+    "editorH": 96,
+    "scale": "flowchart · scale 0.18",
+    "svgBox": {
+      "x": 16,
+      "y": 636.609375,
+      "width": 358,
+      "height": 71.78125,
+      "top": 636.609375,
+      "right": 374,
+      "bottom": 708.390625,
+      "left": 16
+    }
+  },
+  "focused": {
+    "h": 422,
+    "cls": "editor editor-open"
+  },
+  "blurred": {
+    "h": 96
+  },
+  "viewport": {
+    "VW": 390,
+    "VH": 844
+  }
+}
