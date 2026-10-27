@@ -1,0 +1,381 @@
+{
+  "capturedAt": "2026-10-27T02:46:09.967Z",
+  "before": {
+    "desktop_01_1440": {
+      "innerW": 1440,
+      "innerH": 900,
+      "pageScrollW": 1440,
+      "previewW": 813.921875,
+      "previewH": 1467,
+      "previewClientW": 814,
+      "previewScrollW": 2020,
+      "svgW": 2004,
+      "svgH": 1435,
+      "viewBox": "0 0 2000 1431",
+      "scale": 1,
+      "scaleText": "flowchart · scale 1",
+      "zoomDisplay": "none",
+      "overflow": true
+    }
+  },
+  "desktop": {
+    "01": {
+      "innerW": 1440,
+      "innerH": 900,
+      "pageScrollW": 1440,
+      "previewW": 813.921875,
+      "previewH": 764,
+      "previewClientW": 814,
+      "previewScrollW": 814,
+      "svgW": 612.25,
+      "svgH": 732,
+      "viewBox": "400 32 1200 1434.7000732421875",
+      "scale": 0.51,
+      "scaleText": "flowchart · scale 0.51",
+      "fontsReady": "loaded",
+      "fontFamily": "\"Noto Sans Mono\"",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "ROBOT AGENT CONTROL LOOP",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "ELEVATOR",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "VLM planner",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "next_subtask()",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "LeRobot",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "RolloutController.set_task",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        }
+      ]
+    },
+    "02": {
+      "innerW": 1440,
+      "innerH": 900,
+      "pageScrollW": 1440,
+      "previewW": 813.921875,
+      "previewH": 764,
+      "previewClientW": 814,
+      "previewScrollW": 814,
+      "svgW": 781.921875,
+      "svgH": 144.421875,
+      "viewBox": "34.400001525878906 78 2383.10009765625 440.1999816894531",
+      "scale": 0.33,
+      "scaleText": "flowchart · scale 0.33",
+      "fontsReady": "loaded",
+      "fontFamily": "\"Noto Sans Mono\"",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "DATA",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "TRAINING",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "SERVING",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "RECORD",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "TELEOP",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "EPISODES",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        }
+      ]
+    },
+    "03": {
+      "innerW": 1440,
+      "innerH": 900,
+      "pageScrollW": 1440,
+      "previewW": 813.921875,
+      "previewH": 764,
+      "previewClientW": 814,
+      "previewScrollW": 814,
+      "svgW": 781.921875,
+      "svgH": 386.09375,
+      "viewBox": "437 54 1126 556",
+      "scale": 0.69,
+      "scaleText": "graph · scale 0.69",
+      "fontsReady": "loaded",
+      "fontFamily": "\"Noto Sans Mono\"",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "CONTROL PLANE",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 1 SHANGHAI",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 2 SHENZHEN",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 3 EDGE",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 4 STANDBY",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        },
+        {
+          "text": "METRICS",
+          "font": "\"Noto Sans Mono\"",
+          "fontOk": true
+        }
+      ]
+    }
+  },
+  "mobile": {
+    "01": {
+      "innerW": 390,
+      "innerH": 844,
+      "pageScrollW": 390,
+      "previewW": 390,
+      "previewH": 299,
+      "previewClientW": 390,
+      "previewScrollW": 390,
+      "svgW": 247.0625,
+      "svgH": 295.390625,
+      "viewBox": "400 32 1200 1434.7000732421875",
+      "scale": 0.21,
+      "scaleText": "flowchart · scale 0.21",
+      "fontsReady": "loaded",
+      "fontFamily": "Noto Sans Mono",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "ROBOT AGENT CONTROL LOOP",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "ELEVATOR",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "VLM planner",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "next_subtask()",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "LeRobot",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "RolloutController.set_task",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        }
+      ]
+    },
+    "02": {
+      "innerW": 390,
+      "innerH": 844,
+      "pageScrollW": 390,
+      "previewW": 390,
+      "previewH": 299,
+      "previewClientW": 390,
+      "previewScrollW": 390,
+      "svgW": 358,
+      "svgH": 66.125,
+      "viewBox": "34.400001525878906 78 2383.10009765625 440.1999816894531",
+      "scale": 0.15,
+      "scaleText": "flowchart · scale 0.15",
+      "fontsReady": "loaded",
+      "fontFamily": "Noto Sans Mono",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "DATA",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "TRAINING",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "SERVING",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "RECORD",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "TELEOP",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "EPISODES",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        }
+      ]
+    },
+    "03": {
+      "innerW": 390,
+      "innerH": 844,
+      "pageScrollW": 390,
+      "previewW": 390,
+      "previewH": 299,
+      "previewClientW": 390,
+      "previewScrollW": 390,
+      "svgW": 358,
+      "svgH": 176.765625,
+      "viewBox": "437 54 1126 556",
+      "scale": 0.32,
+      "scaleText": "graph · scale 0.32",
+      "fontsReady": "loaded",
+      "fontFamily": "Noto Sans Mono",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "CONTROL PLANE",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 1 SHANGHAI",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 2 SHENZHEN",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 3 EDGE",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "WORKER 4 STANDBY",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "METRICS",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        }
+      ]
+    }
+  },
+  "edit": {
+    "focused": {
+      "innerW": 390,
+      "innerH": 844,
+      "pageScrollW": 390,
+      "previewW": 390,
+      "previewH": 295.390625,
+      "previewClientW": 390,
+      "previewScrollW": 390,
+      "svgW": 287.796875,
+      "svgH": 294,
+      "viewBox": "856.0999755859375 54 287.800048828125 294",
+      "scale": 1,
+      "scaleText": "flowchart · scale 1",
+      "fontsReady": "loaded",
+      "fontFamily": "Noto Sans Mono",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "AREA ",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "PLAIN",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        }
+      ],
+      "focused": true
+    },
+    "blurred": {
+      "innerW": 390,
+      "innerH": 844,
+      "pageScrollW": 390,
+      "previewW": 390,
+      "previewH": 299,
+      "previewClientW": 390,
+      "previewScrollW": 390,
+      "svgW": 287.796875,
+      "svgH": 294,
+      "viewBox": "856.0999755859375 54 287.800048828125 294",
+      "scale": 1,
+      "scaleText": "flowchart · scale 1",
+      "fontsReady": "loaded",
+      "fontFamily": "Noto Sans Mono",
+      "fontOk": true,
+      "labels": [
+        {
+          "text": "AREA ",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        },
+        {
+          "text": "PLAIN",
+          "font": "Noto Sans Mono",
+          "fontOk": true
+        }
+      ],
+      "nodeW": 212.79835510253906
+    }
+  }
+}
