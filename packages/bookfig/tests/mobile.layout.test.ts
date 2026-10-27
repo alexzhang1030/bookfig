@@ -96,30 +96,39 @@ async function openMobile(): Promise<Page> {
   return page;
 }
 
-async function measureFit(page: Page): Promise<{ svgW: number; previewW: number }> {
+async function measureFit(
+  page: Page,
+): Promise<{ svgW: number; svgH: number; previewW: number; previewH: number }> {
   await page.getByTestId("zoom-fit").click();
   await page.waitForFunction(() => {
     const preview = document.querySelector("[data-testid='preview']");
     const svg = preview?.querySelector("svg");
     if (!preview || !svg) return false;
-    const previewW = preview.getBoundingClientRect().width;
-    const svgW = svg.getBoundingClientRect().width;
-    return previewW > 0 && svgW > previewW * 0.8 && svgW <= previewW + 1;
+    const pb = preview.getBoundingClientRect();
+    const sb = svg.getBoundingClientRect();
+    if (pb.width <= 0 || pb.height <= 0) return false;
+    if (sb.width > pb.width + 1 || sb.height > pb.height + 1) return false;
+    return sb.width > pb.width * 0.8 || sb.height > pb.height * 0.8;
   });
   return page.evaluate(() => {
     const preview = document.querySelector("[data-testid='preview']");
     const svg = preview?.querySelector("svg");
+    const pb = preview?.getBoundingClientRect();
+    const sb = svg?.getBoundingClientRect();
     return {
-      svgW: svg?.getBoundingClientRect().width ?? 0,
-      previewW: preview?.getBoundingClientRect().width ?? 0,
+      svgW: sb?.width ?? 0,
+      svgH: sb?.height ?? 0,
+      previewW: pb?.width ?? 0,
+      previewH: pb?.height ?? 0,
     };
   });
 }
 
-function expectFit(m: { svgW: number; previewW: number }): void {
+function expectFit(m: { svgW: number; svgH: number; previewW: number; previewH: number }): void {
   expect(m.previewW).toBeGreaterThan(80);
   expect(m.svgW).toBeLessThanOrEqual(m.previewW + 1);
-  expect(m.svgW).toBeGreaterThan(m.previewW * 0.8);
+  expect(m.svgH).toBeLessThanOrEqual(m.previewH + 1);
+  expect(m.svgW > m.previewW * 0.8 || m.svgH > m.previewH * 0.8).toBe(true);
 }
 
 test("390-wide mobile chrome stays in viewport and export works", { timeout: 60_000 }, async () => {

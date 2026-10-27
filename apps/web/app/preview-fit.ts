@@ -18,6 +18,8 @@ export function restoreSvgSize(svg: SVGSVGElement): void {
   svg.style.maxWidth = "";
   svg.style.maxHeight = "";
   delete svg.dataset.fitApplied;
+  delete svg.dataset.fitW;
+  delete svg.dataset.fitH;
 }
 
 function isChrome(el: Element, canvasW: number, canvasH: number): boolean {
@@ -69,19 +71,30 @@ export function contentViewBox(svg: SVGSVGElement, pad = FIT_PAD): FitBox {
   };
 }
 
-export function applyFitViewBox(svg: SVGSVGElement, pad = FIT_PAD): FitBox {
-  if (svg.dataset.fitApplied === "1") {
+export function applyFitViewBox(
+  svg: SVGSVGElement,
+  avail?: { w: number; h: number },
+  pad = FIT_PAD,
+): FitBox {
+  let box: FitBox;
+  if (svg.dataset.fitApplied === "1" && svg.dataset.fitW && svg.dataset.fitH) {
     const vb = svg.viewBox.baseVal;
-    return { x: vb.x, y: vb.y, w: vb.width, h: vb.height };
+    box = { x: vb.x, y: vb.y, w: Number(svg.dataset.fitW), h: Number(svg.dataset.fitH) };
+  } else {
+    box = contentViewBox(svg, pad);
+    svg.setAttribute("viewBox", `${box.x} ${box.y} ${box.w} ${box.h}`);
+    svg.setAttribute("width", String(Math.round(box.w)));
+    svg.setAttribute("height", String(Math.round(box.h)));
+    svg.dataset.fitW = String(box.w);
+    svg.dataset.fitH = String(box.h);
+    svg.dataset.fitApplied = "1";
   }
-  const box = contentViewBox(svg, pad);
-  svg.setAttribute("viewBox", `${box.x} ${box.y} ${box.w} ${box.h}`);
-  svg.setAttribute("width", String(Math.round(box.w)));
-  svg.setAttribute("height", String(Math.round(box.h)));
-  svg.style.width = "auto";
-  svg.style.height = "auto";
-  svg.style.maxWidth = "100%";
-  svg.style.maxHeight = "100%";
-  svg.dataset.fitApplied = "1";
+  if (avail && avail.w > 0 && avail.h > 0) {
+    const scale = Math.min(1, avail.w / box.w, avail.h / box.h);
+    svg.style.width = `${box.w * scale}px`;
+    svg.style.height = `${box.h * scale}px`;
+    svg.style.maxWidth = "100%";
+    svg.style.maxHeight = "100%";
+  }
   return box;
 }

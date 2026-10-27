@@ -82,14 +82,20 @@ function measureVisualScale(): void {
 }
 
 function applyPreviewFit(): void {
-  const svg = previewEl.value?.querySelector("svg");
-  if (!svg) {
+  const host = previewEl.value;
+  const svg = host?.querySelector("svg");
+  if (!host || !svg) {
     visualScale.value = null;
     return;
   }
   rememberSvgSize(svg);
-  if (narrow.value && previewZoom.value === "fit") applyFitViewBox(svg);
-  else restoreSvgSize(svg);
+  if (narrow.value && previewZoom.value === "fit") {
+    const cs = getComputedStyle(host);
+    const padX = Number.parseFloat(cs.paddingLeft) + Number.parseFloat(cs.paddingRight);
+    const padY = Number.parseFloat(cs.paddingTop) + Number.parseFloat(cs.paddingBottom);
+    const box = host.getBoundingClientRect();
+    applyFitViewBox(svg, { w: Math.max(1, box.width - padX), h: Math.max(1, box.height - padY) });
+  } else restoreSvgSize(svg);
   measureVisualScale();
 }
 
