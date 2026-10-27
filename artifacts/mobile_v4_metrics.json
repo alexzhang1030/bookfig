@@ -1,0 +1,67 @@
+{
+  "after": {
+    "scrollW": 390,
+    "innerW": 390,
+    "editorH": 128,
+    "editorPadBottom": 16,
+    "editorBottom": 439,
+    "paneBottom": 454,
+    "gap": 12,
+    "lines": 4,
+    "lineHeight": 24,
+    "previewBox": {
+      "x": 0,
+      "y": 545,
+      "width": 390,
+      "height": 299,
+      "top": 545,
+      "right": 390,
+      "bottom": 844,
+      "left": 0
+    },
+    "svgBox": {
+      "x": 89.4375,
+      "y": 561,
+      "width": 211.125,
+      "height": 267,
+      "top": 561,
+      "right": 300.5625,
+      "bottom": 828,
+      "left": 89.4375
+    },
+    "svgW": "1079",
+    "viewW": 1079,
+    "fitApplied": "1",
+    "scale": "flowchart · scale 0.20"
+  },
+  "katex": {
+    "areaText": "AREA ",
+    "nodeW": 179.40565490722656,
+    "nodeWidths": [
+      179.40565490722656,
+      145.633056640625
+    ],
+    "svgBox": {
+      "x": 71.125,
+      "y": 561,
+      "width": 247.734375,
+      "height": 267,
+      "top": 561,
+      "right": 318.859375,
+      "bottom": 828,
+      "left": 71.125
+    },
+    "previewW": 390,
+    "viewW": 272.800048828125,
+    "attrW": "273",
+    "origW": "2000",
+    "fitApplied": "1",
+    "scale": "flowchart · scale 0.91",
+    "scrollW": 390,
+    "innerW": 390
+  },
+  "viewport": {
+    "VW": 390,
+    "VH": 844
+  }
+}
