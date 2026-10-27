@@ -1,34 +1,11 @@
-import { spawn, type ChildProcess } from "node:child_process";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { chromium, webkit, type Browser, type Page } from "playwright";
 import { afterAll, beforeAll, expect, test } from "vite-plus/test";
+import { ensureWeb, WEB } from "./web-harness.ts";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "../../..");
-const WEB = "http://127.0.0.1:43173";
 const EXAMPLES = ["01", "02", "03"] as const;
 
 let desktop: Browser | undefined;
 let mobile: Browser | undefined;
-let started: ChildProcess | undefined;
-
-async function webUp(): Promise<boolean> {
-  try {
-    const res = await fetch(WEB, { signal: AbortSignal.timeout(1500) });
-    return res.ok;
-  } catch {
-    return false;
-  }
-}
-
-async function waitForWeb(timeoutMs: number): Promise<void> {
-  const t0 = Date.now();
-  while (Date.now() - t0 < timeoutMs) {
-    if (await webUp()) return;
-    await new Promise((r) => setTimeout(r, 400));
-  }
-  throw new Error(`Nuxt preview did not start on ${WEB}`);
-}
 
 async function launchPref(first: typeof chromium, second: typeof chromium): Promise<Browser> {
   try {
@@ -39,14 +16,7 @@ async function launchPref(first: typeof chromium, second: typeof chromium): Prom
 }
 
 beforeAll(async () => {
-  if (!(await webUp())) {
-    started = spawn("pnpm", ["--filter", "web", "dev"], {
-      cwd: root,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: { ...process.env, NUXT_TELEMETRY_DISABLED: "1" },
-    });
-    await waitForWeb(80_000);
-  }
+  await ensureWeb();
   desktop = await launchPref(chromium, webkit);
   mobile = await launchPref(webkit, chromium);
 });
@@ -54,7 +24,6 @@ beforeAll(async () => {
 afterAll(async () => {
   await desktop?.close();
   await mobile?.close();
-  if (started?.pid) started.kill("SIGTERM");
 });
 
 type LabelMetric = {
@@ -188,6 +157,7 @@ function expectLabels(m: PageMetrics): void {
 
 async function openDesktop(): Promise<Page> {
   if (!desktop) throw new Error("desktop browser missing");
+  await ensureWeb();
   const page = await desktop.newPage({ viewport: { width: 1440, height: 900 } });
   page.setDefaultTimeout(30_000);
   await page.goto(WEB, { waitUntil: "domcontentloaded" });
@@ -197,6 +167,7 @@ async function openDesktop(): Promise<Page> {
 
 async function openMobile(): Promise<Page> {
   if (!mobile) throw new Error("mobile browser missing");
+  await ensureWeb();
   const page = await mobile.newPage({
     viewport: { width: 390, height: 844 },
     deviceScaleFactor: 3,

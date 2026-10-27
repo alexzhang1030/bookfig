@@ -34,4 +34,9 @@ export default defineConfig({
   run: {
     cache: true,
   },
+  test: {
+    testTimeout: 30_000,
+    hookTimeout: 90_000,
+    fileParallelism: false,
+  },
 });
