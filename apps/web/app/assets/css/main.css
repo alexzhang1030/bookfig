@@ -12,11 +12,19 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #__nuxt {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   min-height: 100%;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font-family:
@@ -35,8 +43,16 @@ button {
 
 .app {
   min-height: 100vh;
+  min-height: 100dvh;
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
 }
 
 .top {
@@ -48,12 +64,16 @@ button {
   padding: 16px 20px;
   border-bottom: 3px dashed var(--line);
   background: var(--lighter);
+  flex-shrink: 0;
+  min-width: 0;
+  width: 100%;
 }
 
 .brand {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .brand h1 {
@@ -75,6 +95,7 @@ button {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+  min-width: 0;
 }
 
 .chip,
@@ -99,16 +120,21 @@ button {
 
 .main {
   display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.3fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
   gap: 0;
   flex: 1;
   min-height: 0;
+  min-width: 0;
+  width: 100%;
 }
 
 .pane {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   border-right: 3px dashed var(--line);
 }
 
@@ -124,6 +150,8 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 8px;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .examples {
@@ -132,6 +160,10 @@ button {
   overflow-x: auto;
   padding: 10px 16px;
   border-bottom: 2px solid var(--light);
+  flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .examples button {
@@ -151,19 +183,26 @@ button {
 textarea.editor {
   flex: 1;
   min-height: 280px;
+  min-width: 0;
+  width: 100%;
   border: 0;
   resize: none;
   padding: 16px;
   background: var(--bg);
   color: var(--dark);
+  font-size: 16px;
   line-height: 1.45;
   outline: none;
 }
 
 .preview {
   flex: 1;
+  min-width: 0;
   overflow: auto;
   padding: 16px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
   background:
     linear-gradient(var(--lighter) 1px, transparent 1px),
     linear-gradient(90deg, var(--lighter) 1px, transparent 1px);
@@ -196,14 +235,47 @@ textarea.editor {
   font-size: 12px;
   color: var(--dark);
   border-top: 2px solid var(--light);
+  flex-shrink: 0;
 }
 
 @media (max-width: 860px) {
-  .main {
-    grid-template-columns: 1fr;
+  html,
+  body,
+  #__nuxt {
+    height: 100%;
+    max-height: 100dvh;
+    overflow: hidden;
   }
+
+  .app {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1.15fr);
+    overflow: hidden;
+  }
+
   .pane {
     border-right: 0;
     border-bottom: 3px dashed var(--line);
+  }
+
+  .pane:last-child {
+    border-bottom: 0;
+  }
+
+  textarea.editor {
+    min-height: 0;
+  }
+
+  .chip,
+  .btn,
+  .examples button {
+    min-height: 44px;
+    min-width: 44px;
   }
 }

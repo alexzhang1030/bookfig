@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {
-  GALLERY,
   UnsupportedError,
   isCaseMode,
   renderMermaid,
   unsupportedFigure,
   type CaseMode,
 } from "bookfig";
+import { SITE_EXAMPLES } from "../examples";
 
 type PreviewState =
   | { kind: "empty" }
@@ -14,9 +14,9 @@ type PreviewState =
   | { kind: "ready"; svg: string; warnings: string[]; scale: number; type: string }
   | { kind: "error"; message: string; svg: string };
 
-const source = ref(GALLERY[0]?.source ?? "");
+const source = ref(SITE_EXAMPLES[0]?.source ?? "");
 const caseMode = ref<CaseMode>("auto");
-const activeId = ref(GALLERY[0]?.id ?? "");
+const activeId = ref(SITE_EXAMPLES[0]?.id ?? "");
 const state = ref<PreviewState>({ kind: "empty" });
 let seq = 0;
 
@@ -25,7 +25,7 @@ function setCase(name: string): void {
 }
 
 function loadExample(id: string): void {
-  const item = GALLERY.find((g) => g.id === id);
+  const item = SITE_EXAMPLES.find((g) => g.id === id);
   if (!item) return;
   activeId.value = id;
   source.value = item.source;
@@ -64,19 +64,43 @@ onMounted(() => {
   void renderNow();
 });
 
-function download(filename: string, blob: Blob): void {
+function isAppleTouch(): boolean {
+  return (
+    /iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+}
+
+async function download(filename: string, blob: Blob): Promise<void> {
+  const file = new File([blob], filename, { type: blob.type || "application/octet-stream" });
+  if (typeof navigator.share === "function" && navigator.canShare?.({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: filename });
+      return;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+    }
+  }
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
+  a.rel = "noopener";
+  document.body.append(a);
   a.click();
-  URL.revokeObjectURL(url);
+  a.remove();
+  const apple = isAppleTouch();
+  if (apple) {
+    const opened = window.open(url, "_blank");
+    if (!opened) window.location.assign(url);
+  }
+  globalThis.setTimeout(() => URL.revokeObjectURL(url), apple ? 60_000 : 2_000);
 }
 
-function exportSvg(): void {
+async function exportSvg(): Promise<void> {
   const svg = state.value.kind === "ready" || state.value.kind === "error" ? state.value.svg : "";
   if (!svg) return;
-  download("bookfig.svg", new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+  await download("bookfig.svg", new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
 }
 
 async function exportPng(): Promise<void> {
@@ -91,7 +115,7 @@ async function exportPng(): Promise<void> {
     state.value = { kind: "error", message: `PNG export failed: ${res.status}`, svg };
     return;
   }
-  download("bookfig.png", await res.blob());
+  await download("bookfig.png", await res.blob());
 }
 
 const statusLabel = computed(() => {
@@ -114,7 +138,7 @@ const statusLabel = computed(() => {
 
 <template>
   <div class="app">
-    <header class="top">
+    <header class="top" data-testid="toolbar">
       <div class="brand">
         <h1>BOOKFIG</h1>
         <p>Technical-book figures · Mermaid → SVG / PNG</p>
@@ -137,6 +161,7 @@ const statusLabel = computed(() => {
         <button
           class="btn primary"
           type="button"
+          data-testid="export-svg"
           :disabled="state.kind === 'empty' || state.kind === 'loading'"
           @click="exportSvg"
         >
@@ -145,6 +170,7 @@ const statusLabel = computed(() => {
         <button
           class="btn"
           type="button"
+          data-testid="export-png"
           :disabled="state.kind === 'empty' || state.kind === 'loading'"
           @click="exportPng"
         >
@@ -153,13 +179,13 @@ const statusLabel = computed(() => {
       </div>
     </header>
     <main class="main">
-      <section class="pane">
+      <section class="pane" data-testid="editor-pane">
         <div class="pane-head">
           <span>MERMAID SOURCE</span><span>{{ activeId }}</span>
         </div>
         <div class="examples">
           <button
-            v-for="item in GALLERY"
+            v-for="item in SITE_EXAMPLES"
             :key="item.id"
             type="button"
             :data-on="activeId === item.id"
@@ -172,16 +198,17 @@ const statusLabel = computed(() => {
         <textarea
           v-model="source"
           class="editor"
+          data-testid="editor"
           spellcheck="false"
           aria-label="Mermaid source"
           placeholder="flowchart TD&#10;    A[Start] --> B[End]"
         />
       </section>
-      <section class="pane">
+      <section class="pane" data-testid="preview-pane">
         <div class="pane-head">
           <span>PREVIEW</span><span>{{ statusLabel }}</span>
         </div>
-        <div class="preview">
+        <div class="preview" data-testid="preview">
           <div v-if="state.kind === 'empty'" class="state">
             Write a flowchart, sequenceDiagram, stateDiagram, or pie on the left. The figure updates
             live.
